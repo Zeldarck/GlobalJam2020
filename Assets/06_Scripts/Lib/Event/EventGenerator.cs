@@ -13,7 +13,7 @@ public static class EventGenerator
 
     private static List<List<string>> m_events = new List<List<string>>();
 
-    private static string m_path = "/Scripts/Lib/Event/EventManager.cs";
+    private static string m_path = "/06_Scripts/Lib/Event/EventManager.cs";
 
     static EventGenerator()
     {
