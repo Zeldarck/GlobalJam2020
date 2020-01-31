@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+public class Player : Singleton<Player>
 {
     // Start is called before the first frame update
     void Start()
     {
-        LevelGenerator.Instance.GenerateLevel(7, 10);
-        CameraManager.Instance.Target = Player.Instance.gameObject;
-        CameraManager.Instance.CurrentStrategy = new CameraFPS();
+        
     }
 
     // Update is called once per frame
