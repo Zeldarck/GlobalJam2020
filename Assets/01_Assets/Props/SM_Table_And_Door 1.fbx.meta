@@ -1,24 +1,14 @@
 fileFormatVersion: 2
-guid: c12d3507e4f872e4d91308def4ef6d63
+guid: fa88065089ecf9c498023c6cd5429bc6
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_Base_Material
-    second: {fileID: 2100000, guid: 53d93f27cf6936f4594a4d3ea6aec8a2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_Light_Modulable
-    second: {fileID: 2100000, guid: db2ea549aa5b504458602d26c37ba24f, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
