@@ -13,8 +13,9 @@ public class GameObjectManager : Singleton<GameObjectManager>
 {
     Dictionary<SPAWN_CONTAINER_TYPE, GameObject> m_containers = new Dictionary<SPAWN_CONTAINER_TYPE, GameObject>();
 
-    void Start()
+    protected override void Awake()
     {
+        base.Awake();
         for(int i = 0; i < (int)SPAWN_CONTAINER_TYPE.NBCATEGORY; ++i )
         {
             GameObject go = new GameObject("GameObjectManagerContainer : " + (SPAWN_CONTAINER_TYPE) i);
@@ -22,11 +23,13 @@ public class GameObjectManager : Singleton<GameObjectManager>
         }
     }
 
-    public GameObject Instantiate(GameObject a_gameObject, Vector3 a_position, Quaternion a_rotation, SPAWN_CONTAINER_TYPE a_type = SPAWN_CONTAINER_TYPE.NOTHING)
+    public GameObject InstantiateObject(GameObject a_gameObject, Vector3 a_position, Quaternion a_rotation, SPAWN_CONTAINER_TYPE a_type = SPAWN_CONTAINER_TYPE.NOTHING)
     {
         Assert.AreNotEqual(a_type, SPAWN_CONTAINER_TYPE.NBCATEGORY, "Type not allowed");
 
         GameObject container = m_containers[a_type];
+
+        Debug.Log("[GameObjectManager] Instantiate :" + a_gameObject);
 
         return Instantiate(a_gameObject, a_position, a_rotation, container.transform);
 

@@ -519,6 +519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89ed51f5378b0d469998eda10a7d1b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_lcornerPrefab:
+  - {fileID: 2739905946824380829, guid: 9d389aa9cd815f947909686bb5ef10f8, type: 3}
+  m_ltablePrefab:
+  - {fileID: -5820680351009732541, guid: 3069e9fcd14274b4dba70c5865cf59db, type: 3}
+  m_sizeProp: 1
 --- !u!1 &948805600
 GameObject:
   m_ObjectHideFlags: 0
