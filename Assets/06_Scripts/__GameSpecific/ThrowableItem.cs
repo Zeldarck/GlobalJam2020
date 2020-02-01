@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ThrowableItemType { TV, APPAREIL_PHOTO, FRITEUSE, NB_ITEM_TYPE};
+public enum ThrowableItemType { TV, APPAREIL_PHOTO, FRITEUSE, TETE_DE_MORT, BURRITOS, THEIRE, NAMICA_SWITCH, CACTUS, NB_ITEM_TYPE};
 
 public class ThrowableItem : MonoBehaviour
 {
