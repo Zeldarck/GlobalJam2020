@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class IconItem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    ThrowableItemType m_itemType;
+    public ThrowableItemType ItemType { get => m_itemType; set => m_itemType = value; }
+
 }

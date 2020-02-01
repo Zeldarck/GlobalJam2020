@@ -3,27 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-[System.Serializable]
-public class ItemTypeIcon
-{
-    [SerializeField]
-    IconItem m_iconItem;
-    [SerializeField]
-    ThrowableItemType m_itemType;
-
-    public IconItem IconItem { get => m_iconItem; set => m_iconItem = value; }
-    public ThrowableItemType ItemType { get => m_itemType; set => m_itemType = value; }
-}
-
 
 public class Client : MonoBehaviour
 {
 
     [SerializeField]
-    List<ItemTypeIcon> m_itemTypeIconList = new List<ItemTypeIcon>();
+    List<IconItem> m_iconItemList = new List<IconItem>();
 
-
-    [SerializeField]
     ThrowableItemType m_wantedItem;
 
     [SerializeField]
@@ -49,15 +35,15 @@ public class Client : MonoBehaviour
         set
         {
             m_wantedItem = value;
-            ItemTypeIcon iconItemType = m_itemTypeIconList.Find(o => o.ItemType == m_wantedItem);
+            IconItem iconItem = m_iconItemList.Find(o => o.ItemType == m_wantedItem);
 
-            if (iconItemType == null)
+            if (iconItem == null)
             {
                 Debug.LogError("No item setup in Client for " + m_wantedItem);
                 return;
             }
 
-            iconItemType.IconItem.gameObject.SetActive(true);
+            iconItem.gameObject.SetActive(true);
 
         }
     }
