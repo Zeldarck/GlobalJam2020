@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4302437107485342457}
   - component: {fileID: 4241921279858875357}
   - component: {fileID: 5877020229076421084}
+  - component: {fileID: -2432986356993968700}
   m_Layer: 9
   m_Name: DM_Projectile
   m_TagString: Untagged
@@ -110,6 +111,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemType: 0
+--- !u!54 &-2432986356993968700
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8203564600384445140}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1001 &2201217364340733876
 PrefabInstance:
   m_ObjectHideFlags: 0

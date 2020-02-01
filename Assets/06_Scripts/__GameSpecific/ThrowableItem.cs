@@ -23,4 +23,9 @@ public class ThrowableItem : MonoBehaviour
     {
         
     }
+
+    void Fire(Vector3 a_direction)
+    {
+
+    }
 }

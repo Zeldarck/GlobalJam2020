@@ -37,7 +37,7 @@ public class CameraFPS : CameraStrategy
 
     public override void Update(Transform a_transform)
     {
-        if (m_target)
+        if (m_target && Cursor.lockState == CursorLockMode.Locked)
         {
             float h = m_horizontalSpeed * Input.GetAxis("Mouse X");
             float v = m_verticalSpeed * Input.GetAxis("Mouse Y")* -1.0f;

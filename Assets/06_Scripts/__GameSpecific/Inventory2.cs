@@ -33,10 +33,14 @@ public class Inventory2 : MonoBehaviour
         if (MainItem != null)
         {
             MainItem.transform.localPosition = m_localOffsetMainItem;
+            MainItem.transform.localRotation = Quaternion.identity;
+            MainItem.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         }
         if (SecondItem != null)
         {
             SecondItem.transform.localPosition = m_localOffsetSecondItem;
+            SecondItem.transform.localRotation = Quaternion.identity;
+            SecondItem.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         }
     }
 
@@ -55,14 +59,19 @@ public class Inventory2 : MonoBehaviour
         return res;
     }
 
-    void ExchangeItem()
+    public void ExchangeItem()
     {
         ThrowableItem temp = SecondItem;
         SecondItem = MainItem;
         MainItem = temp;
     }
 
-    void GiveItem(ThrowableItem a_item)
+    public void GiveItem()
+    {
+        GiveItem(GenerateRandomItem());
+    }
+
+    public void GiveItem(ThrowableItem a_item)
     {
         if (MainItem == null)
         {
