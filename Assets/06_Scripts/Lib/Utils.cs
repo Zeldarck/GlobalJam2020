@@ -239,4 +239,23 @@ public static class Utils
         }
     }
 
+
+    public static void ShuffleQueue<T>(Queue<T> a_queue)
+    {
+        List<T> list = new List<T>();
+        foreach(T item in a_queue)
+        {
+            list.Add(item);
+        }
+        a_queue.Clear();
+
+        ShuffleList(list);
+
+        foreach (T item in list)
+        {
+            a_queue.Enqueue(item);
+        }
+    }
+
+
 }

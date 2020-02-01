@@ -44,11 +44,6 @@ public class GameManager : Singleton<GameManager>
         }
 
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            EventManager.Instance.InvokeOnStart(this);     
-        }
-
 
         if (m_gameTimer.GetCurrentTime() / 20 >= m_scoreMultiplier)
         {

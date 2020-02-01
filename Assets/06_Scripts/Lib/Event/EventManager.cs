@@ -27,6 +27,8 @@ public void RegisterOnArriveToStation(Action<object,MessageEventArgs> a_action)
 //GiveItem;ItemEventArgs
 //GiveRandomItem
 //ClientComplete;ClientEventArgs
+//SetCornerOrder;ItemEventArgs;IntEventArgs
+//CornerHitted
 //Loose
 //##END##
 
@@ -251,6 +253,60 @@ public class EventManager : Singleton<EventManager>
 		if(OnClientComplete != null)
 		{
 			OnClientComplete.Invoke(a_sender, a_1clientEventArgs);
+		}
+	}
+
+
+
+
+// --- EVENT --- SetCornerOrder --- //
+
+
+	protected event Action<object, ItemEventArgs, IntEventArgs> OnSetCornerOrder;
+	public void RegisterOnSetCornerOrder(Action<object, ItemEventArgs, IntEventArgs> a_action)
+	{
+		OnSetCornerOrder += a_action;
+	}
+
+
+	public void UnRegisterOnSetCornerOrder(Action<object, ItemEventArgs, IntEventArgs> a_action)
+	{
+		OnSetCornerOrder -= a_action;
+	}
+
+
+	public void InvokeOnSetCornerOrder(object a_sender, ItemEventArgs a_1itemEventArgs, IntEventArgs a_2intEventArgs)
+	{
+		if(OnSetCornerOrder != null)
+		{
+			OnSetCornerOrder.Invoke(a_sender, a_1itemEventArgs, a_2intEventArgs);
+		}
+	}
+
+
+
+
+// --- EVENT --- CornerHitted --- //
+
+
+	protected event Action<object> OnCornerHitted;
+	public void RegisterOnCornerHitted(Action<object> a_action)
+	{
+		OnCornerHitted += a_action;
+	}
+
+
+	public void UnRegisterOnCornerHitted(Action<object> a_action)
+	{
+		OnCornerHitted -= a_action;
+	}
+
+
+	public void InvokeOnCornerHitted(object a_sender)
+	{
+		if(OnCornerHitted != null)
+		{
+			OnCornerHitted.Invoke(a_sender);
 		}
 	}
 
