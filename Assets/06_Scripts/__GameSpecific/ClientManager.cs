@@ -20,7 +20,7 @@ public class ClientManager : Singleton<ClientManager>
 
     Timer m_timer;
 
-    int m_currentTableId = 0;
+    int m_currentTableId = 100000;
 
     bool m_allowSpawn = false;
 
