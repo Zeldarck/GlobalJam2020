@@ -10,11 +10,12 @@ public class ScoreUI : MonoBehaviour
     private void Start()
     {
         m_scoreText = GetComponent<Text>();
+        EventManager.Instance.RegisterOnScoreUpdate((o, number, number2) => OnScoreUpdated(number.m_int, number2.m_int));
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnScoreUpdated(float a_score, float a_scoreMultiplier)
     {
-     //   m_scoreText.text = ;
+        m_scoreText.text = "x" + a_scoreMultiplier + " || " + a_score;
     }
+
 }

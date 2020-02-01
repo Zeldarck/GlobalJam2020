@@ -16,6 +16,11 @@ public class Client : MonoBehaviour
     int m_baseScore = 10;
 
     [SerializeField]
+    int m_minimumScore = 4;
+
+
+
+    [SerializeField]
     float m_baseRage = 10;
 
     Timer m_timer;
@@ -39,6 +44,10 @@ public class Client : MonoBehaviour
         if(!a_isHappy)
         {
             EventManager.Instance.InvokeOnRageIncrease(this, new NumberEventArgs(m_baseRage));
+        }
+        else
+        {
+            EventManager.Instance.InvokeOnScoreIncrease(this, new IntEventArgs((int)Mathf.Max(m_baseScore * m_timer.GetTimeLeft()/m_waitingTime, 4)));
         }
     }
 

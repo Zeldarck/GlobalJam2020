@@ -127,8 +127,8 @@ public static class EventGenerator
             for (int j = 1; j < m_events[i].Count; j++)
             {
                 actionBuilder.Append(", " + m_events[i][j]);
-                parametersBuilder.Append(", " + m_events[i][j] + " a_" + char.ToLower(m_events[i][j][0]) + m_events[i][j].Substring(1));
-                inputBuilder.Append(", a_" + char.ToLower(m_events[i][j][0]) + m_events[i][j].Substring(1));
+                parametersBuilder.Append(", " + m_events[i][j] + " a_" + j + char.ToLower(m_events[i][j][0]) + m_events[i][j].Substring(1));
+                inputBuilder.Append(", a_"+ j + char.ToLower(m_events[i][j][0]) + m_events[i][j].Substring(1));
             }
             actionBuilder.Append(">");
 

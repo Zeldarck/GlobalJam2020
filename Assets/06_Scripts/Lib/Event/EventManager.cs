@@ -22,7 +22,8 @@ public void RegisterOnArriveToStation(Action<object,MessageEventArgs> a_action)
 //Start
 //RageIncrease;NumberEventArgs
 //RageUpdate;NumberEventArgs
-//ScoreUpdate;NumberEventArgs
+//ScoreIncrease;IntEventArgs
+//ScoreUpdate;IntEventArgs;IntEventArgs
 //GiveItem;ItemEventArgs
 //GiveRandomItem
 //ClientComplete;ClientEventArgs
@@ -83,11 +84,11 @@ public class EventManager : Singleton<EventManager>
 	}
 
 
-	public void InvokeOnRageIncrease(object a_sender, NumberEventArgs a_numberEventArgs)
+	public void InvokeOnRageIncrease(object a_sender, NumberEventArgs a_1numberEventArgs)
 	{
 		if(OnRageIncrease != null)
 		{
-			OnRageIncrease.Invoke(a_sender, a_numberEventArgs);
+			OnRageIncrease.Invoke(a_sender, a_1numberEventArgs);
 		}
 	}
 
@@ -110,11 +111,38 @@ public class EventManager : Singleton<EventManager>
 	}
 
 
-	public void InvokeOnRageUpdate(object a_sender, NumberEventArgs a_numberEventArgs)
+	public void InvokeOnRageUpdate(object a_sender, NumberEventArgs a_1numberEventArgs)
 	{
 		if(OnRageUpdate != null)
 		{
-			OnRageUpdate.Invoke(a_sender, a_numberEventArgs);
+			OnRageUpdate.Invoke(a_sender, a_1numberEventArgs);
+		}
+	}
+
+
+
+
+// --- EVENT --- ScoreIncrease --- //
+
+
+	protected event Action<object, IntEventArgs> OnScoreIncrease;
+	public void RegisterOnScoreIncrease(Action<object, IntEventArgs> a_action)
+	{
+		OnScoreIncrease += a_action;
+	}
+
+
+	public void UnRegisterOnScoreIncrease(Action<object, IntEventArgs> a_action)
+	{
+		OnScoreIncrease -= a_action;
+	}
+
+
+	public void InvokeOnScoreIncrease(object a_sender, IntEventArgs a_1intEventArgs)
+	{
+		if(OnScoreIncrease != null)
+		{
+			OnScoreIncrease.Invoke(a_sender, a_1intEventArgs);
 		}
 	}
 
@@ -124,24 +152,24 @@ public class EventManager : Singleton<EventManager>
 // --- EVENT --- ScoreUpdate --- //
 
 
-	protected event Action<object, NumberEventArgs> OnScoreUpdate;
-	public void RegisterOnScoreUpdate(Action<object, NumberEventArgs> a_action)
+	protected event Action<object, IntEventArgs, IntEventArgs> OnScoreUpdate;
+	public void RegisterOnScoreUpdate(Action<object, IntEventArgs, IntEventArgs> a_action)
 	{
 		OnScoreUpdate += a_action;
 	}
 
 
-	public void UnRegisterOnScoreUpdate(Action<object, NumberEventArgs> a_action)
+	public void UnRegisterOnScoreUpdate(Action<object, IntEventArgs, IntEventArgs> a_action)
 	{
 		OnScoreUpdate -= a_action;
 	}
 
 
-	public void InvokeOnScoreUpdate(object a_sender, NumberEventArgs a_numberEventArgs)
+	public void InvokeOnScoreUpdate(object a_sender, IntEventArgs a_1intEventArgs, IntEventArgs a_2intEventArgs)
 	{
 		if(OnScoreUpdate != null)
 		{
-			OnScoreUpdate.Invoke(a_sender, a_numberEventArgs);
+			OnScoreUpdate.Invoke(a_sender, a_1intEventArgs, a_2intEventArgs);
 		}
 	}
 
@@ -164,11 +192,11 @@ public class EventManager : Singleton<EventManager>
 	}
 
 
-	public void InvokeOnGiveItem(object a_sender, ItemEventArgs a_itemEventArgs)
+	public void InvokeOnGiveItem(object a_sender, ItemEventArgs a_1itemEventArgs)
 	{
 		if(OnGiveItem != null)
 		{
-			OnGiveItem.Invoke(a_sender, a_itemEventArgs);
+			OnGiveItem.Invoke(a_sender, a_1itemEventArgs);
 		}
 	}
 
@@ -218,11 +246,11 @@ public class EventManager : Singleton<EventManager>
 	}
 
 
-	public void InvokeOnClientComplete(object a_sender, ClientEventArgs a_clientEventArgs)
+	public void InvokeOnClientComplete(object a_sender, ClientEventArgs a_1clientEventArgs)
 	{
 		if(OnClientComplete != null)
 		{
-			OnClientComplete.Invoke(a_sender, a_clientEventArgs);
+			OnClientComplete.Invoke(a_sender, a_1clientEventArgs);
 		}
 	}
 
@@ -274,6 +302,16 @@ public class NumberEventArgs : EventArgs
         m_number = a_number;
     }
 }
+
+public class IntEventArgs : EventArgs
+{
+    public int m_int;
+    public IntEventArgs(int a_int)
+    {
+        m_int = a_int;
+    }
+}
+
 
 
 

@@ -10,7 +10,9 @@ public class GameManager : Singleton<GameManager>
 
     int m_score = 0;
 
-    public float RageLevel { get => m_rageLevel; set => m_rageLevel = value; }
+    int m_scoreMultiplier = 1;
+
+
     public Timer GameTimer { get => m_gameTimer; set => m_gameTimer = value; }
 
     void Start()
@@ -29,6 +31,7 @@ public class GameManager : Singleton<GameManager>
 
         EventManager.Instance.RegisterOnStart((o) => StartGame());
         EventManager.Instance.RegisterOnRageIncrease((o, number) => IncreaseRage(number.m_number));
+        EventManager.Instance.RegisterOnScoreIncrease((o, number) => IncreaseScore((int)number.m_int));
 
     }
 
@@ -46,15 +49,21 @@ public class GameManager : Singleton<GameManager>
             EventManager.Instance.InvokeOnStart(this);     
         }
 
+        if (m_gameTimer.GetCurrentTime() / 20 >= m_scoreMultiplier)
+        {
+            ++m_scoreMultiplier;
+            SendEventScore();
+        }
+
     }
 
 
     void StartGame()
     {
-        m_rageLevel = 0;
         GameTimer.StartTimer();
         LevelGenerator.Instance.GenerateLevel(7, 10);
         ResetRage();
+        ResetScore();
     }
 
     void IncreaseRage(float a_number)
@@ -70,10 +79,41 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+
+
     void ResetRage()
     {
         m_rageLevel = 0;
         EventManager.Instance.InvokeOnRageUpdate(this, new NumberEventArgs(m_rageLevel));
     }
+
+
+    void IncreaseScore(int a_number)
+    {
+
+        a_number *= m_scoreMultiplier;
+        m_score += a_number;
+        SendEventScore();
+    }
+
+    void ResetScore()
+    {
+        m_score = 0;
+        m_scoreMultiplier = 0;
+        SendEventScore();
+    }
+
+    void ResetScoreMultiplier()
+    {
+        m_scoreMultiplier = 1;
+        SendEventScore();
+    }
+
+
+    void SendEventScore()
+    {
+        EventManager.Instance.InvokeOnScoreUpdate(this, new IntEventArgs(m_score), new IntEventArgs(m_scoreMultiplier));
+    }
+
 
 }
