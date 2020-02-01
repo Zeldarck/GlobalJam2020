@@ -5,12 +5,14 @@ using UnityEngine;
 public class Table : Module
 {
 
-    Stack<Client> m_clientStack = new Stack<Client>();
+    Queue<Client> m_clientQueue = new Queue<Client>();
 
 
     public void AddClient(Client a_client)
     {
-        m_clientStack.Push(a_client);
+        m_clientQueue.Enqueue(a_client);
+
+        a_client.transform.SetParent(this.transform, false);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,26 +30,20 @@ public class Table : Module
     {
         if (a_gameObject.tag == "Item")
         {
-
             ThrowableItem item = a_gameObject.GetComponent<ThrowableItem>();
 
-            if (m_clientStack.Count == 0 || item.IsDead)
+            if (m_clientQueue.Count == 0 || item.IsDead)
             {
                 return;
             }
 
-            Client client = m_clientStack.Pop();
+            item.IsDead = true;
+
+            Client client = m_clientQueue.Dequeue();
 
             ThrowableItemType wantedType = client.WantedItem;
 
-            if (item.ItemType == wantedType)
-            {
-                //client.happy();
-            }
-            else
-            {
-                //client.rage();
-            }
+            client.CompleteClient(item.ItemType == wantedType);
 
             Destroy(item.gameObject);
             Destroy(client.gameObject);
@@ -55,15 +51,15 @@ public class Table : Module
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        int i = 0;
+        foreach(Client client in m_clientQueue)
+        {
+            client.transform.localPosition = new Vector3(0, 0, i-1);
+            --i;
+        }
     }
 }

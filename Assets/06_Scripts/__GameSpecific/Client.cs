@@ -11,4 +11,9 @@ public class Client : MonoBehaviour
     public ThrowableItemType WantedItem { get => m_wantedItem; set => m_wantedItem = value; }
 
 
+    public void CompleteClient(bool a_isHappy)
+    {
+        EventManager.Instance.InvokeOnClientComplete(this, new ClientEventArgs(this));
+    }
+
 }

@@ -224,4 +224,19 @@ public static class Utils
     {
         return IsSameSign((int)Mathf.Floor(a_number1), (int)Mathf.Floor(a_number2));
     }
+
+
+    public static void ShuffleList(IList a_list)
+    {
+        var count = a_list.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i)
+        {
+            var r = UnityEngine.Random.Range(i, count);
+            var tmp = a_list[i];
+            a_list[i] = a_list[r];
+            a_list[r] = tmp;
+        }
+    }
+
 }

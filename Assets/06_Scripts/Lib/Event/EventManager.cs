@@ -20,6 +20,7 @@ public void RegisterOnArriveToStation(Action<object,MessageEventArgs> a_action)
 //##BEGIN##
 //GiveItem;ItemEventArgs
 //GiveRandomItem
+//ClientComplete;ClientEventArgs
 //Win
 //##END##
 
@@ -88,6 +89,33 @@ public class EventManager : Singleton<EventManager>
 
 
 
+// --- EVENT --- ClientComplete --- //
+
+
+	protected event Action<object, ClientEventArgs> OnClientComplete;
+	public void RegisterOnClientComplete(Action<object, ClientEventArgs> a_action)
+	{
+		OnClientComplete += a_action;
+	}
+
+
+	public void UnRegisterOnClientComplete(Action<object, ClientEventArgs> a_action)
+	{
+		OnClientComplete -= a_action;
+	}
+
+
+	public void InvokeOnClientComplete(object a_sender, ClientEventArgs a_clientEventArgs)
+	{
+		if(OnClientComplete != null)
+		{
+			OnClientComplete.Invoke(a_sender, a_clientEventArgs);
+		}
+	}
+
+
+
+
 // --- EVENT --- Win --- //
 
 
@@ -136,5 +164,13 @@ public class ItemEventArgs : EventArgs
 }
 
 
+public class ClientEventArgs : EventArgs
+{
+    public Client m_client;
+    public ClientEventArgs(Client a_client)
+    {
+        m_client = a_client;
+    }
+}
 
 

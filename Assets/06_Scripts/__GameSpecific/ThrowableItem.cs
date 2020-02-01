@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ThrowableItemType { TV, APPAREIL_PHOTO, FRITEUSE};
+public enum ThrowableItemType { TV, APPAREIL_PHOTO, FRITEUSE, NB_ITEM_TYPE};
 
 public class ThrowableItem : MonoBehaviour
 {
@@ -15,24 +15,10 @@ public class ThrowableItem : MonoBehaviour
     public ThrowableItemType ItemType { get => m_itemType; set => m_itemType = value; }
     public bool IsDead { get => m_isDead; set => m_isDead = value; }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     // Probablement switch sur un système se basant sur la velocité
     public void Fired()
     {
-        Utils.TriggerWaitForSeconds(0.75f, () => Dead());
+        Utils.TriggerWaitForSeconds(0.67f, () => Dead());
     }
 
     void Dead()

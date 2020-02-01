@@ -14,6 +14,12 @@ public class LevelGenerator : Singleton<LevelGenerator>
     float m_sizeProp = 1.0f;
 
 
+    List<Table> m_tables = new List<Table>();
+
+    public List<Table> Tables { get => m_tables; set => m_tables = value; }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,25 +60,23 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
         for(int i = 1; i < width; ++i)
         {
-            GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(-posX + m_sizeProp * i, 0.0f, posZ), Quaternion.Euler(0, 180, 0));
+            m_tables.Add(GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(-posX + m_sizeProp * i, 0.0f, posZ), Quaternion.Euler(0, 180, 0)).GetComponent<Table>());
         }
 
         for (int i = 1; i < width; ++i)
         {
-            GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(-posX + m_sizeProp * i, 0.0f, -posZ), Quaternion.identity);
+            m_tables.Add(GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(-posX + m_sizeProp * i, 0.0f, -posZ), Quaternion.identity).GetComponent<Table>());
         }
 
         for (int i = 1; i < length; ++i)
         {
-            GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(-posX, 0.0f, -posZ + m_sizeProp * i), Quaternion.Euler(0, 90, 0));
+            m_tables.Add(GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(-posX, 0.0f, -posZ + m_sizeProp * i), Quaternion.Euler(0, 90, 0)).GetComponent<Table>());
         }
 
         for (int i = 1; i < length; ++i)
         {
-            GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(posX, 0.0f, -posZ + m_sizeProp * i), Quaternion.Euler(0, -90, 0));
+            m_tables.Add(GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(posX, 0.0f, -posZ + m_sizeProp * i), Quaternion.Euler(0, -90, 0)).GetComponent<Table>());
         }
-
-
     }
 
     Corner GetRandomCorner()

@@ -35,6 +35,11 @@ public class Player : Singleton<Player>
 
     private void Fire()
     {
+        if (!m_inventory.CanThrow)
+        {
+            return;
+        }
+
         ThrowableItem item =  m_inventory.RemoveMainItem();
 
         if(item == null)
@@ -49,6 +54,7 @@ public class Player : Singleton<Player>
 
         rigidbody.velocity = Vector3.zero;
         rigidbody.AddForce(direction, ForceMode.Impulse);
+        rigidbody.AddRelativeTorque(Utils.RandomFloat(0, 2), Utils.RandomFloat(0, 2), Utils.RandomFloat(0, 2));
 
         item.Fired();
     }
