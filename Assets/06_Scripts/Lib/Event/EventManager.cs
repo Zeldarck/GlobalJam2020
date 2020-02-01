@@ -20,10 +20,12 @@ public void RegisterOnArriveToStation(Action<object,MessageEventArgs> a_action)
 //##BEGIN##
 
 //Start
+//RageIncrease;NumberEventArgs
+//RageUpdate;NumberEventArgs
 //GiveItem;ItemEventArgs
 //GiveRandomItem
 //ClientComplete;ClientEventArgs
-//Win
+//Loose
 //##END##
 
 //------------ END - LIST OF EVENTS -------------//
@@ -58,6 +60,60 @@ public class EventManager : Singleton<EventManager>
 		if(OnStart != null)
 		{
 			OnStart.Invoke(a_sender);
+		}
+	}
+
+
+
+
+// --- EVENT --- RageIncrease --- //
+
+
+	protected event Action<object, NumberEventArgs> OnRageIncrease;
+	public void RegisterOnRageIncrease(Action<object, NumberEventArgs> a_action)
+	{
+		OnRageIncrease += a_action;
+	}
+
+
+	public void UnRegisterOnRageIncrease(Action<object, NumberEventArgs> a_action)
+	{
+		OnRageIncrease -= a_action;
+	}
+
+
+	public void InvokeOnRageIncrease(object a_sender, NumberEventArgs a_numberEventArgs)
+	{
+		if(OnRageIncrease != null)
+		{
+			OnRageIncrease.Invoke(a_sender, a_numberEventArgs);
+		}
+	}
+
+
+
+
+// --- EVENT --- RageUpdate --- //
+
+
+	protected event Action<object, NumberEventArgs> OnRageUpdate;
+	public void RegisterOnRageUpdate(Action<object, NumberEventArgs> a_action)
+	{
+		OnRageUpdate += a_action;
+	}
+
+
+	public void UnRegisterOnRageUpdate(Action<object, NumberEventArgs> a_action)
+	{
+		OnRageUpdate -= a_action;
+	}
+
+
+	public void InvokeOnRageUpdate(object a_sender, NumberEventArgs a_numberEventArgs)
+	{
+		if(OnRageUpdate != null)
+		{
+			OnRageUpdate.Invoke(a_sender, a_numberEventArgs);
 		}
 	}
 
@@ -145,27 +201,27 @@ public class EventManager : Singleton<EventManager>
 
 
 
-// --- EVENT --- Win --- //
+// --- EVENT --- Loose --- //
 
 
-	protected event Action<object> OnWin;
-	public void RegisterOnWin(Action<object> a_action)
+	protected event Action<object> OnLoose;
+	public void RegisterOnLoose(Action<object> a_action)
 	{
-		OnWin += a_action;
+		OnLoose += a_action;
 	}
 
 
-	public void UnRegisterOnWin(Action<object> a_action)
+	public void UnRegisterOnLoose(Action<object> a_action)
 	{
-		OnWin -= a_action;
+		OnLoose -= a_action;
 	}
 
 
-	public void InvokeOnWin(object a_sender)
+	public void InvokeOnLoose(object a_sender)
 	{
-		if(OnWin != null)
+		if(OnLoose != null)
 		{
-			OnWin.Invoke(a_sender);
+			OnLoose.Invoke(a_sender);
 		}
 	}
 // ----- END AUTO GENERATED CODE ----- //
@@ -181,6 +237,16 @@ public class MessageEventArgs : EventArgs
         m_message = a_message;
     }
 }
+
+public class NumberEventArgs : EventArgs
+{
+    public float m_number;
+    public NumberEventArgs(float a_number)
+    {
+        m_number = a_number;
+    }
+}
+
 
 
 public class ItemEventArgs : EventArgs

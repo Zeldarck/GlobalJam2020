@@ -15,11 +15,17 @@ public class Client : MonoBehaviour
     [SerializeField]
     int m_baseScore = 10;
 
+    [SerializeField]
+    float m_baseRage = 10;
+
+    Timer m_timer;
+
     public ThrowableItemType WantedItem { get => m_wantedItem; set => m_wantedItem = value; }
 
     public void StartTimer()
     {
-        Utils.TriggerWaitForSeconds(m_waitingTime, () => CompleteClient(false));
+        m_timer = TimerFactory.Instance.GetTimer();
+        m_timer.StartTimer(m_waitingTime, () => CompleteClient(false));
     }
 
     public void CompleteClient(bool a_isHappy)
@@ -29,6 +35,19 @@ public class Client : MonoBehaviour
             return;
         }
         EventManager.Instance.InvokeOnClientComplete(this, new ClientEventArgs(this));
+
+        if(!a_isHappy)
+        {
+            EventManager.Instance.InvokeOnRageIncrease(this, new NumberEventArgs(m_baseRage));
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (m_timer != null)
+        {
+            Destroy(m_timer);
+        }
     }
 
 }
