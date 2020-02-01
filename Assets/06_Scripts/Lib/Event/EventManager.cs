@@ -22,6 +22,7 @@ public void RegisterOnArriveToStation(Action<object,MessageEventArgs> a_action)
 //Start
 //RageIncrease;NumberEventArgs
 //RageUpdate;NumberEventArgs
+//ScoreUpdate;NumberEventArgs
 //GiveItem;ItemEventArgs
 //GiveRandomItem
 //ClientComplete;ClientEventArgs
@@ -114,6 +115,33 @@ public class EventManager : Singleton<EventManager>
 		if(OnRageUpdate != null)
 		{
 			OnRageUpdate.Invoke(a_sender, a_numberEventArgs);
+		}
+	}
+
+
+
+
+// --- EVENT --- ScoreUpdate --- //
+
+
+	protected event Action<object, NumberEventArgs> OnScoreUpdate;
+	public void RegisterOnScoreUpdate(Action<object, NumberEventArgs> a_action)
+	{
+		OnScoreUpdate += a_action;
+	}
+
+
+	public void UnRegisterOnScoreUpdate(Action<object, NumberEventArgs> a_action)
+	{
+		OnScoreUpdate -= a_action;
+	}
+
+
+	public void InvokeOnScoreUpdate(object a_sender, NumberEventArgs a_numberEventArgs)
+	{
+		if(OnScoreUpdate != null)
+		{
+			OnScoreUpdate.Invoke(a_sender, a_numberEventArgs);
 		}
 	}
 
