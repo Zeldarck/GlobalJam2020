@@ -45,7 +45,7 @@ public class Inventory2 : MonoBehaviour
 
         if (MainItem != null)
         {
-            MainItem.transform.SetParent(null, true);
+            MainItem.transform.SetParent(null);
         }
 
 
