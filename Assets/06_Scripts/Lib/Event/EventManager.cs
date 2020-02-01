@@ -18,9 +18,9 @@ public void RegisterOnArriveToStation(Action<object,MessageEventArgs> a_action)
 //NameOfEvent;Param1;Param2
 
 //##BEGIN##
-//ArriveToStation;MessageEventArgs
+//GiveItem;ItemEventArgs
+//GiveRandomItem
 //Win
-//AngryChargeFull
 //##END##
 
 //------------ END - LIST OF EVENTS -------------//
@@ -34,27 +34,54 @@ public class EventManager : Singleton<EventManager>
 
 
 
-// --- EVENT --- ArriveToStation --- //
+// --- EVENT --- GiveItem --- //
 
 
-	protected event Action<object, MessageEventArgs> OnArriveToStation;
-	public void RegisterOnArriveToStation(Action<object, MessageEventArgs> a_action)
+	protected event Action<object, ItemEventArgs> OnGiveItem;
+	public void RegisterOnGiveItem(Action<object, ItemEventArgs> a_action)
 	{
-		OnArriveToStation += a_action;
+		OnGiveItem += a_action;
 	}
 
 
-	public void UnRegisterOnArriveToStation(Action<object, MessageEventArgs> a_action)
+	public void UnRegisterOnGiveItem(Action<object, ItemEventArgs> a_action)
 	{
-		OnArriveToStation -= a_action;
+		OnGiveItem -= a_action;
 	}
 
 
-	public void InvokeOnArriveToStation(object a_sender, MessageEventArgs a_messageEventArgs)
+	public void InvokeOnGiveItem(object a_sender, ItemEventArgs a_itemEventArgs)
 	{
-		if(OnArriveToStation != null)
+		if(OnGiveItem != null)
 		{
-			OnArriveToStation.Invoke(a_sender, a_messageEventArgs);
+			OnGiveItem.Invoke(a_sender, a_itemEventArgs);
+		}
+	}
+
+
+
+
+// --- EVENT --- GiveRandomItem --- //
+
+
+	protected event Action<object> OnGiveRandomItem;
+	public void RegisterOnGiveRandomItem(Action<object> a_action)
+	{
+		OnGiveRandomItem += a_action;
+	}
+
+
+	public void UnRegisterOnGiveRandomItem(Action<object> a_action)
+	{
+		OnGiveRandomItem -= a_action;
+	}
+
+
+	public void InvokeOnGiveRandomItem(object a_sender)
+	{
+		if(OnGiveRandomItem != null)
+		{
+			OnGiveRandomItem.Invoke(a_sender);
 		}
 	}
 
@@ -84,33 +111,6 @@ public class EventManager : Singleton<EventManager>
 			OnWin.Invoke(a_sender);
 		}
 	}
-
-
-
-
-// --- EVENT --- AngryChargeFull --- //
-
-
-	protected event Action<object> OnAngryChargeFull;
-	public void RegisterOnAngryChargeFull(Action<object> a_action)
-	{
-		OnAngryChargeFull += a_action;
-	}
-
-
-	public void UnRegisterOnAngryChargeFull(Action<object> a_action)
-	{
-		OnAngryChargeFull -= a_action;
-	}
-
-
-	public void InvokeOnAngryChargeFull(object a_sender)
-	{
-		if(OnAngryChargeFull != null)
-		{
-			OnAngryChargeFull.Invoke(a_sender);
-		}
-	}
 // ----- END AUTO GENERATED CODE ----- //
 
 }
@@ -124,6 +124,17 @@ public class MessageEventArgs : EventArgs
         m_message = a_message;
     }
 }
+
+
+public class ItemEventArgs : EventArgs
+{
+    public ThrowableItemType m_itemType;
+    public ItemEventArgs(ThrowableItemType a_itemType)
+    {
+        m_itemType = a_itemType;
+    }
+}
+
 
 
 

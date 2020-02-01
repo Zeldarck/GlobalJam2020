@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Inventory2 : MonoBehaviour
 {
@@ -23,8 +24,11 @@ public class Inventory2 : MonoBehaviour
 
     private void Start()
     {
-        GiveItem(GenerateRandomItem());
-        GiveItem(GenerateRandomItem());
+        GiveItem();
+        GiveItem();
+
+        EventManager.Instance.RegisterOnGiveRandomItem((o) => GiveItem());
+        EventManager.Instance.RegisterOnGiveItem((o, itemEvent) => GiveItem(itemEvent.m_itemType));
     }
 
 
@@ -68,8 +72,21 @@ public class Inventory2 : MonoBehaviour
 
     public void GiveItem()
     {
-        GiveItem(GenerateRandomItem());
+        if (CanGiveItem())
+        {
+            GiveItem(GenerateRandomItem());
+        }
     }
+
+
+    public void GiveItem(ThrowableItemType a_itemType)
+    {
+        if (CanGiveItem())
+        {
+            GiveItem(GenerateItem(a_itemType));
+        }
+    }
+
 
     public void GiveItem(ThrowableItem a_item)
     {
@@ -81,6 +98,16 @@ public class Inventory2 : MonoBehaviour
         {
             SecondItem = a_item;
         }
+        else
+        {
+            Destroy(a_item.gameObject);
+        }
+    }
+
+
+    bool CanGiveItem()
+    {
+        return MainItem == null || SecondItem == null;
     }
 
 
@@ -100,5 +127,25 @@ public class Inventory2 : MonoBehaviour
 
         return item.GetComponent<ThrowableItem>();
     }
+
+
+    ThrowableItem GenerateItem(ThrowableItemType a_itemType)
+    {
+        ThrowableItem itemPrefab = m_litemPrefab.Find(o => o.ItemType == a_itemType);
+
+        if (itemPrefab == null)
+        {
+            Debug.LogError("No item setup as " + a_itemType + " in Inventory2");
+            return null;
+        }
+
+
+        GameObject item = GameObjectManager.Instance.InstantiateObject(itemPrefab.gameObject, new Vector3(0, 0, 0), Quaternion.identity, SPAWN_CONTAINER_TYPE.DESTRUCTIBLE);
+
+        item.transform.SetParent(this.transform, false);
+
+        return item.GetComponent<ThrowableItem>();
+    }
+
 
 }

@@ -39,7 +39,6 @@ public class Player : Singleton<Player>
 
         if(item == null)
         {
-            m_inventory.GiveItem();
             return;
         }
 
@@ -50,5 +49,7 @@ public class Player : Singleton<Player>
 
         rigidbody.velocity = Vector3.zero;
         rigidbody.AddForce(direction, ForceMode.Impulse);
+
+        item.Fired();
     }
 }

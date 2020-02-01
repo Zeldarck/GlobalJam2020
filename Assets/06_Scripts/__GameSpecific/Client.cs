@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Client : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    ThrowableItemType m_wantedItem;
+
+    public ThrowableItemType WantedItem { get => m_wantedItem; set => m_wantedItem = value; }
+
+
 }

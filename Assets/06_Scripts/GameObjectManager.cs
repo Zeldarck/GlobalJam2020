@@ -29,7 +29,7 @@ public class GameObjectManager : Singleton<GameObjectManager>
 
         GameObject container = m_containers[a_type];
 
-        Debug.Log("[GameObjectManager] Instantiate :" + a_gameObject);
+       // Debug.Log("[GameObjectManager] Instantiate :" + a_gameObject);
 
         return Instantiate(a_gameObject, a_position, a_rotation, container.transform);
 
