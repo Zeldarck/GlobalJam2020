@@ -18,6 +18,8 @@ public void RegisterOnArriveToStation(Action<object,MessageEventArgs> a_action)
 //NameOfEvent;Param1;Param2
 
 //##BEGIN##
+
+//Start
 //GiveItem;ItemEventArgs
 //GiveRandomItem
 //ClientComplete;ClientEventArgs
@@ -31,6 +33,33 @@ public class EventManager : Singleton<EventManager>
 {
 
 // ----- AUTO GENERATED CODE ----- //
+
+
+
+
+// --- EVENT --- Start --- //
+
+
+	protected event Action<object> OnStart;
+	public void RegisterOnStart(Action<object> a_action)
+	{
+		OnStart += a_action;
+	}
+
+
+	public void UnRegisterOnStart(Action<object> a_action)
+	{
+		OnStart -= a_action;
+	}
+
+
+	public void InvokeOnStart(object a_sender)
+	{
+		if(OnStart != null)
+		{
+			OnStart.Invoke(a_sender);
+		}
+	}
 
 
 

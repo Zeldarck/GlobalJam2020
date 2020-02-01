@@ -25,14 +25,29 @@ public class ClientManager : Singleton<ClientManager>
     private void Start()
     {
         EventManager.Instance.RegisterOnClientComplete((o, client) => OnClientComplete(client.m_client));
-        Init();
+        EventManager.Instance.RegisterOnStart(o => Init());
+    }
+
+
+    void Clean()
+    {
+        foreach (Client client in m_currentClientsList)
+        {
+            DestroyImmediate(client.gameObject);
+        }
     }
 
     private void Init()
     {
+
+        Clean();
+
+
         m_currentClientIntervalTime = m_clientIntervalTime;
 
-        if(m_timer != null)
+        m_currentClientsList = new List<Client>();
+
+        if (m_timer != null)
         {
             m_timer.Stop();
         }

@@ -36,11 +36,19 @@ public class Inventory2 : MonoBehaviour
 
     private void Start()
     {
-        GiveItem();
-        GiveItem();
-
         EventManager.Instance.RegisterOnGiveRandomItem((o) => GiveItem());
         EventManager.Instance.RegisterOnGiveItem((o, itemEvent) => GiveItem(itemEvent.m_itemType));
+        EventManager.Instance.RegisterOnStart(o => Init());
+    }
+
+    private void Init()
+    {
+        Destroy(MainItem.gameObject);
+        Destroy(SecondItem.gameObject);
+        MainItem = null;
+        SecondItem = null;
+        GiveItem();
+        GiveItem();
     }
 
 

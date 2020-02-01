@@ -15,6 +15,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
 
     List<Table> m_tables = new List<Table>();
+    List<Corner> m_corners = new List<Corner>();
 
     public List<Table> Tables { get => m_tables; set => m_tables = value; }
 
@@ -32,6 +33,23 @@ public class LevelGenerator : Singleton<LevelGenerator>
         
     }
 
+    public void Clean()
+    {
+        foreach (Corner corner in m_corners)
+        {
+            DestroyImmediate(corner.gameObject);
+        }
+
+        foreach (Table table in m_tables)
+        {
+            DestroyImmediate(table.gameObject);
+        }
+
+        m_tables = new List<Table>();
+        m_corners = new List<Corner>();
+
+    }
+
     public void GenerateLevel(int length, int width)
     {
 
@@ -47,16 +65,17 @@ public class LevelGenerator : Singleton<LevelGenerator>
             return;
         }
 
+        Clean();
 
         float posX = m_sizeProp * (((float)width) / 2.0f);
         float posZ = m_sizeProp * (((float)length) / 2.0f);
 
 
         //Generate Corners
-        GameObjectManager.Instance.InstantiateObject(GetRandomCorner().gameObject, new Vector3(-posX, 0.0f, -posZ), Quaternion.identity);
-        GameObjectManager.Instance.InstantiateObject(GetRandomCorner().gameObject, new Vector3(-posX, 0.0f, posZ), Quaternion.Euler(0,90 , 0));
-        GameObjectManager.Instance.InstantiateObject(GetRandomCorner().gameObject, new Vector3(posX, 0.0f, -posZ), Quaternion.Euler(0,-90, 0));
-        GameObjectManager.Instance.InstantiateObject(GetRandomCorner().gameObject, new Vector3(posX, 0.0f, posZ), Quaternion.Euler(0,180, 0));
+        m_corners.Add(GameObjectManager.Instance.InstantiateObject(GetRandomCorner().gameObject, new Vector3(-posX, 0.0f, -posZ), Quaternion.identity).GetComponent<Corner>());
+        m_corners.Add(GameObjectManager.Instance.InstantiateObject(GetRandomCorner().gameObject, new Vector3(-posX, 0.0f, posZ), Quaternion.Euler(0,90 , 0)).GetComponent<Corner>());
+        m_corners.Add(GameObjectManager.Instance.InstantiateObject(GetRandomCorner().gameObject, new Vector3(posX, 0.0f, -posZ), Quaternion.Euler(0,-90, 0)).GetComponent<Corner>());
+        m_corners.Add(GameObjectManager.Instance.InstantiateObject(GetRandomCorner().gameObject, new Vector3(posX, 0.0f, posZ), Quaternion.Euler(0,180, 0)).GetComponent<Corner>());
 
         for(int i = 1; i < width; ++i)
         {
