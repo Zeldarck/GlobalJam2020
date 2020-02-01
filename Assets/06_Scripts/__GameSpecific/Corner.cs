@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Corner : Module
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    GameObject m_enableIndicator;
+
+    bool m_isActived;
+
+    public bool IsActived
     {
-        
+        get
+        {
+           return m_isActived;
+        }
+        set
+        {
+            m_isActived = value;
+            m_enableIndicator.SetActive(m_isActived);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
