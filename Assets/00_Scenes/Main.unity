@@ -1397,7 +1397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_clientPrefabList:
-  - {fileID: -7929227922593920654, guid: f81928c872f14d94fb3dc80171f189e8, type: 3}
+  - {fileID: 8150209461439946179, guid: 79f6dffe236a29741861f4a22fae07c9, type: 3}
   m_clientIntervalTime: 2.5
   m_minimumNbClient: 5
 --- !u!1 &1148760330
