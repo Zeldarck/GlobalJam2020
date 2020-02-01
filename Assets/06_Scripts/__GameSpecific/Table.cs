@@ -13,6 +13,12 @@ public class Table : Module
         m_clientQueue.Enqueue(a_client);
 
         a_client.transform.SetParent(this.transform, false);
+
+        if(m_clientQueue.Count == 1)
+        {
+            a_client.StartTimer();
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -46,11 +52,22 @@ public class Table : Module
             client.CompleteClient(item.ItemType == wantedType);
 
             Destroy(item.gameObject);
-            Destroy(client.gameObject);
             EventManager.Instance.InvokeOnGiveRandomItem(this);
         }
     }
 
+    void CheckClient(Client a_client)
+    {
+        if (m_clientQueue.Count > 0 && m_clientQueue.Peek() == a_client)
+        {
+            m_clientQueue.Dequeue();
+        }
+    }
+
+    private void Start()
+    {
+        EventManager.Instance.RegisterOnClientComplete((o, client) => CheckClient(client.m_client));
+    }
 
     // Update is called once per frame
     void Update()
