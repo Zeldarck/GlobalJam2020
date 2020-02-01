@@ -6,7 +6,11 @@ public class GameManager : Singleton<GameManager>
 {
     Timer m_gameTimer;
 
-    // Start is called before the first frame update
+    float m_rageLevel = 0;
+
+    public float RageLevel { get => m_rageLevel; set => m_rageLevel = value; }
+
+
     void Start()
     {
         CameraManager.Instance.Target = Player.Instance.gameObject;
@@ -22,9 +26,11 @@ public class GameManager : Singleton<GameManager>
         Utils.TriggerWaitForSeconds(0.5f, () => EventManager.Instance.InvokeOnStart(this) );
 
         EventManager.Instance.RegisterOnStart((o) => StartGame());
+        EventManager.Instance.RegisterOnRageIncrease((o, number) => IncreaseRage(number.m_number));
+
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -43,11 +49,29 @@ public class GameManager : Singleton<GameManager>
 
     void StartGame()
     {
+        m_rageLevel = 0;
         m_gameTimer.StartTimer();
         LevelGenerator.Instance.GenerateLevel(7, 10);
-
+        ResetRage();
     }
 
+    void IncreaseRage(float a_number)
+    {
+        m_rageLevel += a_number;
+        EventManager.Instance.InvokeOnRageUpdate(this, new NumberEventArgs(m_rageLevel));
 
+        if (m_rageLevel >= 100.0f)
+        {
+            EventManager.Instance.InvokeOnLoose(this);
+            //ToDelete
+            Utils.TriggerNextFrame(() => EventManager.Instance.InvokeOnStart(this));
+        }
+    }
+
+    void ResetRage()
+    {
+        m_rageLevel = 0;
+        EventManager.Instance.InvokeOnRageUpdate(this, new NumberEventArgs(m_rageLevel));
+    }
 
 }

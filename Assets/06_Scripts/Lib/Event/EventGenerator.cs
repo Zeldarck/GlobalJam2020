@@ -22,8 +22,7 @@ public static class EventGenerator
         WriteCodeFile();
     }
 
-  
-
+ 
     private static List<List<string>> RetrieveEvents()
     {
         string path = string.Concat(Application.dataPath, Path.DirectorySeparatorChar, m_path);
