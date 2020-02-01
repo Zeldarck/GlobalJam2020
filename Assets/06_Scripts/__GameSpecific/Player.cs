@@ -12,10 +12,15 @@ public class Player : Singleton<Player>
     float m_fireAngle = 35.0f;
 
     Inventory2 m_inventory;
+
+    bool m_enableFire = false;
+
     // Start is called before the first frame update
     void Start()
     {
         m_inventory = GetComponent<Inventory2>();
+        EventManager.Instance.RegisterOnStart((o) => m_enableFire = true);
+        EventManager.Instance.RegisterOnLoose((o) => m_enableFire = false);
     }
 
     // Update is called once per frame
@@ -35,7 +40,7 @@ public class Player : Singleton<Player>
 
     private void Fire()
     {
-        if (!m_inventory.CanThrow)
+        if (!m_inventory.CanThrow || !m_enableFire)
         {
             return;
         }

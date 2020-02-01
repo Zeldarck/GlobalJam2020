@@ -22,10 +22,14 @@ public class ClientManager : Singleton<ClientManager>
 
     int m_currentTableId = 0;
 
+    bool m_allowSpawn = false;
+
     private void Start()
     {
         EventManager.Instance.RegisterOnClientComplete((o, client) => OnClientComplete(client.m_client));
         EventManager.Instance.RegisterOnStart(o => Init());
+        EventManager.Instance.RegisterOnLoose((o) => m_allowSpawn = false);
+
     }
 
 
@@ -42,6 +46,7 @@ public class ClientManager : Singleton<ClientManager>
 
         Clean();
 
+        m_allowSpawn = true;
 
         m_currentClientIntervalTime = m_clientIntervalTime;
 
@@ -79,6 +84,11 @@ public class ClientManager : Singleton<ClientManager>
         if (m_clientPrefabList.Count == 0)
         {
             Debug.LogError("No client set up in Client Manager");
+            return;
+        }
+
+        if (!m_allowSpawn)
+        {
             return;
         }
 

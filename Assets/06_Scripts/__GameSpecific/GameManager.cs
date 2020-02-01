@@ -21,15 +21,14 @@ public class GameManager : Singleton<GameManager>
         CameraManager.Instance.CurrentStrategy = new CameraFPS(3.5f, 5.0f, true);
 
 
-        //Cursor Set Up
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
 
         GameTimer = TimerFactory.Instance.GetTimer();
 
         Utils.TriggerWaitForSeconds(0.5f, () => EventManager.Instance.InvokeOnStart(this) );
 
         EventManager.Instance.RegisterOnStart((o) => StartGame());
+        EventManager.Instance.RegisterOnLoose((o) => GameOver());
+
         EventManager.Instance.RegisterOnRageIncrease((o, number) => IncreaseRage(number.m_number));
         EventManager.Instance.RegisterOnScoreIncrease((o, number) => IncreaseScore((int)number.m_int));
 
@@ -38,6 +37,7 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Cursor.lockState = (CursorLockMode)(((int)(Cursor.lockState + 1)) % 2);
@@ -48,6 +48,7 @@ public class GameManager : Singleton<GameManager>
         {
             EventManager.Instance.InvokeOnStart(this);     
         }
+
 
         if (m_gameTimer.GetCurrentTime() / 20 >= m_scoreMultiplier)
         {
@@ -61,6 +62,11 @@ public class GameManager : Singleton<GameManager>
     void StartGame()
     {
         GameTimer.StartTimer();
+
+        //Cursor Set Up
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         LevelGenerator.Instance.GenerateLevel(7, 10);
         ResetRage();
         ResetScore();
@@ -74,8 +80,6 @@ public class GameManager : Singleton<GameManager>
         if (m_rageLevel >= 100.0f)
         {
             EventManager.Instance.InvokeOnLoose(this);
-            //ToDelete
-            Utils.TriggerNextFrame(() => EventManager.Instance.InvokeOnStart(this));
         }
     }
 
@@ -113,6 +117,14 @@ public class GameManager : Singleton<GameManager>
     void SendEventScore()
     {
         EventManager.Instance.InvokeOnScoreUpdate(this, new IntEventArgs(m_score), new IntEventArgs(m_scoreMultiplier));
+    }
+
+    void GameOver()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        GameTimer.Pause();
     }
 
 
