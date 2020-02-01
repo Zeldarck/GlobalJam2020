@@ -8,8 +8,10 @@ public class GameManager : Singleton<GameManager>
 
     float m_rageLevel = 0;
 
-    public float RageLevel { get => m_rageLevel; set => m_rageLevel = value; }
+    int m_score = 0;
 
+    public float RageLevel { get => m_rageLevel; set => m_rageLevel = value; }
+    public Timer GameTimer { get => m_gameTimer; set => m_gameTimer = value; }
 
     void Start()
     {
@@ -21,7 +23,7 @@ public class GameManager : Singleton<GameManager>
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        m_gameTimer = TimerFactory.Instance.GetTimer();
+        GameTimer = TimerFactory.Instance.GetTimer();
 
         Utils.TriggerWaitForSeconds(0.5f, () => EventManager.Instance.InvokeOnStart(this) );
 
@@ -50,7 +52,7 @@ public class GameManager : Singleton<GameManager>
     void StartGame()
     {
         m_rageLevel = 0;
-        m_gameTimer.StartTimer();
+        GameTimer.StartTimer();
         LevelGenerator.Instance.GenerateLevel(7, 10);
         ResetRage();
     }
