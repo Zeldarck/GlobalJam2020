@@ -43,8 +43,16 @@ public class Inventory2 : MonoBehaviour
 
     private void Init()
     {
-        Destroy(MainItem.gameObject);
-        Destroy(SecondItem.gameObject);
+        if (MainItem != null)
+        {
+
+            Destroy(MainItem.gameObject);
+        }
+        if (SecondItem != null)
+        {
+
+            Destroy(SecondItem.gameObject);
+        }
         MainItem = null;
         SecondItem = null;
         GiveItem();
@@ -75,6 +83,8 @@ public class Inventory2 : MonoBehaviour
 
         if (MainItem != null)
         {
+            //center the item
+            MainItem.transform.localPosition = new Vector3(0, m_localOffsetMainItem.y, m_localOffsetMainItem.z);
             MainItem.transform.SetParent(null);
             res = MainItem;
             MainItem = null;

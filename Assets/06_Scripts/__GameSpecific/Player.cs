@@ -47,8 +47,8 @@ public class Player : Singleton<Player>
             return;
         }
 
-        Rigidbody rigidbody = item.GetComponent<Rigidbody>();
 
+        Rigidbody rigidbody = item.GetComponent<Rigidbody>();
         Vector3 direction = transform.forward * m_fireForce;
         direction = Quaternion.Euler(m_fireAngle * transform.right) * direction;
 

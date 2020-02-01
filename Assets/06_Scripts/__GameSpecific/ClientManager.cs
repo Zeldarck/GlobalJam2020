@@ -64,11 +64,9 @@ public class ClientManager : Singleton<ClientManager>
 
     void OnClientComplete(Client a_client)
     {
-        Debug.Log(a_client + "   " + m_currentClientsList.Count);
         m_currentClientsList.Remove(a_client);
         Destroy(a_client.gameObject);
 
-        Debug.Log(a_client + "   " + m_currentClientsList.Count);
         if (m_currentClientsList.Count < m_minimumNbClient)
         {
             GenerateNewClient();
@@ -91,6 +89,8 @@ public class ClientManager : Singleton<ClientManager>
         int id = Utils.RandomInt(0, m_clientPrefabList.Count);
 
         Client client = GameObjectManager.Instance.InstantiateObject(m_clientPrefabList[id].gameObject, Vector3.zero, Quaternion.identity, SPAWN_CONTAINER_TYPE.DESTRUCTIBLE).GetComponent<Client>();
+
+        client.WantedItem = ((ThrowableItemType)Utils.RandomInt(0, (int)ThrowableItemType.NB_ITEM_TYPE));
 
         m_currentClientsList.Add(client);
         table.AddClient(client);
