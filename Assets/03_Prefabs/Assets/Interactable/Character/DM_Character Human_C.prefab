@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7929227922593920654, guid: f81928c872f14d94fb3dc80171f189e8,
+        type: 3}
+      propertyPath: m_materialChild
+      value: 
+      objectReference: {fileID: 1602526168474877621}
     - target: {fileID: 840552658264517217, guid: f81928c872f14d94fb3dc80171f189e8,
         type: 3}
       propertyPath: m_Name
@@ -164,3 +169,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f2d339ea27e4b64384cfcb501b54a30, type: 3}
+--- !u!1 &1602526168474877621 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7931274282171628918, guid: 9f2d339ea27e4b64384cfcb501b54a30,
+    type: 3}
+  m_PrefabInstance: {fileID: 8659536973791331267}
+  m_PrefabAsset: {fileID: 0}

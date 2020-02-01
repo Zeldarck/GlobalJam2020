@@ -10,14 +10,19 @@ public class Client : MonoBehaviour
     [SerializeField]
     List<IconItem> m_iconItemList = new List<IconItem>();
 
+    [SerializeField]
+    GameObject m_materialChild;
+
+    Renderer m_rendererChild;
+
     ThrowableItemType m_wantedItem;
 
     [SerializeField]
-    float m_waitingTime = 5.0f;
+    float m_waitingTime = 15.0f;
 
 
     [SerializeField]
-    int m_baseScore = 10;
+    int m_baseScore = 25;
 
     [SerializeField]
     int m_minimumScore = 4;
@@ -25,9 +30,41 @@ public class Client : MonoBehaviour
 
 
     [SerializeField]
-    float m_baseRage = 10;
+    float m_baseRage = 5;
+
+
+    [SerializeField]
+    float m_alertBeginValue = 4.0f;
+
 
     Timer m_timer;
+
+    private void Start()
+    {
+        CreateTimer();
+        m_rendererChild = m_materialChild.GetComponent<Renderer>();
+        Material mat = new Material(m_rendererChild.material.shader);
+        m_rendererChild.material = mat;
+
+        SetRage(0);
+    }
+
+    void SetRage(float a_value)
+    {
+        m_rendererChild.material.SetFloat("_GoToRage", a_value);
+    }
+
+    void Update()
+    {
+        if (m_timer.IsTimerRunning())
+        {
+            float left = m_timer.GetTimeLeft();
+            if(left < m_alertBeginValue)
+            {
+                SetRage((m_alertBeginValue - left) / m_alertBeginValue);
+            }
+        }
+    }
 
     public ThrowableItemType WantedItem
     {
@@ -48,10 +85,17 @@ public class Client : MonoBehaviour
         }
     }
 
+    void CreateTimer()
+    {
+        if(m_timer == null)
+        {
+            m_timer = TimerFactory.Instance.GetTimer();
+        }
+    }
 
     public void StartTimer()
     {
-        m_timer = TimerFactory.Instance.GetTimer();
+        CreateTimer();
         m_timer.StartTimer(m_waitingTime, () => CompleteClient(false));
     }
 
@@ -69,7 +113,7 @@ public class Client : MonoBehaviour
         }
         else
         {
-            EventManager.Instance.InvokeOnScoreIncrease(this, new IntEventArgs((int)Mathf.Max(m_baseScore * m_timer.GetTimeLeft()/m_waitingTime, 4)));
+            EventManager.Instance.InvokeOnScoreIncrease(this, new IntEventArgs((int)Mathf.Max(m_baseScore * m_timer.GetTimeLeft()/m_waitingTime, m_minimumScore)));
         }
     }
 

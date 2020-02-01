@@ -109,10 +109,12 @@ MonoBehaviour:
   - {fileID: 2293031588437358446}
   - {fileID: 7562972720608677796}
   - {fileID: 2694771427213451109}
-  m_waitingTime: 5
-  m_baseScore: 10
+  m_materialChild: {fileID: 0}
+  m_waitingTime: 15
+  m_baseScore: 25
   m_minimumScore: 4
-  m_baseRage: 10
+  m_baseRage: 7.5
+  m_alertBeginValue: 4
 --- !u!1001 &124041562645108966
 PrefabInstance:
   m_ObjectHideFlags: 0

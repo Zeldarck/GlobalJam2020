@@ -7,7 +7,12 @@ public class Corner : Module
     [SerializeField]
     GameObject m_enableIndicator;
 
+    float m_intensityTime = 0.0f;
+    float m_intensityModif = -1;
+
     TriggerObservable m_trigger;
+
+    Renderer m_renderer;
 
     bool m_isActived;
 
@@ -20,21 +25,41 @@ public class Corner : Module
         set
         {
             m_isActived = value;
-            m_enableIndicator.SetActive(m_isActived);
+            m_enableIndicator.SetActive(false /*disabled*/);
+            m_intensityModif = IsActived ? 1.75f : -2.5f;
         }
     }
 
     private void Awake()
     {
+        m_renderer = GetComponent<Renderer>();
+        Material mat = new Material(m_renderer.materials[1].shader);
+        m_renderer.materials[1] = mat;
+
         IsActived = false;
         m_trigger = GetComponentInChildren<TriggerObservable>();
         m_trigger.Register((o, other) => TriggerEnter(o, other), null, null);
+
+
+    }
+
+    private void Update()
+    {
+
+        m_intensityTime += Time.deltaTime * m_intensityModif;
+
+        m_intensityTime = Mathf.Clamp01(m_intensityTime);
+
+        float intensityValue = Mathf.Lerp(0f, 2.5f, m_intensityTime);
+
+        m_renderer.materials[1].SetFloat("_Intensity_Emissive", intensityValue);
+
     }
 
     private void TriggerEnter(TriggerObservable me, Collider other)
     {
 
-        if (other.tag == "Item")
+        if (IsActived && other.tag == "Item")
         {
             ThrowableItem item = other.GetComponent<ThrowableItem>();
 
