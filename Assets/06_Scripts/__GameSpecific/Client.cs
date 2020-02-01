@@ -1,9 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
+[System.Serializable]
+public class ItemTypeIcon
+{
+    [SerializeField]
+    IconItem m_iconItem;
+    [SerializeField]
+    ThrowableItemType m_itemType;
+
+    public IconItem IconItem { get => m_iconItem; set => m_iconItem = value; }
+    public ThrowableItemType ItemType { get => m_itemType; set => m_itemType = value; }
+}
+
 
 public class Client : MonoBehaviour
 {
+
+    [SerializeField]
+    List<ItemTypeIcon> m_itemTypeIconList = new List<ItemTypeIcon>();
+
 
     [SerializeField]
     ThrowableItemType m_wantedItem;
@@ -25,7 +43,25 @@ public class Client : MonoBehaviour
 
     Timer m_timer;
 
-    public ThrowableItemType WantedItem { get => m_wantedItem; set => m_wantedItem = value; }
+    public ThrowableItemType WantedItem
+    {
+        get => m_wantedItem;
+        set
+        {
+            m_wantedItem = value;
+            ItemTypeIcon iconItemType = m_itemTypeIconList.Find(o => o.ItemType == m_wantedItem);
+
+            if (iconItemType == null)
+            {
+                Debug.LogError("No item setup in Client for " + m_wantedItem);
+                return;
+            }
+
+            iconItemType.IconItem.gameObject.SetActive(true);
+
+        }
+    }
+
 
     public void StartTimer()
     {
