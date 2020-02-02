@@ -791,7 +791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3306,6 +3306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e56a0def0ddc0440bb5b235bef60a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_minimumObjectNumber: 3
 --- !u!1 &2043318070
 GameObject:
   m_ObjectHideFlags: 0

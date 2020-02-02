@@ -24,6 +24,7 @@ public void RegisterOnArriveToStation(Action<object,MessageEventArgs> a_action)
 //RageUpdate;NumberEventArgs
 //ScoreIncrease;IntEventArgs
 //ScoreUpdate;IntEventArgs;IntEventArgs
+//IncreaseDifficulty;IntEventArgs
 //GiveItem;ItemEventArgs
 //GiveRandomItem
 //ClientComplete;ClientEventArgs
@@ -172,6 +173,33 @@ public class EventManager : Singleton<EventManager>
 		if(OnScoreUpdate != null)
 		{
 			OnScoreUpdate.Invoke(a_sender, a_1intEventArgs, a_2intEventArgs);
+		}
+	}
+
+
+
+
+// --- EVENT --- IncreaseDifficulty --- //
+
+
+	protected event Action<object, IntEventArgs> OnIncreaseDifficulty;
+	public void RegisterOnIncreaseDifficulty(Action<object, IntEventArgs> a_action)
+	{
+		OnIncreaseDifficulty += a_action;
+	}
+
+
+	public void UnRegisterOnIncreaseDifficulty(Action<object, IntEventArgs> a_action)
+	{
+		OnIncreaseDifficulty -= a_action;
+	}
+
+
+	public void InvokeOnIncreaseDifficulty(object a_sender, IntEventArgs a_1intEventArgs)
+	{
+		if(OnIncreaseDifficulty != null)
+		{
+			OnIncreaseDifficulty.Invoke(a_sender, a_1intEventArgs);
 		}
 	}
 

@@ -17,6 +17,6 @@ public class TimerUI : MonoBehaviour
     {
         System.TimeSpan time = System.TimeSpan.FromSeconds(GameManager.Instance.GameTimer.GetCurrentTime());
 
-        m_timertext.text = string.Format("{0:00}:{1:00}:{2:00}", time.TotalMinutes, time.Seconds, time.Milliseconds/100);
+        m_timertext.text = string.Format("{0:00}:{1:00}:{2:00}", Mathf.Floor((float)time.TotalMinutes), time.Seconds, time.Milliseconds/100);
     }
 }

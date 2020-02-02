@@ -12,6 +12,14 @@ public class GameManager : Singleton<GameManager>
 
     int m_scoreMultiplier = 1;
 
+    int m_difficulty = 0;
+
+    [SerializeField]
+    float m_timeMultiplier = 15.0f;
+
+    [SerializeField]
+    float m_timeOffsetDifficulty = 5.0f;
+
 
     public Timer GameTimer { get => m_gameTimer; set => m_gameTimer = value; }
 
@@ -45,11 +53,19 @@ public class GameManager : Singleton<GameManager>
 
 
 
-        if (m_gameTimer.GetCurrentTime() / 25 >= m_scoreMultiplier)
+        if (m_gameTimer.GetCurrentTime() / m_timeMultiplier >= m_scoreMultiplier)
         {
             ++m_scoreMultiplier;
             SendEventScore();
         }
+
+        if (Mathf.Floor(m_gameTimer.GetCurrentTime() / (m_difficulty* m_timeMultiplier + m_timeOffsetDifficulty)) > m_difficulty)
+        {
+            ++m_difficulty;
+            EventManager.Instance.InvokeOnIncreaseDifficulty(this, new IntEventArgs(m_difficulty));
+        }
+
+
 
     }
 
@@ -62,6 +78,7 @@ public class GameManager : Singleton<GameManager>
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        m_difficulty = 0;
         LevelGenerator.Instance.GenerateLevel(7, 10);
         RailManager.Instance.GenerateRail(7, 10);
         ResetRage();

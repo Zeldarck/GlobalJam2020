@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +22,18 @@ public class CornerManager : Singleton<CornerManager>
         EventManager.Instance.RegisterOnCornerHitted((o) => CornerHitted());
         EventManager.Instance.RegisterOnStart(o => Init());
         EventManager.Instance.RegisterOnLoose((o) => Clean());
+        EventManager.Instance.RegisterOnIncreaseDifficulty((o, number) => IncreaseDifficulty(number.m_int));
 
+    }
+
+    void IncreaseDifficulty(int m_int)
+    {
+        if (m_objectNumber < m_poolItems.Count)
+        {
+            m_availableItems.Add(m_poolItems[m_objectNumber]);
+            EventManager.Instance.InvokeOnSetCornerOrder(this, new ItemEventArgs(m_poolItems[m_objectNumber]), new IntEventArgs(m_objectNumber));
+            ++m_objectNumber;
+        }
     }
 
     void SendPosition()
