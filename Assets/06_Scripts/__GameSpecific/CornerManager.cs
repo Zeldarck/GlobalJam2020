@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CornerManager : MonoBehaviour
+public class CornerManager : Singleton<CornerManager>
 {
 
     Queue<ThrowableItemType> m_cornerQueue = new Queue<ThrowableItemType>();
 
+
+    List<ThrowableItemType> m_availableItems = new List<ThrowableItemType>();
+    List<ThrowableItemType> m_poolItems = new List<ThrowableItemType>();
+
+    [SerializeField]
+    int m_minimumObjectNumber = 3;
+
+    int m_objectNumber = 3;
 
     void Start()
     {
@@ -14,14 +22,6 @@ public class CornerManager : MonoBehaviour
         EventManager.Instance.RegisterOnStart(o => Init());
         EventManager.Instance.RegisterOnLoose((o) => Clean());
 
-        for(int i = 0; i < (int)ThrowableItemType.NB_ITEM_TYPE; ++i)
-        {
-            m_cornerQueue.Enqueue((ThrowableItemType)i);
-        }
-          
-        Utils.ShuffleQueue(m_cornerQueue);
-
-        Utils.TriggerNextFrame(SendPosition);
     }
 
     void SendPosition()
@@ -61,8 +61,46 @@ public class CornerManager : MonoBehaviour
 
     void Init()
     {
+        m_objectNumber = m_minimumObjectNumber;
+
+        for (int i = 0; i < (int)ThrowableItemType.NB_ITEM_TYPE; ++i)
+        {
+            m_poolItems.Add((ThrowableItemType)i);
+        }
+
+        Utils.ShuffleList(m_poolItems);
+
+        for (int i = 0 ; i < m_objectNumber; ++i)
+        {
+            m_availableItems.Add(m_poolItems[i]);
+        }
+
+
+        for (int i = 0; i < m_availableItems.Count; ++i)
+        {
+            m_cornerQueue.Enqueue(m_availableItems[i]);
+        }
+
+        Utils.ShuffleQueue(m_cornerQueue);
+
+        Utils.TriggerNextFrame(SendPosition);
+
         ActivateACorner();
     }
+
+    public ThrowableItemType GetRandomItemType()
+    {
+        if (m_availableItems.Count == 0)
+        {
+            Debug.LogError("No available item in CornerManager");
+            return 0;
+        }
+
+        int id = Utils.RandomInt(0, m_availableItems.Count);
+
+        return m_availableItems[id];
+    }
+
 
     void Clean()
     {
@@ -70,5 +108,10 @@ public class CornerManager : MonoBehaviour
         {
             corner.IsActived = false;
         }
+
+       m_availableItems = new List<ThrowableItemType>();
+       m_poolItems = new List<ThrowableItemType>();
+       m_cornerQueue = new Queue<ThrowableItemType>();
+
     }
 }

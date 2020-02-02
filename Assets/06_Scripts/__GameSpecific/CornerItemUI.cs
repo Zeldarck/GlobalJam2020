@@ -16,12 +16,8 @@ public class CornerItemUI : MonoBehaviour
 
     void Start()
     {
-        foreach(IconItem prefab in m_itemIconPrefab)
-        {
-            m_currentItemIcon.Add(Instantiate(prefab, m_container.transform));
-        }
-
         EventManager.Instance.RegisterOnSetCornerOrder((o, item, order) => SetItemOrder(item.m_itemType, order.m_int));
+        EventManager.Instance.RegisterOnLoose((o) => Utils.DestroyChilds(m_container.transform));
     }
 
     void SetItemOrder(ThrowableItemType a_item, int a_order)
@@ -32,8 +28,16 @@ public class CornerItemUI : MonoBehaviour
 
         if (iconItem == null)
         {
-            Debug.LogError("No iconItem in Corner Ui for " + a_item);
-            return;
+
+            IconItem iconItemPrefab = m_itemIconPrefab.Find(x => x.ItemType == a_item);
+
+            if(iconItemPrefab == null)
+            {
+                Debug.LogError("No iconItem set up in Corner Ui for " + a_item);
+                return;
+            }
+            iconItem = Instantiate(iconItemPrefab, m_container.transform);
+            m_currentItemIcon.Add(iconItem);
         }
 
         iconItem.transform.SetSiblingIndex(a_order);

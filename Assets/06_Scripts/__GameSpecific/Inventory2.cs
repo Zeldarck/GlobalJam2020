@@ -19,6 +19,7 @@ public class Inventory2 : MonoBehaviour
     ThrowableItem m_mainItem;
     ThrowableItem m_secondItem;
 
+
     bool m_canThrow = false;
 
     public ThrowableItem MainItem
@@ -55,8 +56,9 @@ public class Inventory2 : MonoBehaviour
         }
         MainItem = null;
         SecondItem = null;
-        GiveItem();
-        GiveItem();
+
+        Utils.TriggerNextFrame(GiveItem);
+        Utils.TriggerNextFrame(GiveItem);
     }
 
 
@@ -143,15 +145,24 @@ public class Inventory2 : MonoBehaviour
 
     ThrowableItem GenerateRandomItem()
     {
+
         if (m_litemPrefab.Count == 0)
         {
             Debug.LogError("No item setup in Inventory");
             return null;
         }
+        ThrowableItemType type = CornerManager.Instance.GetRandomItemType();
+        ThrowableItem prefab = m_litemPrefab.Find(x => x.ItemType == type);
 
-        int id = Utils.RandomInt(0, m_litemPrefab.Count);
 
-        GameObject item = GameObjectManager.Instance.InstantiateObject(m_litemPrefab[id].gameObject, Vector3.zero, Quaternion.identity, SPAWN_CONTAINER_TYPE.DESTRUCTIBLE);
+        if (prefab == null)
+        {
+            Debug.LogError("No item setup in Inventory for " + type);
+            return null;
+        }
+
+
+        GameObject item = GameObjectManager.Instance.InstantiateObject(prefab.gameObject, Vector3.zero, Quaternion.identity, SPAWN_CONTAINER_TYPE.DESTRUCTIBLE);
 
         item.transform.SetParent(this.transform, false);
 

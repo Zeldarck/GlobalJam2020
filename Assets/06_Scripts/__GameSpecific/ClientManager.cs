@@ -60,7 +60,7 @@ public class ClientManager : Singleton<ClientManager>
         {
             m_timer = TimerFactory.Instance.GetTimer();
         }
-        m_currentTableId = 0;
+
         Utils.ShuffleList(LevelGenerator.Instance.Tables);
 
         m_timer.StartTimer(Utils.RandomFloat(m_currentClientIntervalTime - 0.25f, m_currentClientIntervalTime + 0.25f), GenerateNewClient);
@@ -100,7 +100,7 @@ public class ClientManager : Singleton<ClientManager>
 
         Client client = GameObjectManager.Instance.InstantiateObject(m_clientPrefabList[id].gameObject, Vector3.zero, Quaternion.identity, SPAWN_CONTAINER_TYPE.DESTRUCTIBLE).GetComponent<Client>();
 
-        client.WantedItem = ((ThrowableItemType)Utils.RandomInt(0, (int)ThrowableItemType.NB_ITEM_TYPE));
+        client.WantedItem = CornerManager.Instance.GetRandomItemType();//((ThrowableItemType)Utils.RandomInt(0, (int)ThrowableItemType.NB_ITEM_TYPE));
 
         m_currentClientsList.Add(client);
         table.AddClient(client);
