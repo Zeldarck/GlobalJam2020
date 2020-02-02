@@ -81,8 +81,8 @@ public class GameManager : Singleton<GameManager>
         Cursor.visible = false;
 
         m_difficulty = 0;
-        LevelGenerator.Instance.GenerateLevel(7, 10);
-        RailManager.Instance.GenerateRail(7, 10);
+        LevelGenerator.Instance.GenerateLevel(8, 11);
+        RailManager.Instance.GenerateRail(8, 11);
         ResetRage();
         ResetScore();
     }
