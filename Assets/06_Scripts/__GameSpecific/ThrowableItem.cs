@@ -32,7 +32,7 @@ public class ThrowableItem : MonoBehaviour
     {
         if (m_isFired && (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Module")))
         {
-            GameObject vfx = Instantiate(m_impactPrefab, transform.position + new Vector3(0, 1.35f, 0), transform.rotation);
+            GameObject vfx = Instantiate(m_impactPrefab, transform.position, transform.rotation);
             Utils.TriggerWaitForSeconds(3, () => Destroy(vfx));
 
             Utils.TriggerWaitForSeconds(0.10f, () => Dead());
