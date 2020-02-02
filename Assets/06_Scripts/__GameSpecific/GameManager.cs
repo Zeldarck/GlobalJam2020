@@ -139,7 +139,7 @@ public class GameManager : Singleton<GameManager>
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.LOOSE, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.CREATE_KEY, 0);
+        SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.LOOSE, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.CREATE_KEY, 0,null,1,false);
 
         GameTimer.Pause();
     }

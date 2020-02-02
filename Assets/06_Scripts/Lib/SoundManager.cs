@@ -446,13 +446,13 @@ public class SoundManager : Singleton<SoundManager>
     }
 
 
-    public int StartAudio(AUDIOCLIP_KEY a_clipKey, MIXER_GROUP_TYPE a_mixerGroupType = MIXER_GROUP_TYPE.AMBIANT, bool a_isFading = true, bool a_isLooping = true, AUDIOSOURCE_KEY a_key = AUDIOSOURCE_KEY.CREATE_KEY, ulong a_delay = 0, GameObject a_parent = null, float a_volume = 1.0f)
+    public int StartAudio(AUDIOCLIP_KEY a_clipKey, MIXER_GROUP_TYPE a_mixerGroupType = MIXER_GROUP_TYPE.AMBIANT, bool a_isFading = true, bool a_isLooping = true, AUDIOSOURCE_KEY a_key = AUDIOSOURCE_KEY.CREATE_KEY, ulong a_delay = 0, GameObject a_parent = null, float a_volume = 1.0f, bool a_spatial = true)
     {
         AudioClipLink audioClip = m_listAudioClip.Find(o => o.Key == a_clipKey);
 
         Assert.IsFalse(audioClip == null, "Bad audioclip key");
 
-        return StartAudio(audioClip.AudioClip,a_mixerGroupType, a_isFading,a_isLooping,a_key,a_delay, a_parent, a_volume);
+        return StartAudio(audioClip.AudioClip,a_mixerGroupType, a_isFading,a_isLooping,a_key,a_delay, a_parent, a_volume, a_spatial);
 
     }
 
@@ -469,7 +469,7 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="a_key">the key we want</param>
     /// <param name="a_delay">if we play with a delay</param>
     /// <returns></returns>
-     public int StartAudio(AudioClip a_clip, MIXER_GROUP_TYPE a_mixerGroupType = MIXER_GROUP_TYPE.AMBIANT, bool a_isFading = true, bool a_isLooping = true, AUDIOSOURCE_KEY a_key = AUDIOSOURCE_KEY.CREATE_KEY, ulong a_delay = 0, GameObject a_parent = null, float a_volume = 1.0f)
+     public int StartAudio(AudioClip a_clip, MIXER_GROUP_TYPE a_mixerGroupType = MIXER_GROUP_TYPE.AMBIANT, bool a_isFading = true, bool a_isLooping = true, AUDIOSOURCE_KEY a_key = AUDIOSOURCE_KEY.CREATE_KEY, ulong a_delay = 0, GameObject a_parent = null, float a_volume = 1.0f, bool a_spatial = true)
      {
         int res = -1;
         int key = (int)a_key;
@@ -511,6 +511,11 @@ public class SoundManager : Singleton<SoundManager>
 
                 source.Speed = m_speedFade;
                 source.AudioSource.volume = 0;
+            }
+
+            if (a_spatial)
+            {
+                source.AudioSource.spatialBlend = 0.45f;
             }
 
            // source.AudioSource.outputAudioMixerGroup = mixer;

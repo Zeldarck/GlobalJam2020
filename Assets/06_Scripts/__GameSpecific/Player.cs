@@ -73,5 +73,6 @@ public class Player : Singleton<Player>
         rigidbody.AddRelativeTorque(Utils.RandomFloat(0, 2), Utils.RandomFloat(0, 2), Utils.RandomFloat(0, 2));
 
         item.Fired();
+        m_inventory.ExchangeItem();
     }
 }
