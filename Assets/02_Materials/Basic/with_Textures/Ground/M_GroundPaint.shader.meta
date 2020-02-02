@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 00638448d3a1eaf45b48f073f63ab5f4
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _Ground_Game_normal: {fileID: 2800000, guid: ffc47f899221b38478d0948086ff2b88,
+      type: 3}
+  - _Normal_ColorPaint: {fileID: 2800000, guid: 02271bbcf45a7d04e9214b7cf18d2227,
+      type: 3}
+  - _Ground_Game_roughness: {fileID: 2800000, guid: 7be03089d2cd4b24192179243033a3f2,
+      type: 3}
+  - _AO_ColorPaint: {fileID: 2800000, guid: 9114aceaf3ad84a4a9794bc1e3a13e59, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
