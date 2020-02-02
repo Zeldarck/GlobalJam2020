@@ -68,13 +68,14 @@ public class Corner : Module
                 return;
             }
 
+            SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.BONUS_USED, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.BUTTON_MENU, 0, null, 0.5f);
+
+
             item.IsDead = true;
 
             Destroy(item.gameObject);
 
             //IsActived = false;
-
-            //SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.BONUS_USED, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.CREATE_KEY, 0, null ,0.5f);
             EventManager.Instance.InvokeOnCornerHitted(this);
         }
     }

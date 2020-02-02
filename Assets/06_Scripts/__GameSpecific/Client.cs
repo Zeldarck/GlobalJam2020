@@ -37,6 +37,8 @@ public class Client : MonoBehaviour
     float m_alertBeginValue = 4.0f;
 
 
+
+
     Timer m_timer;
 
     private void Start()
@@ -45,7 +47,6 @@ public class Client : MonoBehaviour
         m_rendererChild = m_materialChild.GetComponent<Renderer>();
         Material mat = new Material(m_rendererChild.material.shader);
         m_rendererChild.material = mat;
-
         SetRage(0);
     }
 
@@ -112,15 +113,14 @@ public class Client : MonoBehaviour
 
         if(!a_isHappy)
         {
+            SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.ENEMY_DIE, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.CREATE_KEY, 0, null, 0.55f);
             EventManager.Instance.InvokeOnRageIncrease(this, new NumberEventArgs(m_baseRage));
-           // SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.ENEMY_DIE, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.CREATE_KEY, 0);
         }
         else
         {
+            SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.WIN, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.CREATE_KEY, 0, null, 0.55f);
             EventManager.Instance.InvokeOnScoreIncrease(this, new IntEventArgs((int)Mathf.Max(m_baseScore * m_timer.GetTimeLeft()/m_waitingTime, m_minimumScore)));
             EventManager.Instance.InvokeOnRageIncrease(this, new NumberEventArgs(m_baseRage/-3.0f));
-           // SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.WIN, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.CREATE_KEY, 0);
-
         }
     }
 
