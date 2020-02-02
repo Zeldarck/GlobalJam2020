@@ -116,6 +116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemType: 0
+  m_impactPrefab: {fileID: 1284148830342965907, guid: 074088a9151d61540acefbc0363fc7e9,
+    type: 3}
 --- !u!54 &-2432986356993968700
 Rigidbody:
   m_ObjectHideFlags: 0
