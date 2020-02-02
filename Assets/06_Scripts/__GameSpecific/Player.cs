@@ -19,6 +19,10 @@ public class Player : Singleton<Player>
     [SerializeField]
     float m_fireAngle = 35.0f;
 
+    [SerializeField]
+    Animator m_animator;
+
+
     Inventory2 m_inventory;
 
     bool m_enableFire = false;
@@ -63,6 +67,7 @@ public class Player : Singleton<Player>
             return;
         }
 
+        m_animator.SetTrigger("Launch");
 
         Rigidbody rigidbody = item.GetComponent<Rigidbody>();
         Vector3 direction = transform.forward * m_fireForce;

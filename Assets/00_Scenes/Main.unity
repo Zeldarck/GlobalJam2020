@@ -1834,17 +1834,17 @@ PrefabInstance:
     - target: {fileID: 7080907860690089182, guid: 39910c473bc6de34d80f8bce9a7c734d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 7080907860690089182, guid: 39910c473bc6de34d80f8bce9a7c734d,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 7080907860690089182, guid: 39910c473bc6de34d80f8bce9a7c734d,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 7080907860690089187, guid: 39910c473bc6de34d80f8bce9a7c734d,
         type: 3}
@@ -1858,6 +1858,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39910c473bc6de34d80f8bce9a7c734d, type: 3}
+--- !u!95 &919140052 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7080907860690089184, guid: 39910c473bc6de34d80f8bce9a7c734d,
+    type: 3}
+  m_PrefabInstance: {fileID: 919140051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &938511768
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,6 +2095,7 @@ MonoBehaviour:
   m_speed: 1.5
   m_fireForce: 10.5
   m_fireAngle: -22.5
+  m_animator: {fileID: 919140052}
 --- !u!4 &1002233457
 Transform:
   m_ObjectHideFlags: 0
