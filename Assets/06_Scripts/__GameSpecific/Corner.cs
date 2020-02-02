@@ -72,7 +72,7 @@ public class Corner : Module
 
             Destroy(item.gameObject);
 
-            IsActived = false;
+            //IsActived = false;
 
             EventManager.Instance.InvokeOnCornerHitted(this);
         }

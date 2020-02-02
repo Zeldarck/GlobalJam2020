@@ -59,7 +59,7 @@ public class GameManager : Singleton<GameManager>
             SendEventScore();
         }
 
-        if (Mathf.Floor(m_gameTimer.GetCurrentTime() / (m_difficulty* m_timeMultiplier + m_timeOffsetDifficulty)) > m_difficulty)
+        if (Mathf.Floor(m_gameTimer.GetCurrentTime() / ((m_difficulty + 1) * m_timeMultiplier + m_timeOffsetDifficulty)) > m_difficulty)
         {
             ++m_difficulty;
             EventManager.Instance.InvokeOnIncreaseDifficulty(this, new IntEventArgs(m_difficulty));

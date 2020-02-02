@@ -100,7 +100,7 @@ public class ClientManager : Singleton<ClientManager>
 
         Client client = GameObjectManager.Instance.InstantiateObject(m_clientPrefabList[id].gameObject, Vector3.zero, Quaternion.identity, SPAWN_CONTAINER_TYPE.DESTRUCTIBLE).GetComponent<Client>();
 
-        client.WantedItem = CornerManager.Instance.GetRandomItemType();//((ThrowableItemType)Utils.RandomInt(0, (int)ThrowableItemType.NB_ITEM_TYPE));
+        client.WantedItem = CornerManager.Instance.GetRandomItemType();
 
         m_currentClientsList.Add(client);
         table.AddClient(client);

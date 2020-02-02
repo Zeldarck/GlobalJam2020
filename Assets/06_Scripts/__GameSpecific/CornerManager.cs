@@ -19,7 +19,7 @@ public class CornerManager : Singleton<CornerManager>
 
     void Start()
     {
-        EventManager.Instance.RegisterOnCornerHitted((o) => CornerHitted());
+        EventManager.Instance.RegisterOnCornerHitted((o) => TriggerNextItem());
         EventManager.Instance.RegisterOnStart(o => Init());
         EventManager.Instance.RegisterOnLoose((o) => Clean());
         EventManager.Instance.RegisterOnIncreaseDifficulty((o, number) => IncreaseDifficulty(number.m_int));
@@ -31,6 +31,7 @@ public class CornerManager : Singleton<CornerManager>
         if (m_objectNumber < m_poolItems.Count)
         {
             m_availableItems.Add(m_poolItems[m_objectNumber]);
+            m_cornerQueue.Enqueue(m_poolItems[m_objectNumber]);
             EventManager.Instance.InvokeOnSetCornerOrder(this, new ItemEventArgs(m_poolItems[m_objectNumber]), new IntEventArgs(m_objectNumber));
             ++m_objectNumber;
         }
@@ -47,13 +48,13 @@ public class CornerManager : Singleton<CornerManager>
     }
 
 
-    void CornerHitted()
+    public void TriggerNextItem()
     {
         ThrowableItemType itemType =  m_cornerQueue.Dequeue();
         m_cornerQueue.Enqueue(itemType);
         EventManager.Instance.InvokeOnSetCornerOrder(this, new ItemEventArgs(itemType), new IntEventArgs(m_cornerQueue.Count - 1));
         EventManager.Instance.InvokeOnGiveItem(this, new ItemEventArgs(itemType));
-        ActivateACorner();
+       // ActivateACorner();
     }
 
     void ActivateACorner()
@@ -97,7 +98,13 @@ public class CornerManager : Singleton<CornerManager>
 
         Utils.TriggerNextFrame(SendPosition);
 
-        ActivateACorner();
+        foreach (Corner corner in LevelGenerator.Instance.Corners)
+        {
+            corner.IsActived = true;
+        }
+
+
+        //ActivateACorner();
     }
 
     public ThrowableItemType GetRandomItemType()

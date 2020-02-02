@@ -106,7 +106,8 @@ public class Inventory2 : MonoBehaviour
     {
         if (CanGiveItem())
         {
-            GiveItem(GenerateRandomItem());
+            CornerManager.Instance.TriggerNextItem();
+            //GiveItem(GenerateRandomItem());
         }
     }
 

@@ -1976,8 +1976,8 @@ MonoBehaviour:
   - {fileID: 6133321817477804195, guid: 233cf091280ea1e45b9ac5b721da845e, type: 3}
   - {fileID: 8039373630002248909, guid: 59861d966940c694084169bd7333d71b, type: 3}
   - {fileID: 1931333054014792155, guid: 739d050338a138944bbcb3c139edb827, type: 3}
-  m_clientIntervalTime: 2.5
-  m_minimumNbClient: 5
+  m_clientIntervalTime: 5
+  m_minimumNbClient: 2
 --- !u!1 &1148760330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2776,6 +2776,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c7433f17076a1428aa742d88bcfe64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_timeMultiplier: 15
+  m_timeOffsetDifficulty: 5
 --- !u!1 &1713626012
 GameObject:
   m_ObjectHideFlags: 0
