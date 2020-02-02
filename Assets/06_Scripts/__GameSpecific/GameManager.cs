@@ -93,7 +93,7 @@ public class GameManager : Singleton<GameManager>
         m_rageLevel = Mathf.Clamp(m_rageLevel, 0, 100);
         EventManager.Instance.InvokeOnRageUpdate(this, new NumberEventArgs(m_rageLevel));
 
-        if (m_rageLevel >= 20.0f && m_gameTimer.IsTimerRunning())
+        if (m_rageLevel >= 100.0f && m_gameTimer.IsTimerRunning())
         {
             EventManager.Instance.InvokeOnLoose(this);
         }

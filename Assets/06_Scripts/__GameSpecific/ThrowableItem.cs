@@ -19,7 +19,7 @@ public class ThrowableItem : MonoBehaviour
     [SerializeField]
     GameObject m_trail;
 
-
+    bool m_once = true;
     public ThrowableItemType ItemType { get => m_itemType; set => m_itemType = value; }
     public bool IsDead { get => m_isDead; set => m_isDead = value; }
 
@@ -46,12 +46,13 @@ public class ThrowableItem : MonoBehaviour
 
     void Dead()
     {
-        if(this != null)
+        if(this != null && m_once)
         {
+            m_once = false;
             Debug.Log("ThrowableItem " + this + " is dead");
             IsDead = true;
             EventManager.Instance.InvokeOnGiveItem(this, new ItemEventArgs(m_itemType));
-            Utils.TriggerWaitForSeconds(0.5f, () => Destroy(this.gameObject));
+            Utils.TriggerWaitForSeconds(0.15f, () => Destroy(this.gameObject));
         }
     }
     
