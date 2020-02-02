@@ -117,6 +117,8 @@ public class Client : MonoBehaviour
         else
         {
             EventManager.Instance.InvokeOnScoreIncrease(this, new IntEventArgs((int)Mathf.Max(m_baseScore * m_timer.GetTimeLeft()/m_waitingTime, m_minimumScore)));
+            EventManager.Instance.InvokeOnRageIncrease(this, new NumberEventArgs(m_baseRage/-3.0f));
+
         }
     }
 

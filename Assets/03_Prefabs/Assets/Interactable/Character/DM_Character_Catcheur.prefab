@@ -12,6 +12,26 @@ PrefabInstance:
       propertyPath: m_materialChild
       value: 
       objectReference: {fileID: 5304143641024757504}
+    - target: {fileID: -7929227922593920654, guid: f81928c872f14d94fb3dc80171f189e8,
+        type: 3}
+      propertyPath: m_waitingTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -7929227922593920654, guid: f81928c872f14d94fb3dc80171f189e8,
+        type: 3}
+      propertyPath: m_baseScore
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -7929227922593920654, guid: f81928c872f14d94fb3dc80171f189e8,
+        type: 3}
+      propertyPath: m_minimumScore
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7929227922593920654, guid: f81928c872f14d94fb3dc80171f189e8,
+        type: 3}
+      propertyPath: m_baseRage
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 840552658264517217, guid: f81928c872f14d94fb3dc80171f189e8,
         type: 3}
       propertyPath: m_Name

@@ -88,6 +88,7 @@ public class GameManager : Singleton<GameManager>
     void IncreaseRage(float a_number)
     {
         m_rageLevel += a_number;
+        m_rageLevel = Mathf.Clamp(m_rageLevel, 0, 100);
         EventManager.Instance.InvokeOnRageUpdate(this, new NumberEventArgs(m_rageLevel));
 
         if (m_rageLevel >= 100.0f)
