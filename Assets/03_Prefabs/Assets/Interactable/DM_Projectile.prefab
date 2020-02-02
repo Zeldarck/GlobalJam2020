@@ -119,6 +119,7 @@ MonoBehaviour:
   m_itemType: 0
   m_impactPrefab: {fileID: 1284148830342965907, guid: 074088a9151d61540acefbc0363fc7e9,
     type: 3}
+  m_trail: {fileID: 2968929540410452960}
 --- !u!54 &-2432986356993968700
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -289,6 +290,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7be35756de859f8468d6eb6489b555cd, type: 3}
+--- !u!1 &2968929540410452960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3765574441971684601, guid: 7be35756de859f8468d6eb6489b555cd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2121692055155982105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2968929540410452961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3765574441971684600, guid: 7be35756de859f8468d6eb6489b555cd,

@@ -16,6 +16,9 @@ public class ThrowableItem : MonoBehaviour
     [SerializeField]
     GameObject m_impactPrefab;
 
+    [SerializeField]
+    GameObject m_trail;
+
 
     public ThrowableItemType ItemType { get => m_itemType; set => m_itemType = value; }
     public bool IsDead { get => m_isDead; set => m_isDead = value; }
@@ -25,6 +28,7 @@ public class ThrowableItem : MonoBehaviour
     {
         Utils.TriggerWaitForSeconds(1.5f, () => Dead());
         m_isFired = true;
+        m_trail.SetActive(true);
     }
 
 
