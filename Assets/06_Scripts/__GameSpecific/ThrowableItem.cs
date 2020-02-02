@@ -13,6 +13,8 @@ public class ThrowableItem : MonoBehaviour
     bool m_isDead = false;
     bool m_isFired = false;
 
+    [SerializeField]
+    GameObject m_impactPrefab;
 
 
     public ThrowableItemType ItemType { get => m_itemType; set => m_itemType = value; }
@@ -30,6 +32,9 @@ public class ThrowableItem : MonoBehaviour
     {
         if (m_isFired && (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Module")))
         {
+            GameObject vfx = Instantiate(m_impactPrefab, transform.position, transform.rotation);
+            Utils.TriggerWaitForSeconds(3, () => Destroy(vfx));
+
             Utils.TriggerWaitForSeconds(0.10f, () => Dead());
         }
     }

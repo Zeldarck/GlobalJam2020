@@ -116,8 +116,10 @@ MonoBehaviour:
   m_minimumScore: 4
   m_baseRage: 7.5
   m_alertBeginValue: 4
-  m_happy: {fileID: 8300000, guid: dab45a68fe2bf9744b38d7641a36313c, type: 3}
-  m_unhappy: {fileID: 8300000, guid: 81ed769912b4378428e8fc7c6a6f7227, type: 3}
+  m_happyVFXPrefab: {fileID: 222208798868792983, guid: 52c9d954582d6784998a625fd820a714,
+    type: 3}
+  m_unhappyVFXPrefab: {fileID: 3641741751636918743, guid: 3655fa4ba7d10c6428cbe5f936a3de0a,
+    type: 3}
 --- !u!82 &8952409718696917086
 AudioSource:
   m_ObjectHideFlags: 0
