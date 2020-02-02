@@ -17,7 +17,13 @@ public class CornerItemUI : MonoBehaviour
     void Start()
     {
         EventManager.Instance.RegisterOnSetCornerOrder((o, item, order) => SetItemOrder(item.m_itemType, order.m_int));
-        EventManager.Instance.RegisterOnLoose((o) => Utils.DestroyChilds(m_container.transform));
+        EventManager.Instance.RegisterOnLoose((o) => Clean());
+    }
+
+    void Clean()
+    {
+        m_currentItemIcon = new List<IconItem>();
+        Utils.DestroyChilds(m_container.transform);
     }
 
     void SetItemOrder(ThrowableItemType a_item, int a_order)
