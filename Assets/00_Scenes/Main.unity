@@ -1978,6 +1978,8 @@ MonoBehaviour:
   - {fileID: 1931333054014792155, guid: 739d050338a138944bbcb3c139edb827, type: 3}
   m_clientIntervalTime: 5
   m_minimumNbClient: 2
+  m_maxLevel: 20
+  m_minClientIntervalTime: 0.75
 --- !u!1 &1148760330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2776,8 +2778,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c7433f17076a1428aa742d88bcfe64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_timeMultiplier: 15
-  m_timeOffsetDifficulty: 5
+  m_timeMultiplier: 13.5
+  m_timeOffsetDifficulty: 2.5
 --- !u!1 &1713626012
 GameObject:
   m_ObjectHideFlags: 0

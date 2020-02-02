@@ -16,6 +16,16 @@ public class ClientManager : Singleton<ClientManager>
     int m_minimumNbClient = 3;
 
 
+    [SerializeField]
+    float m_maxLevel = 35.0f;
+
+    [SerializeField]
+    float m_minClientIntervalTime = 0.75f;
+
+
+    int m_currentMinimumNbClient = 3;
+
+
     float m_currentClientIntervalTime;
 
     Timer m_timer;
@@ -29,6 +39,7 @@ public class ClientManager : Singleton<ClientManager>
         EventManager.Instance.RegisterOnClientComplete((o, client) => OnClientComplete(client.m_client));
         EventManager.Instance.RegisterOnStart(o => Init());
         EventManager.Instance.RegisterOnLoose((o) => m_allowSpawn = false);
+        EventManager.Instance.RegisterOnIncreaseDifficulty((o, number) => IncreaseDifficulty(number.m_int));
 
     }
 
@@ -49,6 +60,7 @@ public class ClientManager : Singleton<ClientManager>
         m_allowSpawn = true;
 
         m_currentClientIntervalTime = m_clientIntervalTime;
+        m_currentMinimumNbClient = m_minimumNbClient;
 
         m_currentClientsList = new List<Client>();
 
@@ -67,12 +79,20 @@ public class ClientManager : Singleton<ClientManager>
 
     }
 
+    void IncreaseDifficulty(int a_difficultyLevel)
+    {
+        float time = Mathf.SmoothStep(0.0f, 1.0f, a_difficultyLevel / m_maxLevel);
+        m_currentClientIntervalTime = Mathf.Lerp(m_clientIntervalTime, m_minClientIntervalTime, time);
+        ++m_currentMinimumNbClient;
+        Debug.Log(m_currentClientIntervalTime);
+    }
+
     void OnClientComplete(Client a_client)
     {
         m_currentClientsList.Remove(a_client);
         Destroy(a_client.gameObject);
 
-        if (m_currentClientsList.Count < m_minimumNbClient)
+        if (m_currentClientsList.Count < m_currentMinimumNbClient)
         {
             GenerateNewClient();
         }

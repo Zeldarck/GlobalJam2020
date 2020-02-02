@@ -66,7 +66,6 @@ public class Client : MonoBehaviour
 
 
             transform.forward = Player.Instance.transform.position - transform.position;
-
         }
     }
 
