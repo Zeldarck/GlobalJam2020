@@ -84,7 +84,6 @@ public class ClientManager : Singleton<ClientManager>
         float time = Mathf.SmoothStep(0.0f, 1.0f, a_difficultyLevel / m_maxLevel);
         m_currentClientIntervalTime = Mathf.Lerp(m_clientIntervalTime, m_minClientIntervalTime, time);
         ++m_currentMinimumNbClient;
-        Debug.Log(m_currentClientIntervalTime);
     }
 
     void OnClientComplete(Client a_client)

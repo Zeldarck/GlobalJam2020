@@ -57,8 +57,8 @@ public class Inventory2 : MonoBehaviour
         MainItem = null;
         SecondItem = null;
 
-        Utils.TriggerNextFrame(GiveItem);
-        Utils.TriggerNextFrame(GiveItem);
+        Utils.TriggerWaitForSeconds(0.5f, GiveItem);
+        Utils.TriggerWaitForSeconds(0.5f, GiveItem);
     }
 
 
@@ -140,7 +140,7 @@ public class Inventory2 : MonoBehaviour
 
     bool CanGiveItem()
     {
-        return MainItem == null || SecondItem == null;
+        return GameManager.Instance.GameTimer.IsTimerRunning() && (MainItem == null || SecondItem == null);
     }
 
 

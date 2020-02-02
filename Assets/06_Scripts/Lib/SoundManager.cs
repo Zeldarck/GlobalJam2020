@@ -238,7 +238,7 @@ public class AudioSourceExtend
         }
 
         m_currentTime += Mathf.Abs(Speed) * Time.deltaTime;
-        AudioSource.volume = ConcreteEaseMethods.ExpoEaseOut(m_currentTime, Speed > 0 ? 0 : 1, Speed > 0 ? 1 : -1, 1);
+       // AudioSource.volume = ConcreteEaseMethods.ExpoEaseOut(m_currentTime, Speed > 0 ? 0 : 1, Speed > 0 ? 1 : -1, 1);
         TryToDestroy();
     }
 
@@ -405,10 +405,15 @@ public class SoundManager : Singleton<SoundManager>
     /// Create an audio source with looping true and not playing
     /// </summary>
     /// <returns>an Audios ource</returns>
-    AudioSource CreateAudioSource()
+    AudioSource CreateAudioSource(GameObject a_parent = null)
     {
+
+        if(a_parent == null)
+        {
+            a_parent = gameObject;
+        }
         AudioSource res;
-        res = gameObject.AddComponent<AudioSource>();
+        res = a_parent.AddComponent<AudioSource>();
         res.loop = true;
         res.Stop();
         return res;
@@ -441,13 +446,13 @@ public class SoundManager : Singleton<SoundManager>
     }
 
 
-    public int StartAudio(AUDIOCLIP_KEY a_clipKey, MIXER_GROUP_TYPE a_mixerGroupType = MIXER_GROUP_TYPE.AMBIANT, bool a_isFading = true, bool a_isLooping = true, AUDIOSOURCE_KEY a_key = AUDIOSOURCE_KEY.CREATE_KEY, ulong a_delay = 0)
+    public int StartAudio(AUDIOCLIP_KEY a_clipKey, MIXER_GROUP_TYPE a_mixerGroupType = MIXER_GROUP_TYPE.AMBIANT, bool a_isFading = true, bool a_isLooping = true, AUDIOSOURCE_KEY a_key = AUDIOSOURCE_KEY.CREATE_KEY, ulong a_delay = 0, GameObject a_parent = null, float a_volume = 1.0f)
     {
         AudioClipLink audioClip = m_listAudioClip.Find(o => o.Key == a_clipKey);
 
         Assert.IsFalse(audioClip == null, "Bad audioclip key");
 
-        return StartAudio(audioClip.AudioClip,a_mixerGroupType, a_isFading,a_isLooping,a_key,a_delay);
+        return StartAudio(audioClip.AudioClip,a_mixerGroupType, a_isFading,a_isLooping,a_key,a_delay, a_parent, a_volume);
 
     }
 
@@ -464,7 +469,7 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="a_key">the key we want</param>
     /// <param name="a_delay">if we play with a delay</param>
     /// <returns></returns>
-     public int StartAudio(AudioClip a_clip, MIXER_GROUP_TYPE a_mixerGroupType = MIXER_GROUP_TYPE.AMBIANT, bool a_isFading = true, bool a_isLooping = true, AUDIOSOURCE_KEY a_key = AUDIOSOURCE_KEY.CREATE_KEY, ulong a_delay = 0)
+     public int StartAudio(AudioClip a_clip, MIXER_GROUP_TYPE a_mixerGroupType = MIXER_GROUP_TYPE.AMBIANT, bool a_isFading = true, bool a_isLooping = true, AUDIOSOURCE_KEY a_key = AUDIOSOURCE_KEY.CREATE_KEY, ulong a_delay = 0, GameObject a_parent = null, float a_volume = 1.0f)
      {
         int res = -1;
         int key = (int)a_key;
@@ -482,7 +487,7 @@ public class SoundManager : Singleton<SoundManager>
                     Debug.Log("Clip ever play : " + a_clip.name);
                     return key;
                 }
-                AudioSourceExtend new_source = new AudioSourceExtend(CreateAudioSource());
+                AudioSourceExtend new_source = new AudioSourceExtend(CreateAudioSource(a_parent));
                 m_audioSourcesExtend.Add(new_source);
                 m_audioSourcesExtendWithKey[key] = new_source;
                 if (a_isFading)
@@ -499,6 +504,8 @@ public class SoundManager : Singleton<SoundManager>
                 new_source = temp;
             }
 
+            source.AudioSource.volume = a_volume;
+
             if (a_isFading)
             {
 
@@ -506,7 +513,7 @@ public class SoundManager : Singleton<SoundManager>
                 source.AudioSource.volume = 0;
             }
 
-            source.AudioSource.outputAudioMixerGroup = mixer;
+           // source.AudioSource.outputAudioMixerGroup = mixer;
             source.AudioSource.clip = a_clip;
             source.AudioSource.loop = a_isLooping;
             source.AudioSource.Play(a_delay);

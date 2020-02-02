@@ -22,7 +22,10 @@ public class CornerItemUI : MonoBehaviour
 
     void SetItemOrder(ThrowableItemType a_item, int a_order)
     {
-
+        if (!GameManager.Instance.GameTimer.IsTimerRunning())
+        {
+            return;
+        }
 
         IconItem iconItem = m_currentItemIcon.Find(x => x.ItemType == a_item);
 

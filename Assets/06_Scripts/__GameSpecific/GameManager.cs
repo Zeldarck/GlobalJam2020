@@ -91,7 +91,7 @@ public class GameManager : Singleton<GameManager>
         m_rageLevel = Mathf.Clamp(m_rageLevel, 0, 100);
         EventManager.Instance.InvokeOnRageUpdate(this, new NumberEventArgs(m_rageLevel));
 
-        if (m_rageLevel >= 100.0f)
+        if (m_rageLevel >= 100.0f && m_gameTimer.IsTimerRunning())
         {
             EventManager.Instance.InvokeOnLoose(this);
         }
@@ -137,6 +137,7 @@ public class GameManager : Singleton<GameManager>
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.LOOSE, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.CREATE_KEY, 0);
 
         GameTimer.Pause();
     }

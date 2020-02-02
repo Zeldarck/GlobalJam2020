@@ -50,11 +50,14 @@ public class CornerManager : Singleton<CornerManager>
 
     public void TriggerNextItem()
     {
-        ThrowableItemType itemType =  m_cornerQueue.Dequeue();
-        m_cornerQueue.Enqueue(itemType);
-        EventManager.Instance.InvokeOnSetCornerOrder(this, new ItemEventArgs(itemType), new IntEventArgs(m_cornerQueue.Count - 1));
-        EventManager.Instance.InvokeOnGiveItem(this, new ItemEventArgs(itemType));
-       // ActivateACorner();
+       /* if(m_cornerQueue.Count > 0)
+        {*/
+            ThrowableItemType itemType = m_cornerQueue.Dequeue();
+            m_cornerQueue.Enqueue(itemType);
+            EventManager.Instance.InvokeOnSetCornerOrder(this, new ItemEventArgs(itemType), new IntEventArgs(m_cornerQueue.Count - 1));
+            EventManager.Instance.InvokeOnGiveItem(this, new ItemEventArgs(itemType));
+            // ActivateACorner();
+       // }
     }
 
     void ActivateACorner()
@@ -74,6 +77,8 @@ public class CornerManager : Singleton<CornerManager>
 
     void Init()
     {
+        Clean();
+
         m_objectNumber = m_minimumObjectNumber;
 
         for (int i = 0; i < (int)ThrowableItemType.NB_ITEM_TYPE; ++i)
