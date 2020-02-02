@@ -37,12 +37,12 @@ public class Player : Singleton<Player>
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire1"))
         {
             Fire();
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("Fire2") || Input.GetButtonDown("Fire3"))
         {
             m_inventory.ExchangeItem();
         }
