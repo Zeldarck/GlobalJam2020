@@ -40,7 +40,10 @@ public class CameraFPS : CameraStrategy
         if (m_target && Cursor.lockState == CursorLockMode.Locked)
         {
             float h = m_horizontalSpeed * Input.GetAxis("Mouse X");
+            h += (m_horizontalSpeed -0.75f) * Input.GetAxis("Horizontal");
+
             float v = m_verticalSpeed * Input.GetAxis("Mouse Y")* -1.0f;
+            v += (m_verticalSpeed -0.5f) * Input.GetAxis("Vertical")* -1.0f;
 
             a_transform.Rotate(v, h, 0);
             a_transform.localRotation = Quaternion.Euler(a_transform.localRotation.eulerAngles.x, a_transform.localRotation.eulerAngles.y, 0);
