@@ -11,6 +11,9 @@ public class ThrowableItem : MonoBehaviour
     ThrowableItemType m_itemType;
 
     bool m_isDead = false;
+    bool m_isFired = false;
+
+
 
     public ThrowableItemType ItemType { get => m_itemType; set => m_itemType = value; }
     public bool IsDead { get => m_isDead; set => m_isDead = value; }
@@ -18,8 +21,19 @@ public class ThrowableItem : MonoBehaviour
     // Probablement switch sur un système se basant sur la velocité
     public void Fired()
     {
-        Utils.TriggerWaitForSeconds(0.67f, () => Dead());
+        Utils.TriggerWaitForSeconds(1.5f, () => Dead());
+        m_isFired = true;
     }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (m_isFired && (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Module")))
+        {
+            Utils.TriggerWaitForSeconds(0.10f, () => Dead());
+        }
+    }
+
 
     void Dead()
     {

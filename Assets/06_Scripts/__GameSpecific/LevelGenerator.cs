@@ -19,6 +19,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
     public List<Table> Tables { get => m_tables; set => m_tables = value; }
     public List<Corner> Corners { get => m_corners; set => m_corners = value; }
+    public float SizeProp { get => m_sizeProp; set => m_sizeProp = value; }
 
 
 
@@ -68,8 +69,8 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
         Clean();
 
-        float posX = m_sizeProp * (((float)width) / 2.0f);
-        float posZ = m_sizeProp * (((float)length) / 2.0f);
+        float posX = SizeProp * (((float)width) / 2.0f);
+        float posZ = SizeProp * (((float)length) / 2.0f);
 
 
         //Generate Corners
@@ -80,22 +81,22 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
         for(int i = 1; i < width; ++i)
         {
-            m_tables.Add(GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(-posX + m_sizeProp * i, 0.0f, posZ), Quaternion.Euler(0, 180, 0)).GetComponent<Table>());
+            m_tables.Add(GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(-posX + SizeProp * i, 0.0f, posZ), Quaternion.Euler(0, 180, 0)).GetComponent<Table>());
         }
 
         for (int i = 1; i < width; ++i)
         {
-            m_tables.Add(GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(-posX + m_sizeProp * i, 0.0f, -posZ), Quaternion.identity).GetComponent<Table>());
+            m_tables.Add(GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(-posX + SizeProp * i, 0.0f, -posZ), Quaternion.identity).GetComponent<Table>());
         }
 
         for (int i = 1; i < length; ++i)
         {
-            m_tables.Add(GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(-posX, 0.0f, -posZ + m_sizeProp * i), Quaternion.Euler(0, 90, 0)).GetComponent<Table>());
+            m_tables.Add(GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(-posX, 0.0f, -posZ + SizeProp * i), Quaternion.Euler(0, 90, 0)).GetComponent<Table>());
         }
 
         for (int i = 1; i < length; ++i)
         {
-            m_tables.Add(GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(posX, 0.0f, -posZ + m_sizeProp * i), Quaternion.Euler(0, -90, 0)).GetComponent<Table>());
+            m_tables.Add(GameObjectManager.Instance.InstantiateObject(GetRandomTable().gameObject, new Vector3(posX, 0.0f, -posZ + SizeProp * i), Quaternion.Euler(0, -90, 0)).GetComponent<Table>());
         }
     }
 

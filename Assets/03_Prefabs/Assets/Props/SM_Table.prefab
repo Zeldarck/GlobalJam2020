@@ -205,9 +205,10 @@ GameObject:
   - component: {fileID: -5820680351009732541}
   - component: {fileID: 5330856183846275686}
   - component: {fileID: 3799020641355493739}
+  - component: {fileID: 7225257491840041791}
   m_Layer: 0
   m_Name: SM_Table
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -316,7 +317,20 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 2.12, z: 1.08}
-  m_Center: {x: 0, y: 1, z: -1.12}
+  m_Center: {x: 0, y: 1, z: -1.27}
+--- !u!65 &7225257491840041791
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4420360061482641117}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.75, z: 1.0869035}
+  m_Center: {x: 0, y: 0.375, z: -1.1}
 --- !u!1 &4980857212573626081
 GameObject:
   m_ObjectHideFlags: 0

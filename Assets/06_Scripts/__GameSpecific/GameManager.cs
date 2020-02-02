@@ -45,7 +45,7 @@ public class GameManager : Singleton<GameManager>
 
 
 
-        if (m_gameTimer.GetCurrentTime() / 20 >= m_scoreMultiplier)
+        if (m_gameTimer.GetCurrentTime() / 25 >= m_scoreMultiplier)
         {
             ++m_scoreMultiplier;
             SendEventScore();
@@ -63,6 +63,7 @@ public class GameManager : Singleton<GameManager>
         Cursor.visible = false;
 
         LevelGenerator.Instance.GenerateLevel(7, 10);
+        RailManager.Instance.GenerateRail(7, 10);
         ResetRage();
         ResetScore();
     }

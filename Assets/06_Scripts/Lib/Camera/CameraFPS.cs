@@ -44,7 +44,7 @@ public class CameraFPS : CameraStrategy
 
             a_transform.Rotate(v, h, 0);
             a_transform.localRotation = Quaternion.Euler(a_transform.localRotation.eulerAngles.x, a_transform.localRotation.eulerAngles.y, 0);
-
+            UpdatePosition(a_transform);
             if (m_rotateTarget)
             {
                 m_target.transform.localRotation = a_transform.localRotation;
@@ -62,16 +62,20 @@ public class CameraFPS : CameraStrategy
     {
         base.Initialize(a_transform);
         
-        if (m_centerOnTarget)
-        {
-            m_anchorPoint = m_target.transform.position;
-        }
-        a_transform.position = m_anchorPoint;
+        UpdatePosition(a_transform);
         a_transform.localRotation = new Quaternion();// m_target.transform.forward;
 
         Camera.main.cullingMask = (Camera.main.cullingMask ^ LayerMask.GetMask("Player"));
     }
 
+    void UpdatePosition(Transform a_transform)
+    {
+        if (m_centerOnTarget)
+        {
+            m_anchorPoint = m_target.transform.position;
+        }
+        a_transform.position = m_anchorPoint;
+    }
 
     public override void Release()
     {

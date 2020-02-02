@@ -63,6 +63,10 @@ public class Client : MonoBehaviour
             {
                 SetRage((m_alertBeginValue - left) / m_alertBeginValue);
             }
+
+
+            transform.forward = Player.Instance.transform.position - transform.position;
+
         }
     }
 
@@ -116,6 +120,8 @@ public class Client : MonoBehaviour
             EventManager.Instance.InvokeOnScoreIncrease(this, new IntEventArgs((int)Mathf.Max(m_baseScore * m_timer.GetTimeLeft()/m_waitingTime, m_minimumScore)));
         }
     }
+
+
 
     private void OnDestroy()
     {

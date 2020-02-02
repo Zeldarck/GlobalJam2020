@@ -6,6 +6,14 @@ public class Player : Singleton<Player>
 {
 
     [SerializeField]
+    float m_height = 1.55f;
+
+    [SerializeField]
+    float m_speed = 1.5f;
+
+
+
+    [SerializeField]
     float m_fireForce = 1.0f;
 
     [SerializeField]
@@ -14,6 +22,9 @@ public class Player : Singleton<Player>
     Inventory2 m_inventory;
 
     bool m_enableFire = false;
+
+    public float Height { get => m_height; set => m_height = value; }
+    public float Speed { get => m_speed; set => m_speed = value; }
 
     // Start is called before the first frame update
     void Start()
