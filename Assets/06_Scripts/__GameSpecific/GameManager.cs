@@ -46,11 +46,13 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
 
+#if UNITY_EDITOR
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Cursor.lockState = (CursorLockMode)(((int)(Cursor.lockState + 1)) % 2);
         }
-
+#endif
 
 
         if (m_gameTimer.GetCurrentTime() / m_timeMultiplier >= m_scoreMultiplier)

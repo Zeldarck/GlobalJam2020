@@ -15,6 +15,7 @@ public class Corner : Module
     Renderer m_renderer;
 
     bool m_isActived;
+    bool m_blink;
 
     public bool IsActived
     {
@@ -43,14 +44,24 @@ public class Corner : Module
 
     }
 
+
     private void Update()
     {
-
+        if (m_blink)
+        {
+            m_intensityModif = -4.5f;
+        }
         m_intensityTime += Time.deltaTime * m_intensityModif;
 
         m_intensityTime = Mathf.Clamp01(m_intensityTime);
 
         float intensityValue = Mathf.Lerp(0f, 2.5f, m_intensityTime);
+
+        if(m_intensityTime <= 0)
+        {
+            m_blink = false;
+            m_intensityModif = 3.0f;
+        }
 
         m_renderer.materials[1].SetFloat("_Intensity_Emissive", intensityValue);
 
@@ -74,7 +85,7 @@ public class Corner : Module
             item.IsDead = true;
 
             Destroy(item.gameObject);
-
+            m_blink = true;
             //IsActived = false;
             EventManager.Instance.InvokeOnCornerHitted(this);
         }

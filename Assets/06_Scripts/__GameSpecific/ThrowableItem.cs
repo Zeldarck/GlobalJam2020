@@ -47,6 +47,8 @@ public class ThrowableItem : MonoBehaviour
             Debug.Log("ThrowableItem " + this + " is dead");
             IsDead = true;
             EventManager.Instance.InvokeOnGiveItem(this, new ItemEventArgs(m_itemType));
+            Utils.TriggerWaitForSeconds(0.5f, () => Destroy(this.gameObject));
         }
     }
+    
 }
