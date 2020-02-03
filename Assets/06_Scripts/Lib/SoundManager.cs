@@ -244,7 +244,7 @@ public class AudioSourceExtend
 
     void TryToDestroy()
     {
-        if (AutoDestroy && AudioSource  && AudioSource.clip != null && (( AudioSource.time >= AudioSource.clip.length - 0.001 && !AudioSource.loop) || Mathf.Approximately(AudioSource.volume, 0)))
+        if (AutoDestroy && AudioSource  && AudioSource.clip != null && (!AudioSource.isPlaying  || Mathf.Approximately(AudioSource.volume, 0)))
         {
             GameObject.DestroyImmediate(AudioSource);
         }
@@ -267,7 +267,6 @@ public enum AUDIOCLIP_KEY{ BONUS_PICKED, BONUS_USED, ENEMY_DIE, ENEMY_FIRE, HITT
 
 public class SoundManager : Singleton<SoundManager>
 {
-
     /// <summary>
     /// Store mixers of game
     /// </summary>
@@ -389,7 +388,7 @@ public class SoundManager : Singleton<SoundManager>
                 }
                 else
                 {
-                    out_res.AutoDestroy = true;
+                    out_res.AutoDestroy = false;
                 }
                 out_res.Key = a_key;
                 m_audioSourcesExtend.Add(out_res);
@@ -471,9 +470,7 @@ public class SoundManager : Singleton<SoundManager>
     /// <returns></returns>
      public int StartAudio(AudioClip a_clip, MIXER_GROUP_TYPE a_mixerGroupType = MIXER_GROUP_TYPE.AMBIANT, bool a_isFading = true, bool a_isLooping = true, AUDIOSOURCE_KEY a_key = AUDIOSOURCE_KEY.CREATE_KEY, ulong a_delay = 0, GameObject a_parent = null, float a_volume = 1.0f, bool a_spatial = true)
      {
-        int res = -1;
-        int key = (int)a_key;
-        res = GetKey(key);
+        int key = GetKey((int)a_key);
         AudioMixerGroup mixer = null;
         try
         {
@@ -484,7 +481,7 @@ public class SoundManager : Singleton<SoundManager>
             {
                 if(source.AudioSource.clip == a_clip)
                 {
-                    Debug.Log("Clip ever play : " + a_clip.name);
+                    Debug.Log("Clip already play : " + a_clip.name);
                     return key;
                 }
                 AudioSourceExtend new_source = new AudioSourceExtend(CreateAudioSource(a_parent));
@@ -518,7 +515,7 @@ public class SoundManager : Singleton<SoundManager>
                 source.AudioSource.spatialBlend = 0.45f;
             }
 
-           // source.AudioSource.outputAudioMixerGroup = mixer;
+            source.AudioSource.outputAudioMixerGroup = mixer;
             source.AudioSource.clip = a_clip;
             source.AudioSource.loop = a_isLooping;
             source.AudioSource.Play(a_delay);
@@ -533,7 +530,7 @@ public class SoundManager : Singleton<SoundManager>
                 Debug.LogError("Mixer doesn't exist");
             }
         }
-        return res;
+        return key;
      }
 
     /// <summary>
