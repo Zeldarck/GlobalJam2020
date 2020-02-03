@@ -2134,6 +2134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_timeMultiplierShaker: 0.05
   m_intensityMultiplierShaker: 2
+  m_speedFill: 3.25
 --- !u!114 &881252617
 MonoBehaviour:
   m_ObjectHideFlags: 0
