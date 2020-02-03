@@ -28,7 +28,7 @@ public class CornerManager : Singleton<CornerManager>
 
     void IncreaseDifficulty(int m_int)
     {
-        if (m_objectNumber < m_poolItems.Count)
+        if (m_objectNumber < m_poolItems.Count && m_int/3 > m_objectNumber - m_minimumObjectNumber)
         {
             m_availableItems.Add(m_poolItems[m_objectNumber]);
             m_cornerQueue.Enqueue(m_poolItems[m_objectNumber]);
