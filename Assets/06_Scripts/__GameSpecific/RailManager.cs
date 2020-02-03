@@ -40,7 +40,7 @@ public class RailManager : Singleton<RailManager>
     // Update is called once per frame
     void Update()
     {
-        if(m_corners.Count == 0)
+        if(m_corners.Count == 0 || !GameManager.Instance.IsGameRunning())
         {
             return;
         }
