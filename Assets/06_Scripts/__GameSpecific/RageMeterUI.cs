@@ -7,6 +7,11 @@ public class RageMeterUI : MonoBehaviour
 {
     Slider m_slider;
 
+    [SerializeField]
+    float m_timeMultiplierShaker = 0.05f;
+    [SerializeField]
+    float m_intensityMultiplierShaker = 1.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +22,10 @@ public class RageMeterUI : MonoBehaviour
 
     void OnRageUpdated(float a_rageLevel)
     {
+        if (m_slider.value < a_rageLevel)
+        {
+            GetComponent<UIShaker>().Shake(m_timeMultiplierShaker * (a_rageLevel - m_slider.value), m_intensityMultiplierShaker * ( a_rageLevel - m_slider.value) );
+        }
         m_slider.value = a_rageLevel;
     }
 }

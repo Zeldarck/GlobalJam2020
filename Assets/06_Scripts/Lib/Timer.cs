@@ -82,6 +82,12 @@ public class Timer : MonoBehaviour
         return m_finishTime -  m_currentTime;
     }
 
+    public float GetLength()
+    {
+        return m_finishTime;
+    }
+
+
     public override string ToString()
     {
         float timeLeft = GetTimeLeft();
