@@ -40,7 +40,7 @@ Shader "M_Light"
 }
 /*ASEBEGIN
 Version=17600
-3;6;1594;829;1583.55;547.1063;1.608686;True;False
+-1366;326;1366;707;1400.16;448.9765;1.608686;True;True
 Node;AmplifyShaderEditor.ColorNode;2;-859,127.5;Inherit;False;Property;_ColorEmissive;Color Emissive;1;0;Create;True;0;0;False;0;1,1,1,0;1,1,1,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.RangedFloatNode;1;-787,291.5;Inherit;False;Property;_Intensity_Emissive;Intensity_Emissive;0;0;Create;True;0;0;False;0;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;3;-380,243.5;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
@@ -51,4 +51,4 @@ WireConnection;3;1;1;0
 WireConnection;0;0;4;0
 WireConnection;0;2;3;0
 ASEEND*/
-//CHKSM=1CE2A6C7F4923124BC183E4EF18E50B9C4EC5A7B
+//CHKSM=CDA726B67B9B2EE07EB935BED0DD812DDF6C00DD
