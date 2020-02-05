@@ -7,18 +7,15 @@ public class ScoreUI : MonoBehaviour
 {
     Text m_scoreText;
 
-    [SerializeField]
-    bool m_displayMultiplier = true;
-
     private void Start()
     {
         m_scoreText = GetComponent<Text>();
-        EventManager.Instance.RegisterOnScoreUpdate((o, number, number2) => OnScoreUpdated(number.m_int, number2.m_int));
+        EventManager.Instance.RegisterOnScoreUpdate((o, number) => OnScoreUpdated(number.m_int));
     }
 
-    void OnScoreUpdated(float a_score, float a_scoreMultiplier)
+    void OnScoreUpdated(float a_score)
     {
-        m_scoreText.text = (m_displayMultiplier ? "x" + a_scoreMultiplier + " || " : "") + a_score;
+        m_scoreText.text = a_score + "";
     }
 
 }

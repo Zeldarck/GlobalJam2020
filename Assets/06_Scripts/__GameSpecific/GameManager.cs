@@ -10,15 +10,15 @@ public class GameManager : Singleton<GameManager>
 
     int m_score = 0;
 
-    int m_scoreMultiplier = 1;
+  //  int m_scoreMultiplier = 1;
 
-    int m_difficulty = 0;
+    int m_difficulty = 1;
 
     [SerializeField]
     float m_timeMultiplier = 15.0f;
 
-    [SerializeField]
-    float m_timeOffsetDifficulty = 5.0f;
+  //  [SerializeField]
+   // float m_timeOffsetDifficulty = 5.0f;
 
 
     public Timer GameTimer { get => m_gameTimer; set => m_gameTimer = value; }
@@ -55,13 +55,13 @@ public class GameManager : Singleton<GameManager>
 #endif
 
 
-        if (m_gameTimer.GetCurrentTime() / m_timeMultiplier >= m_scoreMultiplier)
+     /*   if (m_gameTimer.GetCurrentTime() / m_timeMultiplier >= m_scoreMultiplier)
         {
             ++m_scoreMultiplier;
             SendEventScore();
-        }
+        }*/
 
-        if (Mathf.Floor((m_gameTimer.GetCurrentTime() - m_timeOffsetDifficulty )/ m_timeMultiplier ) > m_difficulty)
+        if (m_gameTimer.GetCurrentTime() / m_timeMultiplier >= m_difficulty)
         {
             ++m_difficulty;
             EventManager.Instance.InvokeOnIncreaseDifficulty(this, new IntEventArgs(m_difficulty));
@@ -111,7 +111,7 @@ public class GameManager : Singleton<GameManager>
     void IncreaseScore(int a_number)
     {
 
-        a_number *= m_scoreMultiplier;
+        a_number *= m_difficulty;
         m_score += a_number;
         SendEventScore();
     }
@@ -119,20 +119,20 @@ public class GameManager : Singleton<GameManager>
     void ResetScore()
     {
         m_score = 0;
-        m_scoreMultiplier = 0;
+        m_difficulty = 0;
         SendEventScore();
     }
 
-    void ResetScoreMultiplier()
+   /* void ResetScoreMultiplier()
     {
         m_scoreMultiplier = 1;
         SendEventScore();
-    }
+    }*/
 
 
     void SendEventScore()
     {
-        EventManager.Instance.InvokeOnScoreUpdate(this, new IntEventArgs(m_score), new IntEventArgs(m_scoreMultiplier));
+        EventManager.Instance.InvokeOnScoreUpdate(this, new IntEventArgs(m_score));
     }
 
     void GameOver()

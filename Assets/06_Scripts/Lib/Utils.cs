@@ -258,4 +258,19 @@ public static class Utils
     }
 
 
+
+    public static float SpringDamper(float a_from, float a_to, float a_time, float a_bounciness)
+    {
+        float percent = -0.5f * (Mathf.Pow(2.71828f, (-6 * a_time))) * (-2 * Mathf.Pow(2.71828f, (6 * a_time)) + Mathf.Sin(a_bounciness * a_time) + 2 * Mathf.Cos(a_bounciness * a_time));
+
+        return a_from + (percent * (a_to - a_from));
+    }
+
+
+    public static Vector3 SpringDamper(Vector3 a_from, Vector3 a_to, float a_time, float a_bounciness)
+    {
+        return new Vector3(SpringDamper(a_from.x, a_to.x, a_time, a_bounciness), SpringDamper(a_from.y, a_to.y, a_time, a_bounciness), SpringDamper(a_from.z, a_to.z, a_time, a_bounciness));
+    }
+
+
 }
