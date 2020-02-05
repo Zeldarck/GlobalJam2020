@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Corner : Module
 {
-    [SerializeField]
-    GameObject m_enableIndicator;
 
     float m_intensityTime = 0.0f;
     float m_intensityModif = -1;
@@ -15,7 +13,12 @@ public class Corner : Module
     Renderer m_renderer;
 
     bool m_isActived;
-    bool m_blink;
+
+    Timer m_timerBlink;
+
+    [SerializeField]
+    float m_timeBlinking;
+
 
     public bool IsActived
     {
@@ -26,13 +29,13 @@ public class Corner : Module
         set
         {
             m_isActived = value;
-            m_enableIndicator.SetActive(false /*disabled*/);
-            m_intensityModif = IsActived ? 1.75f : -2.5f;
         }
     }
 
     private void Awake()
     {
+        m_timerBlink = TimerFactory.Instance.GetTimer();
+
         m_renderer = GetComponent<Renderer>();
         Material mat = new Material(m_renderer.materials[1].shader);
         m_renderer.materials[1] = mat;
@@ -40,31 +43,11 @@ public class Corner : Module
         IsActived = false;
         m_trigger = GetComponentInChildren<TriggerObservable>();
         m_trigger.Register((o, other) => TriggerEnter(o, other), null, null);
-
-
     }
 
 
     private void Update()
     {
-        if (m_blink)
-        {
-            m_intensityModif = -4.5f;
-        }
-        m_intensityTime += Time.deltaTime * m_intensityModif;
-
-        m_intensityTime = Mathf.Clamp01(m_intensityTime);
-
-        float intensityValue = Mathf.Lerp(0f, 2.5f, m_intensityTime);
-
-        if(m_intensityTime <= 0)
-        {
-            m_blink = false;
-            m_intensityModif = 3.0f;
-        }
-
-        m_renderer.materials[1].SetFloat("_Intensity_Emissive", intensityValue);
-
     }
 
     private void TriggerEnter(TriggerObservable me, Collider other)
@@ -85,8 +68,15 @@ public class Corner : Module
             item.IsDead = true;
 
             Destroy(item.gameObject);
-            m_blink = true;
             //IsActived = false;
+
+
+            m_renderer.materials[1].EnableKeyword("_ISFLICKERING_ON");
+
+            m_timerBlink.StartTimer(m_timeBlinking, () => {
+                m_renderer.materials[1].DisableKeyword("_ISFLICKERING_ON");
+            });
+
             EventManager.Instance.InvokeOnCornerHitted(this);
         }
     }

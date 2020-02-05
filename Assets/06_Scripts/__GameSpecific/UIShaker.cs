@@ -74,8 +74,6 @@ public class UIShaker : MonoBehaviour
                     , (m_timerBubble.GetCurrentTime() - (percentTime)) / (m_timerBubble.GetLength() - (percentTime)), m_bubbleBounciness);
             }
         }
-
-
     }
 
 }
