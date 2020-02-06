@@ -141,6 +141,17 @@ public class Inventory2 : MonoBehaviour
         ThrowableItem temp = SecondItem;
         SecondItem = MainItem;
         MainItem = temp;
+
+
+        if (MainItem != null)
+        {
+            MainItem.GetComponent<UtilsAnimator>().StopScalingUp();
+        }
+
+        if (SecondItem != null)
+        {
+            SecondItem.GetComponent<UtilsAnimator>().StopScalingUp();
+        }
     }
 
     public void GiveItem()

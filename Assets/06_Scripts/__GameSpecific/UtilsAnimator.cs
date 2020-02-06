@@ -39,10 +39,10 @@ public class UtilsAnimator : MonoBehaviour
     Vector3 m_originalScale;
     Quaternion m_originalRot;
 
-    public bool IsShaking { get => m_isShaking; set => m_isShaking = value; }
-    public bool IsBubble { get => m_isBubble; set => m_isBubble = value; }
-    public bool IsScaleUp { get => m_isScaleUp; set => m_isScaleUp = value; }
-    public bool IsScaleDown { get => m_isScaleDown; set => m_isScaleDown = value; }
+    public bool IsShaking { get => m_isShaking; private set => m_isShaking = value; }
+    public bool IsBubble { get => m_isBubble; private set => m_isBubble = value; }
+    public bool IsScaleUp { get => m_isScaleUp; private set => m_isScaleUp = value; }
+    public bool IsScaleDown { get => m_isScaleDown; private set => m_isScaleDown = value; }
 
 
 
@@ -66,6 +66,17 @@ public class UtilsAnimator : MonoBehaviour
         }
 
     }
+
+    public void StopScalingUp()
+    {
+        if (IsScaleUp)
+        {
+            m_transform.localScale = m_originalScale;
+            m_timerScaleUp.Stop();
+            IsScaleUp = false;
+        }
+    }
+
 
     public void Shake(float a_time = 0.5f, float a_intensity = 0.5f, bool a_IsInversed = false)
     {
