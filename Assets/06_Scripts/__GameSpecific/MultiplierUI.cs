@@ -21,6 +21,14 @@ public class MultiplierUI : MonoBehaviour
     [SerializeField]
     float m_bubbleBounciness = 30;
 
+
+    [SerializeField]
+    float m_bubbleDecreaseTime = 0.35f;
+
+    [SerializeField]
+    float m_bubbleDecreaseBounciness = 25;
+
+
     [SerializeField]
     float m_percentTimeBubbleScaleUp = 0.7f;
 
@@ -32,7 +40,7 @@ public class MultiplierUI : MonoBehaviour
 
     int m_originalSize;
 
-    int m_multiplier = 0;
+    int m_multiplier = 1;
 
     [SerializeField]
     float m_initialScaleUpTime = 0.5f;
@@ -75,30 +83,34 @@ public class MultiplierUI : MonoBehaviour
     {
         m_multiplierText.text = "x" + a_multiplier;
 
-        if (a_multiplier < m_multiplier)
+        if (a_multiplier == 1)
         {
-            m_UIAnimator.Bubble(m_bubbleTime, 1, m_bubbleBounciness, m_percentTimeBubbleScaleUp);
+            m_UIAnimator.LinearScaleDown(m_scaleDownTime, 0);
+        }
+        else if (a_multiplier < m_multiplier)
+        {
+            m_UIAnimator.Bubble(m_bubbleDecreaseTime, 0.1f, m_bubbleDecreaseBounciness, m_percentTimeBubbleScaleUp);
         }
         else if (a_multiplier == 2)
         {
             m_UIAnimator.SpringDamperScaleUp(m_initialScaleUpTime, 1, m_initialScaleUpBounciness);
-        }
-        else if (a_multiplier == 1)
-        {
-            m_UIAnimator.LinearScaleDown(m_scaleDownTime, 0);
-        }
+        } 
         else
         {
             m_UIAnimator.Bubble(m_bubbleTime, m_bubbleIntensity, m_bubbleBounciness, m_percentTimeBubbleScaleUp);
         }
-
         m_multiplierText.fontSize = Mathf.Min(m_maxFontSize, m_originalSize + a_multiplier * m_stepSize);
-
+        m_multiplier = a_multiplier;
         m_UIAnimator.StopShaking();
     }
 
     private void Update()
     {
+        if(m_multiplier == 1)
+        {
+            return;
+        }
+
         m_slider.value = 1 - GameManager.Instance.MultiplerTimer.GetPercent();
         m_slider.fillRect.GetComponent<Image>().color = Color.Lerp(m_fullColor,m_emptyColor,GameManager.Instance.MultiplerTimer.GetPercent());
         if (m_slider.value >= m_percentageShake)
