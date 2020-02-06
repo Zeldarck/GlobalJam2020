@@ -8482,6 +8482,10 @@ MonoBehaviour:
   - {fileID: 8463772429236806296, guid: 2b33b7309e54faf4983249b42bd24856, type: 3}
   m_localOffsetMainItem: {x: 0.15, y: -0.18, z: 0.5}
   m_localOffsetSecondItem: {x: -0.2, y: -0.22, z: 0.5}
+  m_localOffsetMainItemVfx: {x: 0.15, y: -0.18, z: 0.45}
+  m_localOffsetSecondItemVfx: {x: -0.2, y: -0.22, z: 0.45}
+  m_vfxAppearPrefab: {fileID: 325308105594565447, guid: 96f40eeeb5e238445b44884f432b616f,
+    type: 3}
 --- !u!4 &1007063830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5a97962f7d5ba4df0823334b52c7c02c,

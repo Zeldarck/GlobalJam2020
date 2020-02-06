@@ -16,6 +16,24 @@ public class Inventory2 : MonoBehaviour
     [SerializeField]
     Vector3 m_localOffsetSecondItem = new Vector3();
 
+
+    [SerializeField]
+    Vector3 m_localOffsetMainItemVfx = new Vector3();
+
+    [SerializeField]
+    Vector3 m_localOffsetSecondItemVfx = new Vector3();
+
+
+    [SerializeField]
+    GameObject m_vfxAppearPrefab;
+
+
+    ParticleSystem m_vfxAppearMainItem;
+    ParticleSystem m_vfxAppearSecondItem;
+
+
+
+
     ThrowableItem m_mainItem;
     ThrowableItem m_secondItem;
 
@@ -40,6 +58,12 @@ public class Inventory2 : MonoBehaviour
         EventManager.Instance.RegisterOnGiveRandomItem((o) => GiveItem());
         EventManager.Instance.RegisterOnGiveItem((o, itemEvent) => GiveItem(itemEvent.m_itemType));
         EventManager.Instance.RegisterOnStart(o => Init());
+
+        m_vfxAppearMainItem = Instantiate(m_vfxAppearPrefab, transform).GetComponent<ParticleSystem>();
+        m_vfxAppearSecondItem = Instantiate(m_vfxAppearPrefab, transform).GetComponent<ParticleSystem>();
+        m_vfxAppearMainItem.transform.localPosition = m_localOffsetMainItemVfx;
+        m_vfxAppearSecondItem.transform.localPosition = m_localOffsetSecondItemVfx;
+
     }
 
     private void Init()
@@ -126,10 +150,12 @@ public class Inventory2 : MonoBehaviour
         if (MainItem == null)
         {
             MainItem = a_item;
+            m_vfxAppearMainItem.Play();
         }
         else if (SecondItem == null)
         {
             SecondItem = a_item;
+            m_vfxAppearSecondItem.Play();
         }
         else
         {
