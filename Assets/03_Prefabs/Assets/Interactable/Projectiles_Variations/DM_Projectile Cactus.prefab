@@ -7,6 +7,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1214629984573326059, guid: d02b8737a7294d240b418038c8ae384c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -4106448481176985861, guid: e73c3bc6ddc723d4ea7761e8f4553d29,
+        type: 3}
     - target: {fileID: 4302437107485342457, guid: d02b8737a7294d240b418038c8ae384c,
         type: 3}
       propertyPath: m_Enabled
@@ -81,6 +87,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7890373849471465693, guid: d02b8737a7294d240b418038c8ae384c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.309
       objectReference: {fileID: 0}
     - target: {fileID: 8203564600384445140, guid: d02b8737a7294d240b418038c8ae384c,
         type: 3}

@@ -94,13 +94,23 @@ public class Inventory2 : MonoBehaviour
             MainItem.transform.localRotation = Quaternion.Euler(0, -155, 0);
             MainItem.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
             CanThrow = true;
+
+            if(m_vfxAppearMainItem.time > 0.1f && !MainItem.IsActiveMesh())
+            {
+                MainItem.DisplayMesh();
+            }
         }
         if (SecondItem != null)
         {
             SecondItem.transform.localPosition = m_localOffsetSecondItem;
             SecondItem.transform.localRotation = Quaternion.Euler(0, 155, 0);
             SecondItem.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            if (m_vfxAppearSecondItem.time > 0.1f && !SecondItem.IsActiveMesh())
+            {
+                SecondItem.DisplayMesh();
+            }
         }
+
     }
 
     public ThrowableItem RemoveMainItem()

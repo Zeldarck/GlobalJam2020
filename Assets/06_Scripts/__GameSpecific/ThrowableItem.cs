@@ -19,6 +19,10 @@ public class ThrowableItem : MonoBehaviour
     [SerializeField]
     GameObject m_trail;
 
+    [SerializeField]
+    GameObject m_mesh;
+
+
     bool m_once = true;
     public ThrowableItemType ItemType { get => m_itemType; set => m_itemType = value; }
     public bool IsDead { get => m_isDead; set => m_isDead = value; }
@@ -30,6 +34,19 @@ public class ThrowableItem : MonoBehaviour
         m_isFired = true;
         m_trail.SetActive(true);
     }
+
+
+    public void DisplayMesh()
+    {
+        m_mesh.SetActive(true);
+    }
+
+
+    public bool IsActiveMesh()
+    {
+        return m_mesh.activeSelf;
+    }
+
 
 
     private void OnCollisionEnter(Collision collision)
