@@ -92,7 +92,10 @@ public class Inventory2 : MonoBehaviour
         {
             MainItem.transform.localPosition = m_localOffsetMainItem;
             MainItem.transform.localRotation = Quaternion.Euler(0, -155, 0);
-            MainItem.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            if (!MainItem.GetComponent<UtilsAnimator>().IsScaleUp)
+            {
+                MainItem.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            }
             CanThrow = true;
 
             if(m_vfxAppearMainItem.time > 0.1f && !MainItem.IsActiveMesh())
@@ -104,7 +107,11 @@ public class Inventory2 : MonoBehaviour
         {
             SecondItem.transform.localPosition = m_localOffsetSecondItem;
             SecondItem.transform.localRotation = Quaternion.Euler(0, 155, 0);
-            SecondItem.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            if (!SecondItem.GetComponent<UtilsAnimator>().IsScaleUp)
+            {
+                SecondItem.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            }
+
             if (m_vfxAppearSecondItem.time > 0.1f && !SecondItem.IsActiveMesh())
             {
                 SecondItem.DisplayMesh();
@@ -161,11 +168,17 @@ public class Inventory2 : MonoBehaviour
         {
             MainItem = a_item;
             m_vfxAppearMainItem.Play();
+            MainItem.transform.localScale = Vector3.zero;
+            MainItem.GetComponent<UtilsAnimator>().SpringDamperScaleUp(0.85f, 0.4f, 25);
+
         }
         else if (SecondItem == null)
         {
             SecondItem = a_item;
             m_vfxAppearSecondItem.Play();
+            SecondItem.transform.localScale = Vector3.zero;
+            SecondItem.GetComponent<UtilsAnimator>().SpringDamperScaleUp(0.85f, 0.2f, 25);
+
         }
         else
         {

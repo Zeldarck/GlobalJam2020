@@ -34,7 +34,7 @@ public class RageMeterUI : MonoBehaviour
         m_slider.value = m_targetRageValue;
         if (m_slider.value < a_rageLevel)
         {
-            GetComponent<UIAnimator>().Shake(m_timeMultiplierShaker * (a_rageLevel - m_slider.value), m_intensityMultiplierShaker * ( a_rageLevel - m_slider.value) );
+            GetComponent<UtilsAnimator>().Shake(m_timeMultiplierShaker * (a_rageLevel - m_slider.value), m_intensityMultiplierShaker * ( a_rageLevel - m_slider.value) );
         }
         m_targetRageValue = a_rageLevel;
     }

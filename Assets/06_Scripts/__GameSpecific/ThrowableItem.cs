@@ -48,7 +48,6 @@ public class ThrowableItem : MonoBehaviour
     }
 
 
-
     private void OnCollisionEnter(Collision collision)
     {
         if (m_isFired && (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Module")))

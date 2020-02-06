@@ -48,6 +48,10 @@ public class CornerItemUI : MonoBehaviour
             iconItem = Instantiate(iconItemPrefab, m_container.transform);
             m_currentItemIcon.Add(iconItem);
         }
+        else
+        {
+            //PopVFX
+        }
 
         iconItem.transform.SetSiblingIndex(a_order);
     }

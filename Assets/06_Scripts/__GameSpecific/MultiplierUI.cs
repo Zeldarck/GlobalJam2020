@@ -7,7 +7,7 @@ public class MultiplierUI : MonoBehaviour
 {
     Text m_multiplierText;
 
-    UIAnimator m_UIAnimator;
+    UtilsAnimator m_utilsAnimator;
 
     Slider m_slider;
 
@@ -73,7 +73,7 @@ public class MultiplierUI : MonoBehaviour
     private void Start()
     {
         m_multiplierText = GetComponentInChildren<Text>();
-        m_UIAnimator = GetComponent<UIAnimator>();
+        m_utilsAnimator = GetComponent<UtilsAnimator>();
         m_slider = GetComponentInChildren<Slider>();
         EventManager.Instance.RegisterOnUpdateMultiplier((o, number) => OnUpdateMultiplier(number.m_int));
         m_originalSize = m_multiplierText.fontSize;
@@ -85,23 +85,23 @@ public class MultiplierUI : MonoBehaviour
 
         if (a_multiplier == 1)
         {
-            m_UIAnimator.LinearScaleDown(m_scaleDownTime, 0);
+            m_utilsAnimator.LinearScaleDown(m_scaleDownTime, 0);
         }
         else if (a_multiplier < m_multiplier)
         {
-            m_UIAnimator.Bubble(m_bubbleDecreaseTime, 0.1f, m_bubbleDecreaseBounciness, m_percentTimeBubbleScaleUp);
+            m_utilsAnimator.Bubble(m_bubbleDecreaseTime, 0.1f, m_bubbleDecreaseBounciness, m_percentTimeBubbleScaleUp);
         }
         else if (a_multiplier == 2)
         {
-            m_UIAnimator.SpringDamperScaleUp(m_initialScaleUpTime, 1, m_initialScaleUpBounciness);
+            m_utilsAnimator.SpringDamperScaleUp(m_initialScaleUpTime, 1, m_initialScaleUpBounciness);
         } 
         else
         {
-            m_UIAnimator.Bubble(m_bubbleTime, m_bubbleIntensity, m_bubbleBounciness, m_percentTimeBubbleScaleUp);
+            m_utilsAnimator.Bubble(m_bubbleTime, m_bubbleIntensity, m_bubbleBounciness, m_percentTimeBubbleScaleUp);
         }
         m_multiplierText.fontSize = Mathf.Min(m_maxFontSize, m_originalSize + a_multiplier * m_stepSize);
         m_multiplier = a_multiplier;
-        m_UIAnimator.StopShaking();
+        m_utilsAnimator.StopShaking();
     }
 
     private void Update()
@@ -119,7 +119,7 @@ public class MultiplierUI : MonoBehaviour
         }
         else if (m_onceShake)
         {
-            m_UIAnimator.Shake(GameManager.Instance.MultiplerTimer.GetTimeLeft(), m_intensityShake, true);
+            m_utilsAnimator.Shake(GameManager.Instance.MultiplerTimer.GetTimeLeft(), m_intensityShake, true);
             m_onceShake = false;
         }    
 
