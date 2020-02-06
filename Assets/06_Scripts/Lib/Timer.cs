@@ -6,9 +6,9 @@ using System;
 public class Timer : MonoBehaviour
 {
 
-    float m_finishTime;
+    float m_finishTime = 1;
     bool m_running;
-    float m_currentTime;
+    float m_currentTime = 0;
     Action m_callback;
 
     void Awake(){
@@ -87,6 +87,10 @@ public class Timer : MonoBehaviour
         return m_finishTime;
     }
 
+    public float GetPercent()
+    {
+        return m_currentTime/m_finishTime;
+    }
 
     public override string ToString()
     {

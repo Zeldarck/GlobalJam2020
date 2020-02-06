@@ -5,23 +5,47 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     Timer m_gameTimer;
+    Timer m_multiplerTimer;
 
     float m_rageLevel = 0;
 
     int m_score = 0;
 
-  //  int m_scoreMultiplier = 1;
+    int m_scoreMultiplier = 0;
 
     int m_difficulty = 1;
 
     [SerializeField]
-    float m_timeMultiplier = 15.0f;
+    float m_timeDifficulty = 13.5f;
 
-  //  [SerializeField]
-   // float m_timeOffsetDifficulty = 5.0f;
+    [SerializeField]
+    float m_timeMultiplier = 4.5f;
+
+    [SerializeField]
+    float m_percentMultiplier = 0.05f;
+
 
 
     public Timer GameTimer { get => m_gameTimer; set => m_gameTimer = value; }
+    public Timer MultiplerTimer { get => m_multiplerTimer; set => m_multiplerTimer = value; }
+
+
+    public int ScoreMultiplier
+    {
+        get
+        {
+            return m_scoreMultiplier;
+        }
+        set
+        {
+            if(m_scoreMultiplier != value)
+            {
+                EventManager.Instance.InvokeOnUpdateMultiplier(this, new IntEventArgs(value));
+            }
+            m_scoreMultiplier = value;
+        }
+    }
+
 
     void Start()
     {
@@ -31,6 +55,7 @@ public class GameManager : Singleton<GameManager>
 
 
         GameTimer = TimerFactory.Instance.GetTimer();
+        MultiplerTimer = TimerFactory.Instance.GetTimer();
 
         Utils.TriggerWaitForSeconds(0.5f, () => EventManager.Instance.InvokeOnStart(this) );
 
@@ -55,16 +80,13 @@ public class GameManager : Singleton<GameManager>
 #endif
 
 
-     /*   if (m_gameTimer.GetCurrentTime() / m_timeMultiplier >= m_scoreMultiplier)
-        {
-            ++m_scoreMultiplier;
-            SendEventScore();
-        }*/
-
-        if (m_gameTimer.GetCurrentTime() / m_timeMultiplier >= m_difficulty)
+        if (m_gameTimer.GetCurrentTime() / m_timeDifficulty >= m_difficulty)
         {
             ++m_difficulty;
+ 
+  
             EventManager.Instance.InvokeOnIncreaseDifficulty(this, new IntEventArgs(m_difficulty));
+
         }
 
 
@@ -80,6 +102,7 @@ public class GameManager : Singleton<GameManager>
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        ScoreMultiplier = 1;
         m_difficulty = 0;
         LevelGenerator.Instance.GenerateLevel(8, 11);
         RailManager.Instance.GenerateRail(8, 11);
@@ -110,24 +133,36 @@ public class GameManager : Singleton<GameManager>
 
     void IncreaseScore(int a_number)
     {
+        ScoreMultiplier++;
+        StartMultiplierTimer();
 
-        a_number *= m_difficulty;
+        a_number *= m_scoreMultiplier;
         m_score += a_number;
         SendEventScore();
     }
 
+    void DecreaseMultiplier()
+    {
+        if(ScoreMultiplier > 1)
+        {
+            ScoreMultiplier--;
+            StartMultiplierTimer();
+        }
+    }
+
+    void StartMultiplierTimer()
+    {
+        MultiplerTimer.StartTimer(Mathf.Max(m_timeMultiplier - m_timeMultiplier * Mathf.Pow(m_percentMultiplier, m_scoreMultiplier), 0.2f), () => { DecreaseMultiplier(); });
+    }
+
+
     void ResetScore()
     {
         m_score = 0;
-        m_difficulty = 0;
+        m_scoreMultiplier = 1;
         SendEventScore();
     }
 
-   /* void ResetScoreMultiplier()
-    {
-        m_scoreMultiplier = 1;
-        SendEventScore();
-    }*/
 
 
     void SendEventScore()

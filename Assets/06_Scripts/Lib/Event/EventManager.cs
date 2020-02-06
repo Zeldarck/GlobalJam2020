@@ -25,6 +25,7 @@ public void RegisterOnArriveToStation(Action<object,MessageEventArgs> a_action)
 //ScoreIncrease;IntEventArgs
 //ScoreUpdate;IntEventArgs
 //IncreaseDifficulty;IntEventArgs
+//UpdateMultiplier;IntEventArgs
 //GiveItem;ItemEventArgs
 //GiveRandomItem
 //ClientComplete;ClientEventArgs
@@ -200,6 +201,33 @@ public class EventManager : Singleton<EventManager>
 		if(OnIncreaseDifficulty != null)
 		{
 			OnIncreaseDifficulty.Invoke(a_sender, a_1intEventArgs);
+		}
+	}
+
+
+
+
+// --- EVENT --- UpdateMultiplier --- //
+
+
+	protected event Action<object, IntEventArgs> OnUpdateMultiplier;
+	public void RegisterOnUpdateMultiplier(Action<object, IntEventArgs> a_action)
+	{
+		OnUpdateMultiplier += a_action;
+	}
+
+
+	public void UnRegisterOnUpdateMultiplier(Action<object, IntEventArgs> a_action)
+	{
+		OnUpdateMultiplier -= a_action;
+	}
+
+
+	public void InvokeOnUpdateMultiplier(object a_sender, IntEventArgs a_1intEventArgs)
+	{
+		if(OnUpdateMultiplier != null)
+		{
+			OnUpdateMultiplier.Invoke(a_sender, a_1intEventArgs);
 		}
 	}
 
