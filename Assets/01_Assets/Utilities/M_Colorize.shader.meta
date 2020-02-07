@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 0143c0bef4b9b69409c29681e05394bb
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _TX_Degrade_GrayScale: {fileID: 2800000, guid: 693ef92fccd51604aa4093573a568cc4,
+      type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

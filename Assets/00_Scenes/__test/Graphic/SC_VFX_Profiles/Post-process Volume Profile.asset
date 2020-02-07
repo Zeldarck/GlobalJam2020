@@ -22,55 +22,6 @@ MonoBehaviour:
   sampleCount:
     overrideState: 0
     value: 10
---- !u!114 &-5743703033403280486
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
-  m_Name: AmbientOcclusion
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  mode:
-    overrideState: 1
-    value: 1
-  intensity:
-    overrideState: 1
-    value: 1.4
-  color:
-    overrideState: 0
-    value: {r: 0, g: 0, b: 0, a: 1}
-  ambientOnly:
-    overrideState: 1
-    value: 1
-  noiseFilterTolerance:
-    overrideState: 0
-    value: 0
-  blurTolerance:
-    overrideState: 0
-    value: -4.6
-  upsampleTolerance:
-    overrideState: 0
-    value: -12
-  thicknessModifier:
-    overrideState: 1
-    value: 1
-  directLightingStrength:
-    overrideState: 0
-    value: 0
-  radius:
-    overrideState: 0
-    value: 0.25
-  quality:
-    overrideState: 0
-    value: 2
 --- !u!114 &-1536114138359635171
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -136,10 +87,10 @@ MonoBehaviour:
     value: 1
   gradingMode:
     overrideState: 1
-    value: 1
+    value: 0
   externalLut:
-    overrideState: 0
-    value: {fileID: 0}
+    overrideState: 1
+    value: {fileID: 2800000, guid: 48cf0b659ea6ef3468faf1db44a8f950, type: 3}
     defaultState: 1
   tonemapper:
     overrideState: 1
@@ -163,15 +114,15 @@ MonoBehaviour:
     overrideState: 0
     value: 1
   ldrLut:
-    overrideState: 0
-    value: {fileID: 0}
+    overrideState: 1
+    value: {fileID: 2800000, guid: 48cf0b659ea6ef3468faf1db44a8f950, type: 3}
     defaultState: 4
   ldrLutContribution:
-    overrideState: 0
+    overrideState: 1
     value: 1
   temperature:
     overrideState: 0
-    value: 0
+    value: 11
   tint:
     overrideState: 0
     value: 0
@@ -189,7 +140,7 @@ MonoBehaviour:
     value: 0
   postExposure:
     overrideState: 1
-    value: 0.5
+    value: 1.25
   contrast:
     overrideState: 0
     value: 0
@@ -222,13 +173,13 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    value: {x: 1, y: 0.7259213, z: 0.8142423, w: 0}
   gamma:
     overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    value: {x: 0.9552042, y: 1, z: 0.8316336, w: 0}
   gain:
     overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    value: {x: 1, y: 0.9267055, z: 0.83011204, w: 0}
   masterCurve:
     overrideState: 0
     value:
@@ -1443,7 +1394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
   - {fileID: -1536114138359635171}
-  - {fileID: -5743703033403280486}
+  - {fileID: 8272045460631094768}
   - {fileID: 1837464089807558602}
   - {fileID: 7138433440175462555}
   - {fileID: -6324633367187659339}
@@ -1478,10 +1429,10 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.31
+    value: 0.15
   smoothness:
-    overrideState: 0
-    value: 0.2
+    overrideState: 1
+    value: 0.445
   roundness:
     overrideState: 1
     value: 1
@@ -1516,10 +1467,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.421
+    value: 0.4
   size:
     overrideState: 1
-    value: 0.43
+    value: 0.4
   lumContrib:
     overrideState: 1
     value: 0.8
@@ -1545,7 +1496,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.101
+    value: 0.1
   fastMode:
     overrideState: 1
     value: 1
@@ -1567,7 +1518,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 20
+    value: 25
   intensityX:
     overrideState: 0
     value: 1
@@ -1583,6 +1534,55 @@ MonoBehaviour:
   scale:
     overrideState: 1
     value: 1
+--- !u!114 &8272045460631094768
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
+  m_Name: AmbientOcclusion
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  mode:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 1.5
+  color:
+    overrideState: 1
+    value: {r: 0, g: 0.12836795, b: 0.5754717, a: 1}
+  ambientOnly:
+    overrideState: 1
+    value: 0
+  noiseFilterTolerance:
+    overrideState: 0
+    value: 0
+  blurTolerance:
+    overrideState: 0
+    value: -4.6
+  upsampleTolerance:
+    overrideState: 0
+    value: -12
+  thicknessModifier:
+    overrideState: 1
+    value: 1
+  directLightingStrength:
+    overrideState: 0
+    value: 0
+  radius:
+    overrideState: 0
+    value: 0.25
+  quality:
+    overrideState: 0
+    value: 2
 --- !u!114 &8793478855323261435
 MonoBehaviour:
   m_ObjectHideFlags: 3
