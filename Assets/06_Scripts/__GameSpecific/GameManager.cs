@@ -152,7 +152,7 @@ public class GameManager : Singleton<GameManager>
 
     void StartMultiplierTimer()
     {
-        MultiplerTimer.StartTimer(Mathf.Max(m_timeMultiplier - m_timeMultiplier * Mathf.Pow(m_percentMultiplier, m_scoreMultiplier), 0.2f), () => { DecreaseMultiplier(); });
+        MultiplerTimer.StartTimer(Mathf.Max(m_timeMultiplier - m_timeMultiplier * m_percentMultiplier * m_scoreMultiplier, 0.2f), () => { DecreaseMultiplier(); });
     }
 
 

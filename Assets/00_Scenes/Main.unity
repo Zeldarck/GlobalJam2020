@@ -12154,9 +12154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c7433f17076a1428aa742d88bcfe64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_timeDifficulty: 13.5
+  m_timeDifficulty: 17.5
   m_timeMultiplier: 3.5
-  m_percentMultiplier: 0.05
+  m_percentMultiplier: 0.02
 --- !u!1001 &1695551706
 PrefabInstance:
   m_ObjectHideFlags: 0

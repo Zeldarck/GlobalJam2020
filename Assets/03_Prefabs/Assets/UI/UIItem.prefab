@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1464370182090418946}
   - component: {fileID: 6913708997025451004}
   - component: {fileID: 6317837861306592643}
-  - component: {fileID: 6796069307116150579}
   m_Layer: 5
   m_Name: SmokePouf
   m_TagString: Untagged
@@ -75,25 +74,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &6796069307116150579
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6242065333274361726}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d4d592575acc8af4b83a7b82826a68f3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7299526404747558934
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +87,7 @@ GameObject:
   - component: {fileID: 7299526404747558929}
   - component: {fileID: 7299526404747558928}
   - component: {fileID: 4357790300902200960}
+  - component: {fileID: 8430797660351991022}
   m_Layer: 5
   m_Name: UIItem
   m_TagString: Untagged
@@ -204,6 +185,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemType: 0
+  m_animatorFx: {fileID: 8430797660351991022}
+--- !u!95 &8430797660351991022
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7299526404747558934}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d4d592575acc8af4b83a7b82826a68f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7299526405470203071
 GameObject:
   m_ObjectHideFlags: 0

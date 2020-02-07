@@ -47,13 +47,15 @@ public class CornerItemUI : MonoBehaviour
             }
             iconItem = Instantiate(iconItemPrefab, m_container.transform);
             m_currentItemIcon.Add(iconItem);
+
+            iconItem.transform.SetSiblingIndex(a_order);
+
         }
         else
         {
-            //PopVFX
+            iconItem.ModifySiblingIndex(a_order);
         }
 
-        iconItem.transform.SetSiblingIndex(a_order);
     }
 
 }

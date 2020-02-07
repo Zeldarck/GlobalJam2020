@@ -22,6 +22,24 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.41666666
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.5
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -30,8 +48,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1.6666666
-        value: 0
+        time: 2
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -42,75 +60,73 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: 
+    path: SmokePouf
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_PPtrCurves:
   - curve:
-    - time: 0
+    - time: 0.41666666
       value: {fileID: -7511615591661800551, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 0.083333336
+    - time: 0.5
       value: {fileID: 433190986821845793, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 0.16666667
+    - time: 0.5833333
       value: {fileID: -8861436447443409627, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 0.25
+    - time: 0.6666667
       value: {fileID: 2308149122955384824, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 0.33333334
+    - time: 0.75
       value: {fileID: 8175934360209508778, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 0.41666666
+    - time: 0.8333333
       value: {fileID: 164330253825412201, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 0.5
+    - time: 0.9166667
       value: {fileID: -8356651740646230469, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 0.5833333
+    - time: 1
       value: {fileID: -178938683462167400, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 0.6666667
+    - time: 1.0833334
       value: {fileID: 6932717648911519814, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 0.75
+    - time: 1.1666666
       value: {fileID: 8040782325235868301, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 0.8333333
+    - time: 1.25
       value: {fileID: -5289584325355820871, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 0.9166667
+    - time: 1.3333334
       value: {fileID: 7420531791150532452, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 1
+    - time: 1.4166666
       value: {fileID: -5327051788595343033, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 1.0833334
+    - time: 1.5
       value: {fileID: -6609579571304424800, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 1.1666666
+    - time: 1.5833334
       value: {fileID: -5609567115053891463, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 1.25
+    - time: 1.6666666
       value: {fileID: 213816768062537786, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 1.3333334
+    - time: 1.75
       value: {fileID: 2033068363540637234, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 1.4166666
+    - time: 1.8333334
       value: {fileID: -1599586713061663628, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 1.5
+    - time: 1.9166666
       value: {fileID: -2315098825452732483, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 1.5833334
+    - time: 2
       value: {fileID: 5728908125477745154, guid: f2a64abaf06b28f438a18adb87c65950,
         type: 3}
-    - time: 1.6666666
-      value: {fileID: 0}
     attribute: m_Sprite
-    path: 
+    path: SmokePouf
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_SampleRate: 12
@@ -121,14 +137,14 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 3594005950
       attribute: 3305885265
       script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
       typeID: 114
       customType: 24
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 0
+      path: 3594005950
       attribute: 2015549526
       script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
       typeID: 114
@@ -155,13 +171,12 @@ AnimationClip:
     - {fileID: -1599586713061663628, guid: f2a64abaf06b28f438a18adb87c65950, type: 3}
     - {fileID: -2315098825452732483, guid: f2a64abaf06b28f438a18adb87c65950, type: 3}
     - {fileID: 5728908125477745154, guid: f2a64abaf06b28f438a18adb87c65950, type: 3}
-    - {fileID: 0}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.75
+    m_StopTime: 2.0833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -182,6 +197,24 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.41666666
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.5
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -190,8 +223,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1.6666666
-        value: 0
+        time: 2
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -202,10 +235,17 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: 
+    path: SmokePouf
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.41666666
+    functionName: EndFX
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

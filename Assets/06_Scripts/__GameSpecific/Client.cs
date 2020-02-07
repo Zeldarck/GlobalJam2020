@@ -61,6 +61,8 @@ public class Client : MonoBehaviour
 
     void Update()
     {
+        transform.forward = Camera.main.transform.position - transform.position;
+
         if (m_timer.IsTimerRunning())
         {
             float left = m_timer.GetTimeLeft();
@@ -68,9 +70,6 @@ public class Client : MonoBehaviour
             {
                 SetRage((m_alertBeginValue - left) / m_alertBeginValue);
             }
-
-
-            transform.forward = Player.Instance.transform.position - transform.position;
         }
     }
 
