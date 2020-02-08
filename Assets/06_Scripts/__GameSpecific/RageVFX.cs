@@ -37,6 +37,7 @@ public class RageVFX : MonoBehaviour
 
         if (Utils.SignWithZero(a_rage) < 0)
         {
+            return; //disable negative rage vfx
             m_textMain.text = "<color=blue>";  
         }
         m_textMain.text += sign + Mathf.Abs(a_rage);

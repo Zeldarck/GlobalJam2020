@@ -5,29 +5,44 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public class Highscore
+{
+    int m_score;
+    string m_pseudo;
+
+    public int Score { get => m_score; set => m_score = value; }
+    public string Pseudo { get => m_pseudo; set => m_pseudo = value; }
+
+
+    public Highscore(int a_score, string a_pseudo)
+    {
+        m_score = a_score;
+        m_pseudo = a_pseudo;
+    }
+}
+
 public class SaveManager
 {
     const int m_highscoreNumber = 10;
-    int[] m_scores = new int[m_highscoreNumber];
-    string[] m_pseudos = new string[m_highscoreNumber];
+    Highscore[] m_scores = new Highscore[m_highscoreNumber];
+
+    public Highscore[] Scores { get => m_scores; set => m_scores = value; }
 
     public SaveManager()
     {
         for (int i = 0; i < m_highscoreNumber; ++i)
         {
-            m_scores[i] = 0;
-            m_pseudos[i] = "-";
+            Scores[i] = new Highscore(0, "-");
         }
         Load();
-
     }
 
     void Load()
     {
         for (int i = 0; i < m_highscoreNumber; ++i)
         {
-            m_scores[i] = PlayerPrefs.GetInt("Score" + i);
-            m_pseudos[i] = PlayerPrefs.GetString("Score" + i);
+            Scores[i].Score = PlayerPrefs.GetInt("Score" + i);
+            Scores[i].Pseudo = PlayerPrefs.GetString("Pseudo" + i);
         }
     }
 
@@ -35,40 +50,40 @@ public class SaveManager
     {
         for (int i = 0; i < m_highscoreNumber; ++i)
         {
-            PlayerPrefs.SetInt("Score" + i, m_scores[i]);
-            PlayerPrefs.SetString("Score" + i, m_pseudos[i]);
+            PlayerPrefs.SetInt("Score" + i, Scores[i].Score);
+            PlayerPrefs.SetString("Pseudo" + i, Scores[i].Pseudo);
         }
+        PlayerPrefs.Save();
     }
 
-    public void Add(string a_pseudo, int a_score)
+    public void Add(Highscore a_highscore)
     {
         for (int i = 0; i < m_highscoreNumber; ++i)
         {
-            if (a_score > m_scores[i])
+            if (a_highscore.Score > Scores[i].Score)
             {
                 for (int j = m_highscoreNumber - 1; j > i; --j)
                 {
-                    m_scores[j] = m_scores[j - 1];
-                    m_pseudos[j] = m_pseudos[j - 1];
+                    Scores[j] = Scores[j - 1];
                 }
-                m_scores[i] = a_score;
-                m_pseudos[i] = a_pseudo;
+                Scores[i] = a_highscore;
                 break;
             }
         }
         Save();
     }
 
-    public bool IsHighScore(int a_score)
+    public int IsHighScore(int a_score)
     {
+        Load();
         for (int i = 0; i < m_highscoreNumber; ++i)
         {
-            if (a_score > m_scores[i])
+            if (a_score > Scores[i].Score)
             {
-                return true;
+                return i+1;
             }
         }
 
-        return false;
+        return -1;
     }
 }

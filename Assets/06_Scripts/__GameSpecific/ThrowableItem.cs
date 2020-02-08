@@ -33,6 +33,7 @@ public class ThrowableItem : MonoBehaviour
         Utils.TriggerWaitForSeconds(1.5f, () => Dead());
         m_isFired = true;
         m_trail.SetActive(true);
+        DisplayMesh();
     }
 
 
