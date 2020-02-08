@@ -2028,6 +2028,18 @@ Transform:
   m_Father: {fileID: 2003256138}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: -243.68399, z: 0}
+--- !u!114 &464668685 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7398414112907846763, guid: acebe744ee2f36a4294be2775558fe9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477957677}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &470412969
 GameObject:
   m_ObjectHideFlags: 0
@@ -3816,10 +3828,10 @@ RectTransform:
   m_Father: {fileID: 819587675}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.68624985, y: 0.008045131}
-  m_AnchorMax: {x: 0.9771876, y: 0.12876348}
+  m_AnchorMin: {x: 0.6106561, y: 0.03527925}
+  m_AnchorMax: {x: 0.9740313, y: 0.18601072}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.00012207031, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &881252615
 MonoBehaviour:
@@ -3883,9 +3895,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c974f1ce5fed254db970d89bbf3b694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_timeMultiplierShaker: 0.05
-  m_intensityMultiplierShaker: 2
-  m_speedFill: 3.25
+  m_timeMultiplierShaker: 0.1
+  m_intensityMultiplierShaker: 3.1
+  m_maxIntensity: 30
+  m_speedFill: 1.25
 --- !u!114 &881252617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10296,6 +10309,18 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
+--- !u!114 &1249838334 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7398414112426469018, guid: acebe744ee2f36a4294be2775558fe9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477957677}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1287921509
 Mesh:
   m_ObjectHideFlags: 0
@@ -10812,6 +10837,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1915659335}
     m_Modifications:
+    - target: {fileID: 7398414112426469018, guid: acebe744ee2f36a4294be2775558fe9e,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7398414112426469019, guid: acebe744ee2f36a4294be2775558fe9e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -10831,6 +10861,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398414112907846763, guid: acebe744ee2f36a4294be2775558fe9e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.01697588
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398414112907846763, guid: acebe744ee2f36a4294be2775558fe9e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398414112907846763, guid: acebe744ee2f36a4294be2775558fe9e,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7398414112907846764, guid: acebe744ee2f36a4294be2775558fe9e,
         type: 3}
@@ -12788,6 +12833,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_slotMainItem: {fileID: 945621768}
   m_slotSecondItem: {fileID: 1604562513}
+--- !u!1 &1721902771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7398414113083538537, guid: acebe744ee2f36a4294be2775558fe9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477957677}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1721902772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721902771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23e96db1a962f64493a7b18617b9d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_vfxPrefab: {fileID: 7491482170126653751, guid: 6137c4cc3a6a0b8478942062173efa8e,
+    type: 3}
+  m_textMain: {fileID: 464668685}
+  m_textShadow: {fileID: 1249838334}
+  m_offset: {x: 0, y: 2.05, z: 0}
+  m_delay: 0.1
 --- !u!4 &1726249041 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7398414113083538536, guid: acebe744ee2f36a4294be2775558fe9e,
@@ -12856,7 +12925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 0.13725491}
+  m_Color: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 0.5882353}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

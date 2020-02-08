@@ -62,7 +62,7 @@ public class GameManager : Singleton<GameManager>
         EventManager.Instance.RegisterOnStart((o) => StartGame());
         EventManager.Instance.RegisterOnLoose((o) => GameOver());
 
-        EventManager.Instance.RegisterOnRageIncrease((o, number) => IncreaseRage(number.m_number));
+        EventManager.Instance.RegisterOnRageIncrease((o, number, client) => IncreaseRage(number.m_number));
         EventManager.Instance.RegisterOnScoreIncrease((o, number, client) => IncreaseScore((int)number.m_int));
 
     }

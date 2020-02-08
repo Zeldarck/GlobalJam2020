@@ -12,6 +12,9 @@ public class RageMeterUI : MonoBehaviour
     [SerializeField]
     float m_intensityMultiplierShaker = 1.5f;
 
+    [SerializeField]
+    float m_maxIntensity = 30;
+
 
     [SerializeField]
     float m_speedFill = 1.25f;
@@ -34,7 +37,7 @@ public class RageMeterUI : MonoBehaviour
         m_slider.value = m_targetRageValue;
         if (m_slider.value < a_rageLevel)
         {
-            GetComponent<UtilsAnimator>().Shake(m_timeMultiplierShaker * (a_rageLevel - m_slider.value), m_intensityMultiplierShaker * ( a_rageLevel - m_slider.value) );
+            GetComponent<UtilsAnimator>().Shake(m_timeMultiplierShaker * (a_rageLevel - m_slider.value), Mathf.Min(m_maxIntensity, m_intensityMultiplierShaker * ( a_rageLevel - m_slider.value)) );
         }
         m_targetRageValue = a_rageLevel;
     }

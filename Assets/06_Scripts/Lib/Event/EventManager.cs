@@ -20,7 +20,7 @@ public void RegisterOnArriveToStation(Action<object,MessageEventArgs> a_action)
 //##BEGIN##
 
 //Start
-//RageIncrease;NumberEventArgs
+//RageIncrease;NumberEventArgs;ClientEventArgs
 //RageUpdate;NumberEventArgs
 //ScoreIncrease;IntEventArgs;ClientEventArgs
 //ScoreUpdate;IntEventArgs
@@ -75,24 +75,24 @@ public class EventManager : Singleton<EventManager>
 // --- EVENT --- RageIncrease --- //
 
 
-	protected event Action<object, NumberEventArgs> OnRageIncrease;
-	public void RegisterOnRageIncrease(Action<object, NumberEventArgs> a_action)
+	protected event Action<object, NumberEventArgs, ClientEventArgs> OnRageIncrease;
+	public void RegisterOnRageIncrease(Action<object, NumberEventArgs, ClientEventArgs> a_action)
 	{
 		OnRageIncrease += a_action;
 	}
 
 
-	public void UnRegisterOnRageIncrease(Action<object, NumberEventArgs> a_action)
+	public void UnRegisterOnRageIncrease(Action<object, NumberEventArgs, ClientEventArgs> a_action)
 	{
 		OnRageIncrease -= a_action;
 	}
 
 
-	public void InvokeOnRageIncrease(object a_sender, NumberEventArgs a_1numberEventArgs)
+	public void InvokeOnRageIncrease(object a_sender, NumberEventArgs a_1numberEventArgs, ClientEventArgs a_2clientEventArgs)
 	{
 		if(OnRageIncrease != null)
 		{
-			OnRageIncrease.Invoke(a_sender, a_1numberEventArgs);
+			OnRageIncrease.Invoke(a_sender, a_1numberEventArgs, a_2clientEventArgs);
 		}
 	}
 

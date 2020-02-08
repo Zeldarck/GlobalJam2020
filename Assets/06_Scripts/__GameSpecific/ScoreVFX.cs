@@ -17,6 +17,8 @@ public class ScoreVFX : MonoBehaviour
     [SerializeField]
     Vector3 m_offset = new Vector3(0,1.55f,0);
 
+    GameObject m_lastCreated;
+
 
     private void Start()
     {
@@ -25,9 +27,15 @@ public class ScoreVFX : MonoBehaviour
 
     void DisplayScore(int a_score, Client a_client)
     {
-        m_textMain.text = "+ " + a_score;
-        m_textShadow.text = "+ " + a_score;
-        Instantiate(m_vfxPrefab, a_client.transform.position + m_offset, Quaternion.identity);
+        m_textMain.text = "+" + a_score;
+        m_textShadow.text = "+" + a_score;
+
+        if (m_lastCreated != null)
+        {
+            Destroy(m_lastCreated);
+        }
+
+        m_lastCreated = Instantiate(m_vfxPrefab, a_client.transform.position + m_offset, Quaternion.identity);
     }
 
     // Update is called once per frame

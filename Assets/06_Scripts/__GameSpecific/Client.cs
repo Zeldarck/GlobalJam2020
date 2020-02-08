@@ -113,7 +113,7 @@ public class Client : MonoBehaviour
             GameObject vfx = Instantiate(m_unhappyVFXPrefab, transform.position + new Vector3(0,1.35f,0), transform.rotation);
             Utils.TriggerWaitForSeconds(3,() => Destroy(vfx));
             SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.ENEMY_DIE, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.CREATE_KEY, 0, null, 0.55f);
-            EventManager.Instance.InvokeOnRageIncrease(this, new NumberEventArgs(m_baseRage));
+            EventManager.Instance.InvokeOnRageIncrease(this, new NumberEventArgs(m_baseRage), new ClientEventArgs(this));
         }
         else
         {
@@ -121,7 +121,7 @@ public class Client : MonoBehaviour
             Utils.TriggerWaitForSeconds(3, () => Destroy(vfx));
             SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.WIN, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.CREATE_KEY, 0, null, 0.55f);
             EventManager.Instance.InvokeOnScoreIncrease(this, new IntEventArgs(m_baseScore * GameManager.Instance.ScoreMultiplier), new ClientEventArgs(this));
-            EventManager.Instance.InvokeOnRageIncrease(this, new NumberEventArgs(m_baseRage/-3.0f));
+            EventManager.Instance.InvokeOnRageIncrease(this, new NumberEventArgs(m_baseRage/-3.0f), new ClientEventArgs(this));
         }
     }
 
