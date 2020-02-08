@@ -77,6 +77,12 @@ public static class Utils
         return a_value >= -a_epsilon && a_value <= a_epsilon ? 0 : (int)Mathf.Sign(a_value);
     }
 
+    public static bool Equals(float a_value, float a_value2, float a_epsilon)
+    {
+        return a_value + a_epsilon >= a_value2 && a_value - a_epsilon <= a_value2;
+    }
+
+
     public static float RandomGaussianDouble(float a_mean, float a_stdDev, System.Random r = null)
     {
         if (r == null)

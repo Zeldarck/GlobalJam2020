@@ -32,7 +32,20 @@ public class RageVFX : MonoBehaviour
     void DisplayRage(int a_rage)
     {
         string sign = Utils.SignWithZero(a_rage) > 0 ? "-" : "+";
-        m_textMain.text = sign + Mathf.Abs(a_rage);
+
+        m_textMain.text = "";
+
+        if (Utils.SignWithZero(a_rage) < 0)
+        {
+            m_textMain.text = "<color=blue>";  
+        }
+        m_textMain.text += sign + Mathf.Abs(a_rage);
+        if (Utils.SignWithZero(a_rage) < 0)
+        {
+            m_textMain.text += "</color>";
+        }
+
+
         m_textShadow.text = sign + Mathf.Abs(a_rage);
 
         if(m_lastCreated != null)

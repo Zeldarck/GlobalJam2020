@@ -22,12 +22,19 @@ public class RageMeterUI : MonoBehaviour
     float m_targetRageValue = 0.0f;
 
     float m_time = 0;
+
+    Color m_baseColor;
+
+    [SerializeField]
+    Color m_decreaseColor;
+
     // Start is called before the first frame update
     void Start()
     {
         m_slider = GetComponent<Slider>();
         EventManager.Instance.RegisterOnRageUpdate((o, number) => OnRageUpdated(number.m_number));
         m_slider.value = 0.0f;
+        m_baseColor = m_slider.fillRect.GetComponent<Image>().color;
 
     }
 
@@ -38,6 +45,11 @@ public class RageMeterUI : MonoBehaviour
         if (m_slider.value < a_rageLevel)
         {
             GetComponent<UtilsAnimator>().Shake(m_timeMultiplierShaker * (a_rageLevel - m_slider.value), Mathf.Min(m_maxIntensity, m_intensityMultiplierShaker * ( a_rageLevel - m_slider.value)) );
+            m_slider.fillRect.GetComponent<Image>().color = m_baseColor;
+        }
+        else
+        {
+            m_slider.fillRect.GetComponent<Image>().color = m_decreaseColor;
         }
         m_targetRageValue = a_rageLevel;
     }
@@ -45,5 +57,10 @@ public class RageMeterUI : MonoBehaviour
     private void Update()
     {
         m_slider.value += Time.deltaTime * (m_targetRageValue - m_slider.value ) * m_speedFill;
+
+        if(Utils.Equals(m_slider.value, m_targetRageValue, 0.85f))
+        {
+            m_slider.fillRect.GetComponent<Image>().color = m_baseColor;
+        }
     }
 }

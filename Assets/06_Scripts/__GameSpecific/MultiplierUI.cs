@@ -106,7 +106,7 @@ public class MultiplierUI : MonoBehaviour
 
     private void Update()
     {
-        if(m_multiplier == 1)
+        if(m_multiplier == 1 || !GameManager.Instance.IsGameRunning())
         {
             return;
         }

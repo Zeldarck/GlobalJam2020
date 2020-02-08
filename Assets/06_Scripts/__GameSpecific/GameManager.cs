@@ -24,6 +24,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     float m_percentMultiplier = 0.05f;
 
+    SaveManager m_saveManager;
+
 
 
     public Timer GameTimer { get => m_gameTimer; set => m_gameTimer = value; }
@@ -49,6 +51,8 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
+        m_saveManager = new SaveManager();
+
         CameraManager.Instance.Target = Player.Instance.gameObject;
         CameraManager.Instance.CurrentStrategy = new CameraFPS(3.5f, 5.0f, true);
 
