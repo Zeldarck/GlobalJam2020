@@ -30,9 +30,15 @@ public class ClientManager : Singleton<ClientManager>
 
     Timer m_timer;
 
-    int m_currentTableId = 100000;
 
     bool m_allowSpawn = false;
+
+    RandomCycle m_clientRandomCycle;
+
+    bool resetRandomTable = true;
+    RandomCycle m_tableRandomCycle;
+
+
 
     private void Start()
     {
@@ -40,6 +46,7 @@ public class ClientManager : Singleton<ClientManager>
         EventManager.Instance.RegisterOnStart(o => Init());
         EventManager.Instance.RegisterOnLoose((o) => m_allowSpawn = false);
         EventManager.Instance.RegisterOnIncreaseDifficulty((o, number) => IncreaseDifficulty(number.m_int));
+        m_clientRandomCycle = new RandomCycle(m_clientPrefabList.Count,4);
 
     }
 
@@ -73,7 +80,7 @@ public class ClientManager : Singleton<ClientManager>
             m_timer = TimerFactory.Instance.GetTimer();
         }
 
-        Utils.ShuffleList(LevelGenerator.Instance.Tables);
+        resetRandomTable = true;
 
         m_timer.StartTimer(Utils.RandomFloat(m_currentClientIntervalTime - 0.25f, m_currentClientIntervalTime + 0.25f), GenerateNewClient);
 
@@ -100,12 +107,6 @@ public class ClientManager : Singleton<ClientManager>
     void GenerateNewClient()
     {
 
-        if (m_clientPrefabList.Count == 0)
-        {
-            Debug.LogError("No client set up in Client Manager");
-            return;
-        }
-
         if (!m_allowSpawn)
         {
             return;
@@ -115,7 +116,7 @@ public class ClientManager : Singleton<ClientManager>
         Table table = GetTable();
 
 
-        int id = Utils.RandomInt(0, m_clientPrefabList.Count);
+        int id = m_clientRandomCycle.GetNextRandom();
 
         Client client = GameObjectManager.Instance.InstantiateObject(m_clientPrefabList[id].gameObject, Vector3.zero, Quaternion.identity, SPAWN_CONTAINER_TYPE.DESTRUCTIBLE).GetComponent<Client>();
 
@@ -129,10 +130,10 @@ public class ClientManager : Singleton<ClientManager>
 
     Table GetTable()
     {
-        if(m_currentTableId >= LevelGenerator.Instance.Tables.Count || m_currentTableId >= 5)
+        if (resetRandomTable)
         {
-            Utils.ShuffleList(LevelGenerator.Instance.Tables);
-            m_currentTableId = 0;
+            m_tableRandomCycle = new RandomCycle(LevelGenerator.Instance.Tables.Count, 10);
+            resetRandomTable = false;
         }
 
         if (LevelGenerator.Instance.Tables.Count == 0)
@@ -141,10 +142,7 @@ public class ClientManager : Singleton<ClientManager>
             return null;
         }
 
-        Table res = LevelGenerator.Instance.Tables[m_currentTableId];
-        m_currentTableId++;
-
-        return res;
+        return LevelGenerator.Instance.Tables[m_tableRandomCycle.GetNextRandom()];
     }
 
 

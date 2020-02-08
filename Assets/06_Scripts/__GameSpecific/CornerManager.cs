@@ -17,6 +17,8 @@ public class CornerManager : Singleton<CornerManager>
 
     int m_objectNumber = 3;
 
+    RandomCycle m_itemTypeRandomCycle;
+
     void Start()
     {
         EventManager.Instance.RegisterOnCornerHitted((o) => TriggerNextItem());
@@ -34,6 +36,7 @@ public class CornerManager : Singleton<CornerManager>
             m_cornerQueue.Enqueue(m_poolItems[m_objectNumber]);
             EventManager.Instance.InvokeOnSetCornerOrder(this, new ItemEventArgs(m_poolItems[m_objectNumber]), new IntEventArgs(m_objectNumber));
             ++m_objectNumber;
+            m_itemTypeRandomCycle = new RandomCycle(m_objectNumber, m_objectNumber - 1);
         }
     }
 
@@ -108,6 +111,7 @@ public class CornerManager : Singleton<CornerManager>
             corner.IsActived = true;
         }
 
+        m_itemTypeRandomCycle = new RandomCycle(m_objectNumber, m_objectNumber - 1);
 
         //ActivateACorner();
     }
@@ -120,9 +124,7 @@ public class CornerManager : Singleton<CornerManager>
             return 0;
         }
 
-        int id = Utils.RandomInt(0, m_availableItems.Count);
-
-        return m_availableItems[id];
+        return m_availableItems[m_itemTypeRandomCycle.GetNextRandom()];
     }
 
 
