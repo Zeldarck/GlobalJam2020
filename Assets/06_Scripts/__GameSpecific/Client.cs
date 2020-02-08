@@ -24,11 +24,6 @@ public class Client : MonoBehaviour
     [SerializeField]
     int m_baseScore = 25;
 
-   // [SerializeField]
-   // int m_minimumScore = 4;
-
-
-
     [SerializeField]
     float m_baseRage = 5;
 
@@ -42,6 +37,7 @@ public class Client : MonoBehaviour
 
     [SerializeField]
     GameObject m_unhappyVFXPrefab;
+
 
     Timer m_timer;
 
@@ -61,8 +57,6 @@ public class Client : MonoBehaviour
 
     void Update()
     {
-        transform.forward = Camera.main.transform.position - transform.position;
-
         if (m_timer.IsTimerRunning())
         {
             float left = m_timer.GetTimeLeft();
@@ -126,7 +120,7 @@ public class Client : MonoBehaviour
             GameObject vfx = Instantiate(m_happyVFXPrefab, transform.position + new Vector3(0, 1.35f, 0), transform.rotation);
             Utils.TriggerWaitForSeconds(3, () => Destroy(vfx));
             SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.WIN, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.CREATE_KEY, 0, null, 0.55f);
-            EventManager.Instance.InvokeOnScoreIncrease(this, new IntEventArgs(m_baseScore/*remove score decrease with time(int)Mathf.Max(m_baseScore * m_timer.GetTimeLeft()/m_waitingTime, m_minimumScore)*/));
+            EventManager.Instance.InvokeOnScoreIncrease(this, new IntEventArgs(m_baseScore * GameManager.Instance.ScoreMultiplier), new ClientEventArgs(this));
             EventManager.Instance.InvokeOnRageIncrease(this, new NumberEventArgs(m_baseRage/-3.0f));
         }
     }

@@ -22,7 +22,7 @@ public void RegisterOnArriveToStation(Action<object,MessageEventArgs> a_action)
 //Start
 //RageIncrease;NumberEventArgs
 //RageUpdate;NumberEventArgs
-//ScoreIncrease;IntEventArgs
+//ScoreIncrease;IntEventArgs;ClientEventArgs
 //ScoreUpdate;IntEventArgs
 //IncreaseDifficulty;IntEventArgs
 //UpdateMultiplier;IntEventArgs
@@ -129,24 +129,24 @@ public class EventManager : Singleton<EventManager>
 // --- EVENT --- ScoreIncrease --- //
 
 
-	protected event Action<object, IntEventArgs> OnScoreIncrease;
-	public void RegisterOnScoreIncrease(Action<object, IntEventArgs> a_action)
+	protected event Action<object, IntEventArgs, ClientEventArgs> OnScoreIncrease;
+	public void RegisterOnScoreIncrease(Action<object, IntEventArgs, ClientEventArgs> a_action)
 	{
 		OnScoreIncrease += a_action;
 	}
 
 
-	public void UnRegisterOnScoreIncrease(Action<object, IntEventArgs> a_action)
+	public void UnRegisterOnScoreIncrease(Action<object, IntEventArgs, ClientEventArgs> a_action)
 	{
 		OnScoreIncrease -= a_action;
 	}
 
 
-	public void InvokeOnScoreIncrease(object a_sender, IntEventArgs a_1intEventArgs)
+	public void InvokeOnScoreIncrease(object a_sender, IntEventArgs a_1intEventArgs, ClientEventArgs a_2clientEventArgs)
 	{
 		if(OnScoreIncrease != null)
 		{
-			OnScoreIncrease.Invoke(a_sender, a_1intEventArgs);
+			OnScoreIncrease.Invoke(a_sender, a_1intEventArgs, a_2clientEventArgs);
 		}
 	}
 

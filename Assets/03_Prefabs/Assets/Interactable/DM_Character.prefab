@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8901150192460035444}
   - component: {fileID: -7929227922593920654}
   - component: {fileID: 8952409718696917086}
+  - component: {fileID: 2278848181060501100}
   m_Layer: 0
   m_Name: DM_Character
   m_TagString: Untagged
@@ -113,7 +114,6 @@ MonoBehaviour:
   m_materialChild: {fileID: 0}
   m_waitingTime: 15
   m_baseScore: 25
-  m_minimumScore: 4
   m_baseRage: 7.5
   m_alertBeginValue: 4
   m_happyVFXPrefab: {fileID: 222208798868792983, guid: 52c9d954582d6784998a625fd820a714,
@@ -270,6 +270,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2278848181060501100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840552658264517217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0478a4394d289a1408308ddfca00a5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &124041562645108966
 PrefabInstance:
   m_ObjectHideFlags: 0

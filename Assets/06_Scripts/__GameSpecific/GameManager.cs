@@ -63,7 +63,7 @@ public class GameManager : Singleton<GameManager>
         EventManager.Instance.RegisterOnLoose((o) => GameOver());
 
         EventManager.Instance.RegisterOnRageIncrease((o, number) => IncreaseRage(number.m_number));
-        EventManager.Instance.RegisterOnScoreIncrease((o, number) => IncreaseScore((int)number.m_int));
+        EventManager.Instance.RegisterOnScoreIncrease((o, number, client) => IncreaseScore((int)number.m_int));
 
     }
 
@@ -136,7 +136,6 @@ public class GameManager : Singleton<GameManager>
         ScoreMultiplier++;
         StartMultiplierTimer();
 
-        a_number *= m_scoreMultiplier;
         m_score += a_number;
         SendEventScore();
     }
