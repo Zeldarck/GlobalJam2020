@@ -59,6 +59,12 @@ public class GameManager : Singleton<GameManager>
         GameTimer = TimerFactory.Instance.GetTimer();
         MultiplerTimer = TimerFactory.Instance.GetTimer();
 
+
+        //force loading
+        LevelGenerator.Instance.GenerateLevel(8, 11);
+        RailManager.Instance.GenerateRail(8, 11);
+
+
         Utils.TriggerWaitForSeconds(0.5f, () => EventManager.Instance.InvokeOnStart(this) );
 
         EventManager.Instance.RegisterOnStart((o) => StartGame());
