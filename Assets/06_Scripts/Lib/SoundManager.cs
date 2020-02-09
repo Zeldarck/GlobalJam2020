@@ -17,7 +17,8 @@ public class RandomSound
     [SerializeField]
     List<AudioClip> m_listSounds;
     List<AudioClip> m_everUsed = new List<AudioClip>();
-    int m_audioSourceKey = (int)AUDIOSOURCE_KEY.CREATE_KEY;
+    [SerializeField]
+    AUDIOSOURCE_KEY m_audioSourceKey = AUDIOSOURCE_KEY.CREATE_KEY;
 
     #region GetterSetter
     public List<AudioClip> ListSounds
@@ -59,7 +60,7 @@ public class RandomSound
         }
     }
 
-    public int AudioSourceKey
+    public AUDIOSOURCE_KEY AudioSourceKey
     {
         get
         {
@@ -155,8 +156,9 @@ public class AudioSourceExtend
     float m_speed;
     int m_key;
     float m_currentTime;
+    float m_wantedVolume;
 
-#region GetterSetter
+    #region GetterSetter
     public bool IsDestroyed
     {
         get
@@ -218,6 +220,8 @@ public class AudioSourceExtend
         }
     }
 
+    public float WantedVolume { get => m_wantedVolume; set => m_wantedVolume = value; }
+
     #endregion
 
 
@@ -238,7 +242,7 @@ public class AudioSourceExtend
         }
 
         m_currentTime += Mathf.Abs(Speed) * Time.deltaTime;
-       // AudioSource.volume = ConcreteEaseMethods.ExpoEaseOut(m_currentTime, Speed > 0 ? 0 : 1, Speed > 0 ? 1 : -1, 1);
+        AudioSource.volume = ConcreteEaseMethods.ExpoEaseOut(m_currentTime, Speed > 0 ? 0 : m_wantedVolume, Speed > 0 ? m_wantedVolume : -m_wantedVolume, 1);
         TryToDestroy();
     }
 
@@ -489,6 +493,10 @@ public class SoundManager : Singleton<SoundManager>
                 m_audioSourcesExtendWithKey[key] = new_source;
                 if (a_isFading)
                 {
+                    if(m_speedFade <= 0)
+                    {
+                        Debug.LogError("Sound fading bug speed fade <= 0");
+                    }
                     source.Speed = -m_speedFade;
                 }
                 else
@@ -501,11 +509,14 @@ public class SoundManager : Singleton<SoundManager>
                 new_source = temp;
             }
 
-            source.AudioSource.volume = a_volume;
 
             if (a_isFading)
             {
 
+                if (m_speedFade <= 0)
+                {
+                    Debug.LogError("Sound fading bug speed fade <= 0");
+                }
                 source.Speed = m_speedFade;
                 source.AudioSource.volume = 0;
             }
@@ -515,6 +526,7 @@ public class SoundManager : Singleton<SoundManager>
                 source.AudioSource.spatialBlend = 0.45f;
             }
 
+            source.WantedVolume = a_volume;
             source.AudioSource.outputAudioMixerGroup = mixer;
             source.AudioSource.clip = a_clip;
             source.AudioSource.loop = a_isLooping;
@@ -552,7 +564,7 @@ public class SoundManager : Singleton<SoundManager>
     /// </summary>
     /// <param name="a_randomSoundType">id of the random bank</param>
     /// <param name="a_mixerGroupType">id of the mixer we want to output through</param>
-    public void StartRandom(RANDOM_SOUND_TYPE a_randomSoundType, MIXER_GROUP_TYPE a_mixerGroupType)
+    public void StartRandom(RANDOM_SOUND_TYPE a_randomSoundType, MIXER_GROUP_TYPE a_mixerGroupType, bool a_isFading = true, bool a_isLooping = true, ulong a_delay = 0, GameObject a_parent = null, float a_volume = 1.0f, bool a_spatial = true)
     {
 
         RandomSound randomSound = m_listRandomSound.Find(x => x.Type == a_randomSoundType);
@@ -560,7 +572,7 @@ public class SoundManager : Singleton<SoundManager>
         {
             int rnd = (int)Utils.RandomFloat(0, randomSound.ListSounds.Count);
             AudioClip toPlay = randomSound.ListSounds[rnd];
-            randomSound.AudioSourceKey = StartAudio(randomSound.ListSounds[rnd], a_mixerGroupType, false, false,(AUDIOSOURCE_KEY) randomSound.AudioSourceKey);
+            randomSound.AudioSourceKey = (AUDIOSOURCE_KEY)StartAudio(randomSound.ListSounds[rnd], a_mixerGroupType, a_isFading, a_isLooping, randomSound.AudioSourceKey, a_delay, a_parent, a_volume, a_spatial);
             randomSound.EverUsed.Add(toPlay);
             randomSound.ListSounds.Remove(toPlay);
 

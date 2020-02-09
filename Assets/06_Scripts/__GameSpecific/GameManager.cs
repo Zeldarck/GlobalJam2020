@@ -98,6 +98,8 @@ public class GameManager : Singleton<GameManager>
 
     void StartGame()
     {
+        SoundManager.Instance.StartRandom(RANDOM_SOUND_TYPE.LOOSE, MIXER_GROUP_TYPE.AMBIANT, true, true, 0, null, 0.18f);
+
         GameTimer.StartTimer();
 
         //Cursor Set Up
@@ -176,6 +178,7 @@ public class GameManager : Singleton<GameManager>
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.LOOSE, MIXER_GROUP_TYPE.SFX, false, false, AUDIOSOURCE_KEY.CREATE_KEY, 0,null,1,false);
+        SoundManager.Instance.StartAudio(AUDIOCLIP_KEY.COUNTDOWN_FINAL, MIXER_GROUP_TYPE.AMBIANT, true, true, AUDIOSOURCE_KEY.BACKGROUND,0 ,  null, 0.18f);
 
         GameTimer.Pause();
     }

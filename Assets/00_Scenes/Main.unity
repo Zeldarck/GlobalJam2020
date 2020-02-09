@@ -506,8 +506,15 @@ MonoBehaviour:
     m_audioClip: {fileID: 8300000, guid: 100d7ddd82ed86245af99b98da6874af, type: 3}
   - m_key: 5
     m_audioClip: {fileID: 8300000, guid: 4a64fb596a98ab04799afec15cce4845, type: 3}
-  m_listRandomSound: []
-  m_speedFade: 0
+  - m_key: 11
+    m_audioClip: {fileID: 8300000, guid: 71ae782b079a94045981790255f04eb4, type: 3}
+  m_listRandomSound:
+  - m_type: 0
+    m_listSounds:
+    - {fileID: 8300000, guid: 33e92111530442545a3facc8e6658ab5, type: 3}
+    - {fileID: 8300000, guid: 5c0981b5ac75bcc4cb24fd2b65640837, type: 3}
+    m_audioSourceKey: 0
+  m_speedFade: 0.02
 --- !u!82 &134019890
 AudioSource:
   m_ObjectHideFlags: 0
@@ -515,7 +522,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134019887}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 139cf43055da866478df5e3729c99efc, type: 3}
