@@ -15399,7 +15399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.078431375}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6666667}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15421,6 +15421,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 849655954, guid: 5cde76aff1ee41a40a93b3b97a8aea1b, type: 3}
+      propertyPath: m_Color.a
+      value: 0.6666667
+      objectReference: {fileID: 0}
     - target: {fileID: 5926391742927982672, guid: 5cde76aff1ee41a40a93b3b97a8aea1b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15538,6 +15542,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cde76aff1ee41a40a93b3b97a8aea1b, type: 3}
+--- !u!114 &5926391743777040582 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5926391742927982675, guid: 5cde76aff1ee41a40a93b3b97a8aea1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5926391743777040581}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849655953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e532477a6fc3604d9749b8663326fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &7743477301251348770
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15809,6 +15825,7 @@ MonoBehaviour:
   m_inputField: {fileID: 629308262}
   m_scoreText: {fileID: 1297873636}
   m_rank: {fileID: 2108767092}
+  m_highscoreMenu: {fileID: 5926391743777040582}
 --- !u!222 &7743477301568452440
 CanvasRenderer:
   m_ObjectHideFlags: 0

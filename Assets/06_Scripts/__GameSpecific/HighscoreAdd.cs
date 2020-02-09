@@ -18,6 +18,10 @@ public class HighscoreAdd : MonoBehaviour
     [SerializeField]
     Text m_rank;
 
+    [SerializeField]
+    HighScoreMenu m_highscoreMenu;
+
+
     int m_score;
     SaveManager m_saveManager;
 
@@ -35,8 +39,10 @@ public class HighscoreAdd : MonoBehaviour
 
     private void OnValidatePseudo()
     {
-        m_saveManager.Add(new Highscore(m_score, m_inputField.text));
+        int index = m_saveManager.Add(new Highscore(m_score, m_inputField.text));
         m_canvas.enabled = false;
+        m_highscoreMenu.gameObject.SetActive(true);
+        m_highscoreMenu.SetColored(index);
     }
 
     void CheckIfHighScore()

@@ -29,5 +29,10 @@ public class HighScoreMenu : MonoBehaviour
         }
     }
 
+    public void SetColored(int a_index)
+    {
+        m_container.GetChild(a_index).GetComponent<HighscoreEntry>().SetColored();
+    }
+
 
 }

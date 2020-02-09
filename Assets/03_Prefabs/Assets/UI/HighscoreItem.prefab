@@ -152,6 +152,7 @@ MonoBehaviour:
   m_pseudo: {fileID: 8613723066305803839}
   m_score: {fileID: 8613723065124979398}
   m_index: {fileID: 8613723066815674549}
+  m_colored: {r: 0.025554901, g: 0.5943396, b: 0.0028034954, a: 1}
 --- !u!1 &8613723066305803837
 GameObject:
   m_ObjectHideFlags: 0

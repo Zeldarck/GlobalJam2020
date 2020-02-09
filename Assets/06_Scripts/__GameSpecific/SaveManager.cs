@@ -56,12 +56,14 @@ public class SaveManager
         PlayerPrefs.Save();
     }
 
-    public void Add(Highscore a_highscore)
+    public int Add(Highscore a_highscore)
     {
+        int res = 0;
         for (int i = 0; i < m_highscoreNumber; ++i)
         {
             if (a_highscore.Score > Scores[i].Score)
             {
+                res = i;
                 for (int j = m_highscoreNumber - 1; j > i; --j)
                 {
                     Scores[j] = Scores[j - 1];
@@ -71,6 +73,8 @@ public class SaveManager
             }
         }
         Save();
+
+        return res;
     }
 
     public int IsHighScore(int a_score)
