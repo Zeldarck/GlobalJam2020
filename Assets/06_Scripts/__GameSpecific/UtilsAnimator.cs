@@ -174,6 +174,11 @@ public class UtilsAnimator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.Instance.IsGameRunning())
+        {
+            return;
+        }
+
         if (IsShaking)
         {
             float intensity = 0.0f; 
