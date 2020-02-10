@@ -50,7 +50,7 @@ public class CameraManager : Singleton<CameraManager>
     // Update is called once per frame
     void Update()
     {
-        if (CurrentStrategy != null)
+        if (CurrentStrategy != null && GameManager.Instance.IsGameRunning())
         {
             CurrentStrategy.Update(transform);
         }

@@ -86,6 +86,10 @@ public class GameManager : Singleton<GameManager>
             Cursor.lockState = (CursorLockMode)(((int)(Cursor.lockState + 1)) % 2);
         }
 #endif
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = (Time.timeScale + 1) % 2;
+        }
 
 
         if (m_gameTimer.GetCurrentTime() / m_timeDifficulty >= m_difficulty)
@@ -191,7 +195,7 @@ public class GameManager : Singleton<GameManager>
 
     public bool IsGameRunning()
     {
-        return m_gameTimer.IsTimerRunning();
+        return m_gameTimer.IsTimerRunning() && Time.timeScale != 0;
     }
 
 }

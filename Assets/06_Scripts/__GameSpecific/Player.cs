@@ -41,6 +41,11 @@ public class Player : Singleton<Player>
     // Update is called once per frame
     private void Update()
     {
+        if (!GameManager.Instance.IsGameRunning())
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire1"))
         {
             Fire();
@@ -55,7 +60,7 @@ public class Player : Singleton<Player>
 
     private void Fire()
     {
-        if (!m_inventory.CanThrow || !m_enableFire)
+        if (!m_inventory.CanThrow || !m_enableFire )
         {
             return;
         }
