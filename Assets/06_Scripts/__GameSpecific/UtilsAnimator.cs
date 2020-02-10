@@ -81,6 +81,12 @@ public class UtilsAnimator : MonoBehaviour
     public void Shake(float a_time = 0.5f, float a_intensity = 0.5f, bool a_IsInversed = false)
     {
         EndCurrentModifPos();
+
+        if (a_time == 0)
+        {
+            return;
+        }
+
         m_timerShake.StartTimer(a_time, () => { IsShaking = false; m_transform.localPosition = m_originalPos; });
         IsShaking = true;
         m_isShakingInversed = a_IsInversed;
@@ -91,6 +97,12 @@ public class UtilsAnimator : MonoBehaviour
     public void Bubble(float a_time = 0.5f, float a_intensity = 0.5f, float a_bounciness = 5, float a_percentTimeScaleUp = 0.14f)
     {
         EndCurrentModifScale();
+
+        if(a_time == 0)
+        {
+            return;
+        }
+
         m_timerBubble.StartTimer(a_time, () => { IsBubble = false;  m_transform.localScale = m_originalScale; });
         IsBubble = true;
         m_originalScale = m_transform.localScale;
@@ -103,16 +115,29 @@ public class UtilsAnimator : MonoBehaviour
     public void SpringDamperScaleUp(float a_time = 0.5f, float a_finalSize = 0.5f, float a_bounciness = 5)
     {
         EndCurrentModifScale();
+
+        if (a_time == 0)
+        {
+            return;
+        }
+
         m_timerScaleUp.StartTimer(a_time);
         IsScaleUp = true;
         m_finalSizeScaleUp = a_finalSize;
         m_scaleUpBounciness = a_bounciness;
+        m_originalScale = transform.localScale;
     }
 
 
     public void LinearScaleDown(float a_time = 0.5f, float a_finalSize = 0.0f)
     {
         EndCurrentModifScale();
+
+        if (a_time == 0)
+        {
+            return;
+        }
+
         m_timerScaleDown.StartTimer(a_time);
         m_originalScale = m_transform.localScale;
         IsScaleDown = true;
@@ -170,19 +195,19 @@ public class UtilsAnimator : MonoBehaviour
 
             if (m_timerBubble.GetCurrentTime() < percentTime)
             {
-                m_transform.localScale = Vector3.Lerp(m_originalScale, m_originalScale + new Vector3(m_intensityBubble, m_intensityBubble, m_intensityBubble), m_timerBubble.GetCurrentTime() / (percentTime));
+                m_transform.localScale = Vector3.Lerp(m_originalScale, m_originalScale + new Vector3(m_intensityBubble, m_intensityBubble, m_intensityBubble), m_timerBubble.GetCurrentTime() / percentTime);
             }
             else
             {
                 m_transform.localScale = Utils.SpringDamper(m_originalScale + new Vector3(m_intensityBubble, m_intensityBubble, m_intensityBubble), m_originalScale
-                    , (m_timerBubble.GetCurrentTime() - (percentTime)) / (m_timerBubble.GetLength() - (percentTime)), m_bubbleBounciness);
+                    , (m_timerBubble.GetCurrentTime() - percentTime) / (m_timerBubble.GetLength() - percentTime), m_bubbleBounciness);
             }
         }
 
 
         if (IsScaleUp)
         {
-            m_transform.localScale = Utils.SpringDamper(Vector3.zero, new Vector3(m_finalSizeScaleUp, m_finalSizeScaleUp, m_finalSizeScaleUp)
+            m_transform.localScale = Utils.SpringDamper(m_originalScale, new Vector3(m_finalSizeScaleUp, m_finalSizeScaleUp, m_finalSizeScaleUp)
                   , m_timerScaleUp.GetCurrentTime() / m_timerScaleUp.GetLength(), m_scaleUpBounciness);
 
             if (m_timerScaleUp.GetCurrentTime() / m_timerScaleUp.GetLength() >= 1)

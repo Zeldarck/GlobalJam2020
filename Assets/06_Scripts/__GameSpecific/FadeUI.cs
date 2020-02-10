@@ -10,13 +10,19 @@ public class FadeUI : MonoBehaviour
 
 
     [SerializeField]
-    float m_durationFading = 3f;
+    float m_durationFadingOut = 3f;
+
+    [SerializeField]
+    float m_durationFadingIn = 1.5f;
+
 
     // Start is called before the first frame update
     void Start()
     {
         m_backgroundImage = GetComponent<Image>();
-        EventManager.Instance.RegisterOnStart((o) => m_backgroundImage.CrossFadeAlpha(0, m_durationFading, false));
+        m_backgroundImage.color = Color.black;
+        EventManager.Instance.RegisterOnStart((o) => m_backgroundImage.CrossFadeAlpha(0, m_durationFadingOut, false));
+        EventManager.Instance.RegisterOnLoose((o) => m_backgroundImage.CrossFadeAlpha(1, m_durationFadingIn, false));
     }
 
     // Update is called once per frame
