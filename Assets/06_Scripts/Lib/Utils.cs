@@ -23,6 +23,15 @@ public static class Utils
         }
     }
 
+    public static void DestroyChildsImmediate(Transform a_transform)
+    {
+        for (int i = a_transform.childCount - 1; i >= 0; --i)
+        {
+            GameObject.DestroyImmediate(a_transform.GetChild(i).gameObject);
+        }
+    }
+
+
 
     public static void RandomizeChildren(Transform a_transform, System.Random r = null)
     {

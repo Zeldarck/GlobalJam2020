@@ -37,6 +37,14 @@ public class HighscoreAdd : MonoBehaviour
         EventManager.Instance.RegisterOnLoose((o) => CheckIfHighScore());
     }
 
+    private void Update()
+    {
+        if (m_canvas.enabled && Input.GetKeyDown(KeyCode.Return))
+        {
+           OnValidatePseudo();
+        }
+    }
+
     private void OnValidatePseudo()
     {
         int index = m_saveManager.Add(new Highscore(m_score, m_inputField.text));

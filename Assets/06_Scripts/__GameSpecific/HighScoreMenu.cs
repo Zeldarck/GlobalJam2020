@@ -16,7 +16,7 @@ public class HighScoreMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        Utils.DestroyChilds(m_container);
+        Utils.DestroyChildsImmediate(m_container);
 
         SaveManager saveManager = new SaveManager();
 
