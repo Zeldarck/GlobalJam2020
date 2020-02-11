@@ -1402,6 +1402,33 @@ MonoBehaviour:
   - {fileID: 8793478855323261435}
   - {fileID: -1474127429586165708}
   - {fileID: 2639112182839246255}
+  - {fileID: 1338467775948590860}
+--- !u!114 &1338467775948590860
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54139e3b11277a44a7198dea9424e7b, type: 3}
+  m_Name: M_DamagePPSSettings
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 0
+  _MainTex:
+    overrideState: 1
+    value: {fileID: 0}
+    defaultState: 1
+  _Float0:
+    overrideState: 1
+    value: 100
+  _Float01:
+    overrideState: 1
+    value: 100
 --- !u!114 &1837464089807558602
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1486,7 +1513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6050e2d5de785ce4d931e4dbdbf2d755, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
