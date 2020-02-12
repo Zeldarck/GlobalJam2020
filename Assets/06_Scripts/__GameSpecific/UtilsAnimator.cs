@@ -46,6 +46,9 @@ public class UtilsAnimator : MonoBehaviour
 
 
 
+    [SerializeField]
+    bool m_hackAlwaysEnable;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -174,7 +177,7 @@ public class UtilsAnimator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.Instance.IsGameRunning())
+        if (!m_hackAlwaysEnable && !GameManager.Instance.IsGameRunning())
         {
             return;
         }

@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b068fe3077d83bb419ee8189bc045097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_hackAlwaysEnable: 1
 --- !u!114 &228530608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,6 +677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b068fe3077d83bb419ee8189bc045097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_hackAlwaysEnable: 1
 --- !u!1 &688501770
 GameObject:
   m_ObjectHideFlags: 0
