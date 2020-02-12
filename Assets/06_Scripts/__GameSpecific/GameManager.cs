@@ -25,7 +25,10 @@ public class GameManager : Singleton<GameManager>
     float m_percentMultiplier = 0.05f;
 
 
+#if UNITY_EDITOR
 
+    public bool DebugFreeze { get; set; }
+#endif
 
     public Timer GameTimer { get => m_gameTimer; set => m_gameTimer = value; }
     public Timer MultiplerTimer { get => m_multiplerTimer; set => m_multiplerTimer = value; }
@@ -84,9 +87,16 @@ public class GameManager : Singleton<GameManager>
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Cursor.lockState = (CursorLockMode)(((int)(Cursor.lockState + 1)) % 2);
+            DebugFreeze = !DebugFreeze;
         }
 #endif
-        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Escape))
+
+        if (Input.GetKeyDown(KeyCode.C)
+#if !UNITY_EDITOR
+
+            || Input.GetKeyDown(KeyCode.Escape)
+#endif
+)
         {
             Time.timeScale = (Time.timeScale + 1) % 2;
         }

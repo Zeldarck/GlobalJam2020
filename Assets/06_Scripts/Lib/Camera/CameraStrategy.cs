@@ -5,7 +5,11 @@ using UnityEngine;
 public abstract class CameraStrategy
 {
     protected GameObject m_target;
+    private float verticalSpeed;
+    private float horizontalSpeed;
 
+    public float VerticalSpeed { get => verticalSpeed; set => verticalSpeed = value; }
+    public float HorizontalSpeed { get => horizontalSpeed; set => horizontalSpeed = value; }
 
     public abstract void Update(Transform a_transform);
 
