@@ -15,6 +15,10 @@ public class StartButton : MonoBehaviour
     [SerializeField]
     Animator m_mainAnimator;
 
+    [SerializeField]
+    UtilsAnimator m_hackSeeHighScoreButton;
+
+
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(() => StartGame());
@@ -27,6 +31,8 @@ public class StartButton : MonoBehaviour
     void StartGame()
     {
         m_mainAnimator.SetTrigger("GoToTutorial");
+        m_animator.LinearScaleDown(0.77f);
+        m_hackSeeHighScoreButton.LinearScaleDown(0.77f);
     }
 
 

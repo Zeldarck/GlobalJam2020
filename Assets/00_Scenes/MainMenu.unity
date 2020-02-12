@@ -606,6 +606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_waitingTime: 4.35
   m_mainAnimator: {fileID: 720606725}
+  m_hackSeeHighScoreButton: {fileID: 228530607}
 --- !u!114 &568835679
 MonoBehaviour:
   m_ObjectHideFlags: 0
