@@ -90,4 +90,13 @@ public class SaveManager
 
         return -1;
     }
+
+    public void ResetHighscore()
+    {
+        for (int i = 0; i < m_highscoreNumber; ++i)
+        {
+            PlayerPrefs.SetInt("Score" + i, 0);
+            PlayerPrefs.SetString("Pseudo" + i, "");
+        }
+    }
 }

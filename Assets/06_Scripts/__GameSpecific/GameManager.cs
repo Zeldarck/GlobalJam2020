@@ -53,7 +53,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-
+       
         CameraManager.Instance.Target = Player.Instance.gameObject;
         CameraManager.Instance.CurrentStrategy = new CameraFPS(3.5f, 5.0f, true);
 

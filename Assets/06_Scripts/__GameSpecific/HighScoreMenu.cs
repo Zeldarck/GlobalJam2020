@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HighScoreMenu : MonoBehaviour
 {
@@ -12,16 +13,32 @@ public class HighScoreMenu : MonoBehaviour
     HighscoreEntry m_highscoreEntryPrefab;
 
 
+    [SerializeField]
+    Button m_resetButton;
 
 
     private void OnEnable()
     {
-        Utils.DestroyChildsImmediate(m_container);
+        Utils.DestroyChilds(m_container);
 
+
+        m_resetButton.onClick.RemoveAllListeners();
+        m_resetButton.onClick.AddListener(ResetScores);
+        GenerateChilds();
+
+    }
+
+    public void SetColored(int a_index)
+    {
+        m_container.GetChild(a_index).GetComponent<HighscoreEntry>().SetColored();
+    }
+
+    void GenerateChilds()
+    {
         SaveManager saveManager = new SaveManager();
 
         int index = 1;
-        foreach(Highscore highscore in saveManager.Scores)
+        foreach (Highscore highscore in saveManager.Scores)
         {
             HighscoreEntry entry = Instantiate(m_highscoreEntryPrefab.gameObject, m_container).GetComponent<HighscoreEntry>();
             entry.SetHighScore(highscore, index);
@@ -29,9 +46,12 @@ public class HighScoreMenu : MonoBehaviour
         }
     }
 
-    public void SetColored(int a_index)
+    private void ResetScores()
     {
-        m_container.GetChild(a_index).GetComponent<HighscoreEntry>().SetColored();
+        Utils.DestroyChilds(m_container);
+        SaveManager saveManager = new SaveManager();
+        saveManager.ResetHighscore();
+        GenerateChilds();
     }
 
 

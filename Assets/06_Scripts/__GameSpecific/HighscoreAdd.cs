@@ -19,7 +19,7 @@ public class HighscoreAdd : MonoBehaviour
     Text m_rank;
 
     [SerializeField]
-    HighScoreMenu m_highscoreMenu;
+    GameOverUI m_gameOverUI;
 
 
     int m_score;
@@ -49,8 +49,7 @@ public class HighscoreAdd : MonoBehaviour
     {
         int index = m_saveManager.Add(new Highscore(m_score, m_inputField.text));
         m_canvas.enabled = false;
-        m_highscoreMenu.gameObject.SetActive(true);
-        m_highscoreMenu.SetColored(index);
+        m_gameOverUI.DisplayHighscore(index);
     }
 
     void CheckIfHighScore()
