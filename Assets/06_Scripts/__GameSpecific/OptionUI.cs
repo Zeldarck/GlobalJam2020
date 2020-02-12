@@ -34,6 +34,13 @@ public class OptionUI : MonoBehaviour
     float m_defaultHorzSensi = 5.0f;
 
 
+    [SerializeField]
+    Button m_tutorialButton;
+
+    [SerializeField]
+    TutorialUI m_tutirialUI;
+
+
     Canvas m_canvas;
 
     // Start is called before the first frame update
@@ -57,7 +64,7 @@ public class OptionUI : MonoBehaviour
         m_closeButton.onClick.AddListener(() => Time.timeScale = 1);
         m_resetSensiButton.onClick.AddListener(() => m_verticalSensibility.value = m_defaultVertSensi);
         m_resetSensiButton.onClick.AddListener(() => m_horizontalSensibility.value = m_defaultHorzSensi);
-
+        m_tutorialButton.onClick.AddListener(() => m_tutirialUI.StartTurorial());
         Utils.TriggerNextFrame(InitSensi);
     }
 
@@ -90,6 +97,7 @@ public class OptionUI : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            m_tutirialUI.FinishTutorialExit();
         }
 
         m_verticalSensibilityText.text = "Vertical Sensibility:  " + (m_verticalSensibility.value - m_verticalSensibility.value % 0.01f);
