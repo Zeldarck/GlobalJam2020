@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class CameraFPS : CameraStrategy
 {
-    float m_verticalSpeed;
-    float m_horizontalSpeed;
     Vector3 m_anchorPoint;
     bool m_centerOnTarget = true;
     bool m_rotateTarget = false;
@@ -29,9 +27,9 @@ public class CameraFPS : CameraStrategy
 
     private void InitValues(float a_verticalSpeed, float a_horizontalSpeed, bool a_rotateTarget)
     {
-        m_verticalSpeed = a_verticalSpeed;
+        VerticalSpeed = a_verticalSpeed;
         m_rotateTarget = a_rotateTarget;
-        m_horizontalSpeed = a_horizontalSpeed;
+        HorizontalSpeed = a_horizontalSpeed;
     }
 
 
@@ -39,11 +37,11 @@ public class CameraFPS : CameraStrategy
     {
         if (m_target && Cursor.lockState == CursorLockMode.Locked)
         {
-            float h = m_horizontalSpeed * Input.GetAxis("Mouse X");
-            h += (m_horizontalSpeed -0.75f) * Input.GetAxis("Horizontal");
+            float h = HorizontalSpeed * Input.GetAxis("Mouse X");
+            h += (HorizontalSpeed -0.75f) * Input.GetAxis("Horizontal");
 
-            float v = m_verticalSpeed * Input.GetAxis("Mouse Y")* -1.0f;
-            v += (m_verticalSpeed -0.5f) * Input.GetAxis("Vertical")* -1.0f;
+            float v = VerticalSpeed * Input.GetAxis("Mouse Y")* -1.0f;
+            v += (VerticalSpeed -0.5f) * Input.GetAxis("Vertical")* -1.0f;
 
             a_transform.Rotate(v, h, 0);
             a_transform.localRotation = Quaternion.Euler(a_transform.localRotation.eulerAngles.x, a_transform.localRotation.eulerAngles.y, 0);
