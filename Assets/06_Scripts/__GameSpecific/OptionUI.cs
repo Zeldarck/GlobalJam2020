@@ -92,16 +92,17 @@ public class OptionUI : MonoBehaviour
         }
         else if(GameManager.Instance.IsGameRunning()
 #if UNITY_EDITOR
-         && !GameManager.Instance.DebugFreeze)
+         && !GameManager.Instance.DebugFreeze
 #endif
+         )
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             m_tutirialUI.FinishTutorialExit();
         }
 
-        m_verticalSensibilityText.text = "Vertical Sensibility:  " + (m_verticalSensibility.value - m_verticalSensibility.value % 0.01f);
-        m_horizontalSensibilityText.text = "Horizontal Sensibility:  " + (m_horizontalSensibility.value - m_horizontalSensibility.value % 0.01f);
+        m_verticalSensibilityText.text = "Vertical:  " + (m_verticalSensibility.value - m_verticalSensibility.value % 0.01f);
+        m_horizontalSensibilityText.text = "Horizontal:  " + (m_horizontalSensibility.value - m_horizontalSensibility.value % 0.01f);
     }
 
 }
