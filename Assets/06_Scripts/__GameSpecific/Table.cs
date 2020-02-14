@@ -61,6 +61,11 @@ public class Table : Module
         if (m_clientQueue.Count > 0 && m_clientQueue.Peek() == a_client)
         {
             m_clientQueue.Dequeue();
+
+            if(m_clientQueue.Count > 0)
+            {
+                m_clientQueue.Peek().StartTimer();
+            }
         }
     }
 

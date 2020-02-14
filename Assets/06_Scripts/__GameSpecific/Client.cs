@@ -98,6 +98,7 @@ public class Client : MonoBehaviour
     {
         CreateTimer();
         m_timer.StartTimer(m_waitingTime, () => CompleteClient(false));
+        Utils.TriggerNextFrame(SetAsFirstClient);
     }
 
     public void CompleteClient(bool a_isHappy)
@@ -125,7 +126,10 @@ public class Client : MonoBehaviour
         }
     }
 
-
+    void SetAsFirstClient()
+    {
+       // m_rendererChild.material.EnableKeyword("_RemoveFade");
+    }
 
     private void OnDestroy()
     {
