@@ -18,9 +18,14 @@ public class GameOverUI : MonoBehaviour
     [SerializeField]
     Button m_highscoreButton;
 
+    [SerializeField]
+    Button m_restartButton;
 
     [SerializeField]
     Mask m_maskChildren;
+
+    [SerializeField]
+    Image m_raycastBlocker;
 
 
     bool m_trackHighScoreMenu;
@@ -30,11 +35,13 @@ public class GameOverUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_raycastBlocker.gameObject.SetActive(false);
         m_canvas = GetComponent<Canvas>();
         m_animator = GetComponent<Animator>();
         EventManager.Instance.RegisterOnLoose((o) => { m_canvas.enabled = true; m_animator.SetTrigger("GameOver"); });
         EventManager.Instance.RegisterOnStart((o) => { m_canvas.enabled = false; m_animator.SetTrigger("ReStart"); });
         m_highscoreButton.onClick.AddListener(() => DisplayHighscore());
+        m_restartButton.onClick.AddListener(() => m_animator.SetTrigger("GoToRestart"));
     }
 
 
@@ -43,6 +50,7 @@ public class GameOverUI : MonoBehaviour
         m_animator.SetTrigger("GoToHighScore");
         m_highScoreMenuEnabled = true;
         m_maskChildren.enabled = true;
+        m_raycastBlocker.gameObject.SetActive(true);
         m_highscorecolored = a_indexColored;
     }
 
@@ -55,6 +63,7 @@ public class GameOverUI : MonoBehaviour
             m_trackHighScoreMenu = false;
             m_highScoreMenuEnabled = false;
             m_maskChildren.enabled = false;
+            m_raycastBlocker.gameObject.SetActive(false);
         }
     }
 
@@ -70,5 +79,12 @@ public class GameOverUI : MonoBehaviour
             }
         }
     }
+
+
+    void RestartGame()
+    {
+        Utils.TriggerNextFrame(() => EventManager.Instance.InvokeOnStart(this));
+    }
+
 
 }
