@@ -39,7 +39,10 @@ public class Client : MonoBehaviour
     GameObject m_unhappyVFXPrefab;
 
 
+
+
     Timer m_timer;
+
 
     private void Start()
     {
@@ -47,6 +50,13 @@ public class Client : MonoBehaviour
         m_rendererChild = m_materialChild.GetComponent<Renderer>();
         Material mat = new Material(m_rendererChild.material.shader);
         m_rendererChild.material = mat;
+
+
+        if (!m_timer.IsTimerRunning())
+        {
+            m_rendererChild.material.DisableKeyword("_FIRSTCLIENT_ON");
+        }
+
         SetRage(0);
     }
 
@@ -82,7 +92,6 @@ public class Client : MonoBehaviour
             }
 
             iconItem.gameObject.SetActive(true);
-
         }
     }
 
@@ -128,7 +137,7 @@ public class Client : MonoBehaviour
 
     void SetAsFirstClient()
     {
-       // m_rendererChild.material.EnableKeyword("_RemoveFade");
+        m_rendererChild.material.EnableKeyword("_FIRSTCLIENT_ON");
     }
 
     private void OnDestroy()

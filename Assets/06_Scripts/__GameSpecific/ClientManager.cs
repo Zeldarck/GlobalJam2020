@@ -82,7 +82,7 @@ public class ClientManager : Singleton<ClientManager>
 
         resetRandomTable = true;
 
-        m_timer.StartTimer(Utils.RandomFloat(m_currentClientIntervalTime - 0.25f, m_currentClientIntervalTime + 0.25f), GenerateNewClient);
+        m_timer.StartTimer(Utils.RandomFloat(m_currentClientIntervalTime - 0.25f, m_currentClientIntervalTime + 0.25f) + 1.5f, GenerateNewClient);
 
     }
 

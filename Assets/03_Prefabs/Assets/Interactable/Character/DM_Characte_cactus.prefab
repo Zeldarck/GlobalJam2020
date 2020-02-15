@@ -82,6 +82,36 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3481915955931673759, guid: 823cbb03d708a194d91a48bdf953a182,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481915955931673759, guid: 823cbb03d708a194d91a48bdf953a182,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481915955931673759, guid: 823cbb03d708a194d91a48bdf953a182,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.8323953
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481915955931673759, guid: 823cbb03d708a194d91a48bdf953a182,
+        type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481915955931673759, guid: 823cbb03d708a194d91a48bdf953a182,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481915955931673759, guid: 823cbb03d708a194d91a48bdf953a182,
+        type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 823cbb03d708a194d91a48bdf953a182, type: 3}
 --- !u!1 &89139750116949222 stripped
@@ -135,12 +165,12 @@ PrefabInstance:
     - target: {fileID: 1374206670817302401, guid: f81928c872f14d94fb3dc80171f189e8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1659219625748023106, guid: f81928c872f14d94fb3dc80171f189e8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4015121671073892026, guid: f81928c872f14d94fb3dc80171f189e8,
         type: 3}

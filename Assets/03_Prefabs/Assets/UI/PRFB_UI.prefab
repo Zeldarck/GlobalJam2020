@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemType: 0
+  m_animatorFx: {fileID: 0}
 --- !u!1 &1032832442390297245
 GameObject:
   m_ObjectHideFlags: 0
