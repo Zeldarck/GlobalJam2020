@@ -628,6 +628,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 33e92111530442545a3facc8e6658ab5, type: 3}
     - {fileID: 8300000, guid: 5c0981b5ac75bcc4cb24fd2b65640837, type: 3}
     - {fileID: 8300000, guid: 139cf43055da866478df5e3729c99efc, type: 3}
+    - {fileID: 8300000, guid: 5074c3dd78f56e64f86f8f592ea7b4de, type: 3}
     m_audioSourceKey: 0
   m_speedFade: 0.02
 --- !u!82 &134019890
