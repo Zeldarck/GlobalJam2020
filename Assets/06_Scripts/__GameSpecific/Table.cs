@@ -45,7 +45,7 @@ public class Table : Module
 
             item.IsDead = true;
 
-            Client client = m_clientQueue.Dequeue();
+            Client client = m_clientQueue.Peek();
 
             ThrowableItemType wantedType = client.WantedItem;
 

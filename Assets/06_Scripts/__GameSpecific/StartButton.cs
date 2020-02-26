@@ -18,12 +18,15 @@ public class StartButton : MonoBehaviour
     [SerializeField]
     UtilsAnimator m_hackSeeHighScoreButton;
 
+    [SerializeField]
+    UtilsAnimator m_hackSeeQuitButton;
 
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(() => StartGame());
         m_animator = GetComponent<UtilsAnimator>();
         TimerFactory.Instance.GetTimer().StartTimer(m_waitingTime, () => m_animator.SpringDamperScaleUp(0.85f, 1, 18));
+        TimerFactory.Instance.GetTimer().StartTimer(m_waitingTime, () => m_hackSeeQuitButton.SpringDamperScaleUp(0.85f, 1, 18));
 
     }
 
@@ -33,6 +36,7 @@ public class StartButton : MonoBehaviour
         m_mainAnimator.SetTrigger("GoToTutorial");
         m_animator.LinearScaleDown(0.77f);
         m_hackSeeHighScoreButton.LinearScaleDown(0.77f);
+        m_hackSeeQuitButton.LinearScaleDown(0.77f);
     }
 
 
